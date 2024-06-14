@@ -1,0 +1,4 @@
+metadata-file: metadata.yml  # file to use for metadata
+table-of-contents: true      # enabling table of contents
+toc-depth: 3                 # setitng max depth of 1 for table of contents
+number-sections: true        # we will prefix headings with numbers

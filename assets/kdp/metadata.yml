@@ -1,0 +1,21 @@
+---
+title:
+- type: main
+  text: Linux essentials
+creator:
+- role: author
+  text: Dries Swinnen
+- role: editor
+  text: Gert Vanwaeyenberg 
+- role: editor
+  text: Guido Frissaer
+- role: editor
+  text: Stijn Jans
+
+identifier:
+- scheme: DOI
+  text: doi:10.234234.234/33
+rights: © 2023, CC BY-NC
+ibooks:
+  version: 1.0.0
+...

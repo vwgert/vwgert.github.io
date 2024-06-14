@@ -1,0 +1,13 @@
+<!-- docs/_sidebar.md -->
+* [Home](./be-nl/)
+* [1 Introductie](./be-nl/01_introduction/01_course.md)
+* [2 Installatie](./be-nl/02_installation/01_course.md)
+* [3 Command line interface](./be-nl/03_commandline/01_course.md)
+* [4 Bestanden en Mappen](./be-nl/04_filesandfolders/01_course.md)
+* [5 Software & paketten](./be-nl/05_software/01_course.md)
+* [6 Inhoud van een bestand](./be-nl/06_filecontents/01_course.md)
+* [7 Geavanceerde commandostructuren](./be-nl/07_advancedcommands/01_course.md)
+* [8 Filters & bestandspermissies ](./be-nl/08_filters/01_course.md)
+* [9 Gebruikers & groepen](./be-nl/09_usersandgroups/01_course.md)
+* [10 Rechten](./be-nl/10_permissions/01_course.md)
+* [11 Automatisatie](./be-nl/11_automation/01_course.md)

@@ -1,0 +1,49 @@
+#myimg {
+    display: block;
+    margin: 0 auto;
+    max-width: 90% !important;
+}
+
+code{
+    background-color: #ededed;
+}
+
+.sourceCode {
+    display: block;
+    background-color: #ededed;
+    padding: 4px;
+    overflow: visible;
+}
+
+div.sourceCode {
+    overflow: visible;
+    white-space: pre-wrap;
+}
+
+.highlight{
+    display: block;
+    border-left: 4px solid #ededed;
+    padding-left: 8px;
+    margin-left: 16px;
+}
+
+a,a:active{
+    color: #000;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+pre{
+    max-width: 100%; /* Set your desired max width */
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    background-color: #ededed;
+    padding: 4px;
+}
+
+figcaption{
+    display: none;
+    margin: 0 auto;
+    font-style: italic;
+    font-size: 80%;
+}
