@@ -1,4 +1,5 @@
 # Software and packages
+
 In Windows we have several options to install software. We usually use installers that we find on discs and websites or even the Windows app store where we can find software in an online catalog. 
 
 Remember that latest hyped video game that you preordered and turned out to be a total bust? When installing that game it might prompt you saying/asking that you need to install the lastest version of DirectX or Visual C++ Redistributable? These are other pieces of software that are needed to run the initial application or game. We call these pieces of software _dependencies_. Most of the times the original installer installs these for us but sometimes we have to manually find and install these dependencies ourselves.
@@ -6,6 +7,7 @@ Remember that latest hyped video game that you preordered and turned out to be a
 Installing software on Linux systems hasn't always been easy. Back in the days we had to download source code and compile applications ourselves, put them in the right folders and make sure we have all the needed dependencies to run the application.  We might come across this process in the present day, but most of the time we are gonna install software using _package managers_. These are tools that run through a database to find the application that we want to install. If it finds an application matching the specified name it will install the application as well as all the required dependencies. If we remove an application it will also remove all dependencies that are no longer required. Another benefit is that the package manager will also manage updates of all our applications and dependencies.
 
 ## installing, removing and updating software (apt)
+
 When installing software packages in Ubuntu we often use the `apt` (advanced package system) command. The manpage gives us all the info we need to use the command:
 ```bash
 student@linux-ess:~$ man apt
@@ -329,6 +331,7 @@ The options we use can be found in the manpage, but below you can find a small s
   
   
 ## dpkg
+
 `dpkg` was the first package manager for Debian-based systems. Where Ubuntu nowadays uses `apt` as the default package manager, we can also use `dpkg`. `dpkg` was the predecessor of `apt-get` and `apt`. `dpkg` doesn't make use of repositories, so we have to have the installer file before using the command. It also doesn't download dependencies automatically. That's why they used to call it *the dependancy hell*  We can use `dpkg` to install / remove / ... `.deb` files. The example below installs the package `yourpackage`:
 ```bash
 student@linux-ess:~$ sudo dpkg -i yourpackage.deb
@@ -338,9 +341,10 @@ student@linux-ess:~$ sudo dpkg -i yourpackage.deb
 ```bash
 student@linux-ess:~$ sudo dpkg-reconfigure keyboard-configuration
 ```
-  
-  
+
+
 ## snap
+
 One of the relative new players is snap. A snap is a bundle of the software we want to install with all of its dependencies stored in one file and executed in its own bubble. This means that two snaps cannot interfere with eachother. This for example makes it possible to install two different versions of the same software at the same time and running them together. Snaps have their own filesystem but can work with files on your systems too. You can find snaps in the snap store on a Desktop or with `snap search` on a server. Snaps are used more and more because they are distro independant. If you can install the snap daemon on the distro it will run all snaps. 
 
 The commands for working with snap are almost similar as apt. We have:  
@@ -356,7 +360,7 @@ snap refresh (upgrades the snaps, happens every day automatically)
 snap changes (history of changes)  
 snap version 
 ```
- 
+
 
 snap update does not exist. The snap daemon checks for updates 4 times a day.
 
@@ -386,16 +390,16 @@ student@linux-ess:~$ sudo snap install mapscii
 [sudo] password for student:
 mapscii 0.3.1 from Nathan Haines (nhaines) installed
 student@linux-ess:~$ mapscii 
-```  
+```
 ![mapscii](../images/06/mapscii.png)   
-  
+
 ?> To navigate and zoom you can use the *arrow keys* and *a* and *z* 
 
-  
+
 ## zip vs gzip
 `gzip` compresses only one file and therefore is used with `tar` which brings multiple files into one file.  
 `zip`is used when you want to compress a bunch of files into one file in one step. 
-  
+
 ```bash
 student@linux-ess:~$ ls -a
 .   ..   .bash_history   .bash_logout   .bashrc   .profile   .ssh

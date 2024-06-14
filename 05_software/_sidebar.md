@@ -1,12 +1,13 @@
 <!-- docs/_sidebar.md -->
+
 * [Home](/)
 * [1 Introduction](./01_introduction/01_course.md)
 * [2 Installation](./02_installation/01_course.md)
 * [3 Command line interface](./03_commandline/01_course.md)
 * [4 Files and folders](./04_filesandfolders/01_course.md)
 * [5 Software & packages](./05_software/01_course.md)
-  ** [Lab](./05_software/02_lab.md)
-  ** [Assignment](./05_software/99_assignments.md)
+** [Lab](./05_software/02_lab.md)
+** [Assignment](./05_software/99_assignments.md)
 * [6 File contents](./06_filecontents/01_course.md)
 * [7 Advanced command structures](./07_advancedcommands/01_course.md)
 * [8 Filters & file operations ](./08_filters/01_course.md)
