@@ -1,30 +1,114 @@
 # Lab <!-- {docsify-ignore} --> 
-In het vorige hoofdstuk installeerde Linus een pakket genaamd `minetest` maar hij is in de war over waar dit pakket zich bevindt! In dit lab zullen we ontdekken hoe we mappen kunnen bekijken en navigeren en hoe we enkele basisopdrachten kunnen gebruiken om met bestanden te werken. Met deze kennis kunnen we misschien het `minetest`-pakket lokaliseren en de server daadwerkelijk starten. 
+pwd
 
-## Inhoud van mappen weergeven 
+ls
 
-Voordat hij iets anders doet, wil Linus echt weten hoe hij de inhoud van mappen kan weergeven. Hij kwam er al achter dat hij een prompt gebruikt die opdrachten uitvoert in een specifieke map, zoals te zien is in de vorige hoofdstukken. Met behulp van het commando `apropos directory` komt hij erachter dat er allerlei commando's beschikbaar zijn om met mappen te werken. Het eerste commando dat Linus bekijkt is het `pwd` commando: 
+touch file .ToDo
+
+ls
+
+ls -a
+
+nano .ToDo  --> ssh keys backuppen
+
+
+
+find locate van ssh-key
+
+file commando om te zien wat voor file dit is
+
+cat om te bekijken
+
+cp om te backuppen naar map met spaties in de naam
+
+rename van backup mapje om spatie eruit te halen
+
+Nog een hoofdmapje en backup mapje hiernaar verplaatsen
+
+
+
+rm .ToDo
+
+
+
+
+
+
+
+
+
+
+
+
+
+In een vorig hoofdstuk hebben we een instance (=server) aangemaakt en hebben we ook een ssh-key aangemaakt en gekoppeld aan deze instance. Daardoor lukt het ons om met dit keypair in te loggen onder de gebruiker ubuntu (=standaard gebruiker van de AWS-Ubuntu-image). Linus is nu wel benieuwd waar de public ssh key zich dan wel bevindt op de server. 
+
+## Zoeken van de public ssh key 
+
+Voordat hij iets kan vinden, wil Linus echt weten hoe hij de mappen kan doorzoeken. Hij kwam er al achter dat hij een prompt gebruikt die opdrachten uitvoert in een specifieke map, zoals te zien is in de vorige hoofdstukken. Met behulp van het commando `apropos directory` komt hij erachter dat er allerlei commando's beschikbaar zijn om met mappen te werken. Het eerste commando dat Linus bekijkt is het `pwd` commando: 
 
 ```bash
-student@linux-ess:~$ apropos directory
+ubuntu@ip-172-31-63-234:~$ apropos find
 ...
-ls (1)               - list directory contents
+find (1)             - search for files in a directory hierarchy
 ...
-pwd (1) - print name of current/working directory
+locate (1)           - find files by name, quickly
 ...
 ```
 
-Na het uitvoeren van dit commando ziet Linus inderdaad de werkmap waarin hij zich bevindt: 
+Hij zoekt uit hoe hij het commando locate kan gebruiken: 
 
 ```bash
-student@linux-ess:~$ pwd
-/home/student
+student@linux-ess:~$ man locate
+locate(1)                                      General Commands Manual                                      locate(1)
+
+NAME
+       plocate - find files by name, quickly
+
+SYNOPSIS
+       plocate [OPTION]...  PATTERN...
+
+DESCRIPTION
+       plocate  finds  all  files  on  the  system matching the given pattern (or all of the patterns if multiple are
+       given). It does this by means of an index made by updatedb(8) or (less commonly) converted from another  index
+       by plocate-build(8).
 ```
 
-Met behulp van de manpages leert hij over het `ls` commando dat de inhoud van een map moet tonen: 
+Dit levert volgend resultaat: 
 
 ```bash
-student@linux-ess:~$ ls
+ubuntu@ip-172-31-63-234:~$ locate key
+/boot/grub/i386-pc/at_keyboard.mod
+/boot/grub/i386-pc/keylayouts.mod
+/boot/grub/i386-pc/keystatus.mod
+/boot/grub/i386-pc/sendkey.mod
+/boot/grub/i386-pc/usb_keyboard.mod
+/boot/grub/x86_64-efi/at_keyboard.mod
+/boot/grub/x86_64-efi/keylayouts.mod
+/boot/grub/x86_64-efi/keystatus.mod
+/boot/grub/x86_64-efi/usb_keyboard.mod
+/etc/apparmor.d/keybase
+/etc/apparmor.d/abstractions/ssl_keys
+/etc/apt/keyrings
+/etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg
+/etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg
+/etc/chrony/chrony.keys
+/etc/console-setup/cached_setup_keyboard.sh
+/etc/default/keyboard
+/etc/init.d/keyboard-setup.sh
+/etc/rcS.d/S01keyboard-setup.sh
+/etc/ssh/ssh_host_ecdsa_key
+/etc/ssh/ssh_host_ecdsa_key.pub
+/etc/ssh/ssh_host_ed25519_key
+/etc/ssh/ssh_host_ed25519_key.pub
+/etc/ssh/ssh_host_rsa_key
+/etc/ssh/ssh_host_rsa_key.pub
+/etc/systemd/system/sshd-keygen@.service.d
+/etc/systemd/system/multi-user.target.wants/ec2-instance-connect-harvest-hostkeys.service
+/etc/systemd/system/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+/etc/systemd/system/sysinit.target.wants/keyboard-setup.service
+/etc/systemd/user/sockets.target.wants/keyboxd.socket
+/home/ubuntu/.ssh/authorized_keys
 ```
 
 We zien geen output. Dit komt omdat onze thuismap (`/home/student`) standaard leeg lijkt te zijn. Er zijn mogelijks enkele verborgen bestanden die niet worden weergegeven. Met behulp van het `man ls` commando probeert hij te zoeken naar een _optie_ waarmee hij verborgen bestanden kan bekijken: 
