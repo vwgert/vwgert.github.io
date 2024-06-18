@@ -153,4 +153,6 @@ Als wijze van oefening start je opnieuw een ssh-sessie met de instance en pas je
 
 
 
-![image-20240618102237878](../images/01/02_lab/image-20240618102237878.png)
+![image-20240618102237878](../images/03/image-20240618102237878.png)
+
+De naamswijziging zal in de prompt zichtbaar zijn de volgende keer dat je inlogt.

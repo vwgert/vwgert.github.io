@@ -154,3 +154,5 @@ As an exercise, restart an ssh session with the instance and change the *name* o
 
 
 ![image-20240618102237878](../images/03/image-20240618102237878.png)
+
+The name change will be visible in the prompt the next time you make an ssh connection.
