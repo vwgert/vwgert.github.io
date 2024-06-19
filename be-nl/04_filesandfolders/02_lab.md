@@ -1,15 +1,9 @@
 # Lab <!-- {docsify-ignore} --> 
-pwd
 
-ls
 
 touch file .ToDo
 
-ls
-
-ls -a
-
-nano .ToDo  --> ssh keys backuppen
+nano .ToDo  --> ssh keys backuppen  &  extern ip in file in homefolder
 
 
 
@@ -34,6 +28,188 @@ rm .ToDo
 
 
 
+
+Dit nog in vorig lab
+
+======================================================================================================================
+
+whoami
+
+```bash
+ubuntu@linux-ess:~$ whoami
+ubuntu
+```
+
+
+
+groups
+
+```bash
+ubuntu@linux-ess:~$ groups
+ubuntu adm cdrom sudo dip lxd
+```
+
+
+
+
+
+pwd
+
+```bash
+ubuntu@linux-ess:~$ pwd
+/home/ubuntu
+```
+
+
+
+ls
+
+```bash
+ubuntu@linux-ess:~$ ls
+ubuntu@linux-ess:~$ 
+```
+
+
+
+ls -a
+
+```bash
+ubuntu@linux-ess:~$ ls -a
+.   .bash_history  .bashrc  .config   .local    .ssh
+..  .bash_logout   .cache   .lesshst  .profile  .sudo_as_admin_successful
+```
+
+
+
+lscpu
+
+```bash
+ubuntu@linux-ess:~$ lscpu
+Architecture:             x86_64
+  CPU op-mode(s):         32-bit, 64-bit
+  Address sizes:          46 bits physical, 48 bits virtual
+  Byte Order:             Little Endian
+CPU(s):                   2
+  On-line CPU(s) list:    0,1
+Vendor ID:                GenuineIntel
+  Model name:             Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
+    CPU family:           6
+    Model:                63
+    Thread(s) per core:   1
+    Core(s) per socket:   2
+    Socket(s):            1
+```
+
+
+
+free -h
+
+```bash
+ubuntu@linux-ess:~$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       438Mi       3.2Gi       880Ki       447Mi       3.4Gi
+Swap:             0B          0B          0B
+```
+
+
+
+df -h
+
+```bash
+ubuntu@linux-ess:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       6.8G  2.2G  4.6G  33% /
+tmpfs           2.0G     0  2.0G   0% /dev/shm
+tmpfs           783M  864K  782M   1% /run
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/xvda16     881M  133M  687M  17% /boot
+/dev/xvda15     105M  6.1M   99M   6% /boot/efi
+tmpfs           392M   12K  392M   1% /run/user/1000
+```
+
+
+
+lsblk -e7
+
+```bash
+ubuntu@linux-ess:~$ lsblk -e7
+NAME     MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+xvda     202:0    0    8G  0 disk
+├─xvda1  202:1    0    7G  0 part /
+├─xvda14 202:14   0    4M  0 part
+├─xvda15 202:15   0  106M  0 part /boot/efi
+└─xvda16 259:0    0  913M  0 part /boot
+```
+
+ip a
+
+```bash
+ubuntu@linux-ess:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enX0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc mq state UP group default qlen 1000
+    link/ether 06:75:d5:9f:d8:b3 brd ff:ff:ff:ff:ff:ff
+    inet 172.31.63.234/20 metric 100 brd 172.31.63.255 scope global dynamic enX0
+       valid_lft 2866sec preferred_lft 2866sec
+    inet6 fe80::475:d5ff:fe9f:d8b3/64 scope link
+       valid_lft forever preferred_lft forever
+```
+
+curl checkip.amazonaws.com
+
+```bash
+ubuntu@linux-ess:~$ curl checkip.amazonaws.com
+54.87.203.25
+```
+
+
+
+systemctl status ssh --no-pager
+
+```bash
+ubuntu@linux-ess:~$ systemctl status ssh --no-pager
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/usr/lib/systemd/system/ssh.service; disabled; preset: enabled)
+    Drop-In: /usr/lib/systemd/system/ssh.service.d
+             └─ec2-instance-connect.conf
+     Active: active (running) since Wed 2024-06-19 06:34:04 UTC; 56min ago
+TriggeredBy: ● ssh.socket
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 899 (sshd)
+      Tasks: 1 (limit: 4676)
+     Memory: 4.1M (peak: 4.6M)
+        CPU: 45ms
+     CGroup: /system.slice/ssh.service
+             └─899 "sshd: /usr/sbin/sshd -D -o AuthorizedKeysCommand /usr/share/ec2-instance-connect/eic_run_authorized…
+
+Jun 19 06:34:04 linux-ess systemd[1]: Starting ssh.service - OpenBSD Secure Shell server...
+Jun 19 06:34:04 linux-ess sshd[899]: Server listening on :: port 22.
+Jun 19 06:34:04 linux-ess systemd[1]: Started ssh.service - OpenBSD Secure Shell server.
+Jun 19 06:34:05 linux-ess sshd[900]: Accepted publickey for ubuntu from 84.195.122.178 port 57085 ssh2: ED25519…LE3PFz3E
+Jun 19 06:34:05 linux-ess sshd[900]: pam_unix(sshd:session): session opened for user ubuntu(uid=1000) by ubuntu(uid=0)
+Hint: Some lines were ellipsized, use -l to show in full.
+```
+
+
+
+ss -ltn
+
+```bash
+ubuntu@linux-ess:~$ ss -ltn
+State         Recv-Q        Send-Q               Local Address:Port               Peer Address:Port       Process
+LISTEN        0             4096                    127.0.0.54:53                      0.0.0.0:*
+LISTEN        0             4096                 127.0.0.53%lo:53                      0.0.0.0:*
+LISTEN        0             4096                             *:22                            *:*
+```
+
+
+
+=========================================================================================================================
 
 
 
@@ -140,7 +316,22 @@ drwx------ 2 dries dries 4.0K Mar 10 09:15 .ssh
 
 Om de bestandsgrootte van het bestand te achterhalen combineert hij de opties `-a`, `-l` en `-h`. Nu weet Linus dat het bestand `.bashrc` bijvoorbeeld 3,5Kb groot is en voor het laatst is gewijzigd op 31 mei om 14:59. 
 
+
+
+
+
+
+
+naar .ssh mapje en file key(s) en keys  catten   en backuppen
+
+
+
+
+
+
+
 ## Maak een mappenstructuur  
+
 Linus wil een schone mappenstructuur voor zijn _LinusCraft_-project. In zijn homefolder wil hij graag een map aanmaken met de naam `linuscraft`. Om dit te doen vond hij het `mkdir` commando met behulp van de manpages. 
 
 ```bash
