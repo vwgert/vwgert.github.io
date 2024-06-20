@@ -1,35 +1,13 @@
 # Lab <!-- {docsify-ignore} --> 
 
 
-touch file .ToDo
-
-nano .ToDo  --> ssh keys backuppen  &  extern ip in file in homefolder
 
 
-
-find locate van ssh-key
-
-file commando om te zien wat voor file dit is
-
-cat om te bekijken
-
-cp om te backuppen naar map met spaties in de naam
-
-rename van backup mapje om spatie eruit te halen
-
-Nog een hoofdmapje en backup mapje hiernaar verplaatsen
-
-
-
-rm .ToDo
-
-
-
-In een vorig hoofdstuk hebben we een instance (=server) aangemaakt en hebben we ook een ssh-key aangemaakt en gekoppeld aan deze instance. Daardoor lukt het ons om met dit keypair in te loggen onder de gebruiker ubuntu (=standaard gebruiker van de AWS-Ubuntu-image). Linus is nu wel benieuwd waar de public ssh key zich dan wel bevindt op de server. 
+In een vorig hoofdstuk hebben we een cloud instance (=server) aangemaakt en hebben we ook een ssh-key aangemaakt en gekoppeld aan deze instance. Daardoor lukt het ons om met dit keypair in te loggen onder de gebruiker ubuntu (=standaard gebruiker van de AWS-Ubuntu-image). Linus is nu wel benieuwd waar de public ssh key zich dan wel bevindt op de server. 
 
 ## Zoeken van de public ssh key 
 
-Voordat hij iets kan vinden, wil Linus echt weten hoe hij de mappen kan doorzoeken. Hij kwam er al achter dat hij een prompt gebruikt die opdrachten uitvoert in een specifieke map, zoals te zien is in de vorige hoofdstukken. Met behulp van het commando `apropos directory` komt hij erachter dat er allerlei commando's beschikbaar zijn om met mappen te werken. Het eerste commando dat Linus bekijkt is het `pwd` commando: 
+Voordat hij iets kan vinden, wil Linus weten hoe hij het beste de mappen kan doorzoeken. Met behulp van het commando ***apropos find*** komt hij erachter dat er meerdere commando's beschikbaar zijn om in een mappenstructuur te zoeken. Zo vindt hij de commando's  *find* en *locate*.
 
 ```bash
 ubuntu@ip-172-31-63-234:~$ apropos find
@@ -40,7 +18,7 @@ locate (1)           - find files by name, quickly
 ...
 ```
 
-Hij zoekt uit hoe hij het commando locate kan gebruiken: 
+Hij zoekt uit hoe hij het commando *locate* kan gebruiken: 
 
 ```bash
 student@linux-ess:~$ man locate
@@ -58,7 +36,7 @@ DESCRIPTION
        by plocate-build(8).
 ```
 
-Dit levert volgend resultaat: 
+Het zoeken naar bestanden of mappen met het woord key in de naam levert volgend resultaat: 
 
 ```bash
 ubuntu@ip-172-31-63-234:~$ locate key
@@ -93,158 +71,135 @@ ubuntu@ip-172-31-63-234:~$ locate key
 /etc/systemd/system/sysinit.target.wants/keyboard-setup.service
 /etc/systemd/user/sockets.target.wants/keyboxd.socket
 /home/ubuntu/.ssh/authorized_keys
+...
 ```
 
-We zien geen output. Dit komt omdat onze thuismap (`/home/student`) standaard leeg lijkt te zijn. Er zijn mogelijks enkele verborgen bestanden die niet worden weergegeven. Met behulp van het `man ls` commando probeert hij te zoeken naar een _optie_ waarmee hij verborgen bestanden kan bekijken: 
+De laatste zichtbare lijn toont hierboven hoe ergens in zijn homefolder een bestand staat genaam *authorized_keys*.
+
+
+
+Tevens zoekt Linus uit hoe hij het *find* commando had kunnen gebruiken:
 
 ```bash
-student@linux-ess:~$ man ls
+student@linux-ess:~$ man find
 ```
 
-Om verborgen bestanden (bestanden die beginnen met een `.` teken) te bekijken, gebruikt hij de optie `-a` als volgt: 
-```bash
-student@linux-ess:~$ ls -a
-.   .bash_history  .bashrc      .ssh
-..  .bash_logout   .profile     .sudo_as_admin_successful
-student@linux-ess:~$
-```
-Merk op dat de uitvoer van het commando `ls -a` op jouw systeem anders kan zijn. Het belangrijkste doel is dat we een lijst met verborgen bestanden krijgen (bestanden die beginnen met `.`). Linus wil controleren of deze bestanden (of mappen) daadwerkelijk inhoud bevatten. Om dit te doen, gebruikt hij het commando `man ls` om te zoeken naar opties om bestandsgroottes te bekijken: 
-```bash
-student@linux-ess:~$ ls -alh
-total 52K
-drwxr-xr-x 6 dries dries 4.0K Aug 25 08:02 .
-drwxr-xr-x 3 root  root  4.0K Oct  5  2021 ..
--rw------- 1 dries dries 5.5K Jun  2 10:06 .bash_history
--rw-r--r-- 1 dries dries  220 Oct  5  2021 .bash_logout
--rw-r--r-- 1 dries dries 3.7K May 31 14:59 .bashrc
--rw-r--r-- 1 dries dries  807 Oct  5  2021 .profile
-drwx------ 2 dries dries 4.0K Mar 10 09:15 .ssh
--rw-r--r-- 1 dries dries    0 Oct  6  2021 .sudo_as_admin_successful
-```
-
-Om de bestandsgrootte van het bestand te achterhalen combineert hij de opties `-a`, `-l` en `-h`. Nu weet Linus dat het bestand `.bashrc` bijvoorbeeld 3,5Kb groot is en voor het laatst is gewijzigd op 31 mei om 14:59. 
 
 
-
-
-
-
-
-naar .ssh mapje en file key(s) en keys  catten   en backuppen
-
-
-
-
-
-
-
-## Maak een mappenstructuur  
-
-Linus wil een schone mappenstructuur voor zijn _LinusCraft_-project. In zijn homefolder wil hij graag een map aanmaken met de naam `linuscraft`. Om dit te doen vond hij het `mkdir` commando met behulp van de manpages. 
+Het zoeken, met *find*, naar bestanden of mappen met het woord key in de naam levert volgend resultaat:  
 
 ```bash
-student@linux-ess:~$ mkdir linuscraft
+ubuntu@linux-ess:~$ find -name "*key*"
+./.ssh/authorized_keys
 ```
 
-Na het aanmaken van de map `linuscraft` wil hij een map `playerinfo` in deze map aanmaken. Om dit te doen kan hij een van de 2 onderstaande opties gebruiken: 
 
-1. Door het commando `cd` te gebruiken: 
-```bash
-student@linux-ess:~$ cd linuscraft
-student@linux-ess:~/linuscraft$ mkdir playerinfo
-```
-
-2. Door het mkdir commando direct vanuit zijn homefolder (`/home/student`) te gebruiken met behulp van een relatief pad: 
-```bash
-student@linux-essentials:~$ mkdir linuscraft/playerinfo
-```
-
-Hij controleert of de map correct is gemaakt door naar die map te navigeren met behulp van een absoluut pad: 
-```bash
-student@linux-ess:~/linuscraft$ cd /home/student/linuscraft/playerinfo
-student@linux-ess:~/linuscraft/playerinfo$ pwd
-/home/student/linuscraft/playerinfo
-```
-
-?> Oefening: Kun je naar de map playerinfo navigeren met behulp van een relatief pad dat begint vanuit je homefolder? 
-
-Ook wil hij graag een map `administration` in de map `linuscraft`. Terwijl hij de map `playerinfo` als werkmap gebruikt (`cd /home/student/linuscraft/playerinfo`), maakt hij deze map aan met behulp van een relatief pad: 
-```bash
-student@linux-ess:~/linuscraft/playerinfo$ mkdir ../administration
-```
-
-Om af te sluiten maakt hij de mappen met de naam `backups`, `secrets` en `serverfiles` in de map `linuscraft` met behulp van een absoluut pad: 
-```bash
-student@linux-ess:~/linuscraft$ mkdir /home/student/linuscraft/backups /home/student/linuscraft/secrets /home/student/linuscraft/serverfiles
-```
-Merk op hoe we meerdere argumenten kunnen gebruiken met het commando `mkdir` om meerdere mappen te maken met slechts één commando. 
-
-Linus besluit terug te navigeren naar zijn homefolder door het commando `cd` zonder argumenten te gebruiken. Daarna controleert hij de inhoud van zijn aangemaakte map `linuscraft`: 
-```bash
-student@linux-ess:~/linuscraft$ cd
-student@linux-ess:~$ ls -lh linuscraft
-total 12K
-drwxr-xr-x 2 student student 4.0K May  4 21:45 administration
-drwxr-xr-x 2 student student 4.0K May  4 21:48 backups
-drwxr-xr-x 2 student student 4.0K May  4 21:44 playerinfo
-drwxr-xr-x 2 student student 4.0K May  4 21:48 secrets
-drwxr-xr-x 2 student student 4.0K May  4 21:48 serverfiles
-```
-
-## Bestanden maken  
-Linus wil graag een bestand maken, genaamd `todo.txt` om eventuele openstaande taken op te sommen. Hij maakt dit bestand aan in de map `linuscraft` met behulp van het `touch` commando: 
+Merk op dat de uitvoer van het commando begint met *./*. Dit duidt erop dat *.ssh* zicht bevindt in de huidige map. Dat de map *.ssh* begint met een punt (.) duidt er op dat deze map verborgen is. Het commando ls zal deze map dus niet tonen. We zullen het commando *ls -a* moeten gebruiken, zodanig dat de verborgen bestanden en mappen ook zichtbaar zijn.  
 
 ```bash
-student@linux-ess:~$ touch linuscraft/todo.txt
+ubuntu@linux-ess:~$ ls -a
+.   .bash_history  .bashrc  .config   .local    .ssh
+..  .bash_logout   .cache   .lesshst  .profile  .sudo_as_admin_successful
 ```
 
-Met deze opdracht wordt een leeg bestand gemaakt. We zullen ontdekken hoe we gegevens in het bestand kunnen invoegen in het lab van het volgende hoofdstuk. 
+ 
 
-Vervolgens maakt hij enkele extra bestanden met het volgende commando: 
+Met het commando *file* kan Linus achterhalen welk type file *.ssh* is.
 
 ```bash
-student@linux-ess:~$  touch linuscraft/contact.txt linuscraft/backuplog.txt linus.txt
+ubuntu@linux-ess:~$ file .ssh
+.ssh: directory
 ```
-Merk op hoe we meerdere argumenten kunnen geven aan het touch commando om meerdere bestanden te maken met slechts één commando. 
 
-Hij wil een verborgen bestand in de map secrets maken om ook privé-informatie op te slaan met behulp van een absoluut pad: 
+
+
+Hij verplaatst zich in de map, bekijkt de inhoud en achterhaald welk type file *authorized_keys* is.
+
+```
+ubuntu@linux-ess:~$ cd .ssh
+ubuntu@linux-ess:~/.ssh$ ls
+authorized_keys
+ubuntu@linux-ess:~/.ssh$ file authorized_keys
+authorized_keys: OpenSSH ED25519 public key
+```
+
+Dit is dus de public key die behoort bij de private key die op zijn laptop is gedownload vanuit AWS.
+
+
+
+De inhoud bekijken van de file kan met ***cat authorized_keys***
 
 ```bash
-student@linux-ess:~$ touch /home/student/linuscraft/secrets/.private
-```
-Hij controleert of alle bestanden met succes zijn gemaakt met behulp van de volgende reeks commando's: 
-```bash
-student@linux-ess:~$ ls ~
-linus.txt  linuscraft
-student@linux-ess:~$ ls linuscraft/
-administration  backuplog.txt  backups  contact.txt  playerinfo  secrets  serverfiles  todo.txt
-student@linux-ess:~$ ls -a /home/student/linuscraft/secrets/
-.  ..  .private
+ubuntu@linux-ess:~/.ssh$ cat authorized_keys
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGg8jhO/tYNeKuHodLUbgnmUn1mUJiRofPkWWWf17Mnp gert-key
 ```
 
-## Verfijn de bestands- en mapstructuur  
 
-Er zijn enkele problemen met de bestanden en mappen die we zojuist hebben gemaakt. Het `linus.txt` bestand wordt bijvoorbeeld aangemaakt in de homefolder van de gebruiker `student`. We moeten dit bestand verplaatsen naar de map `playerinfo`: 
+
+## Backuppen van de public ssh key 
+
+Voor de zekerheid wil Linus de *authorized_keys* file backuppen in dezelfde map. Hij doet dit door het bestand te kopiëren. Hij dient quotes te gebruiken omdat hij een spatie in de naam wilt.
 
 ```bash
-student@linux-ess:~$ mv linus.txt linuscraft/playerinfo/
+ubuntu@linux-ess:~/.ssh$ cp authorized_keys "authorized_keys backup"
+ubuntu@linux-ess:~/.ssh$ ls
+ authorized_keys  'authorized_keys backup'
 ```
 
-Er zijn 3 `txt` bestanden aanwezig in de map `linuscraft`. Linus leerde dat in Linux bestanden geen bestandsuitbreidingen nodig hebben, dus hij wil ze verwijderen met slechts één commando. Om dit doel te bereiken, gebruikt hij het commando `rename`: 
+
+
+Bij nader inzien maakt de spatie het misschien onnodig moeilijker. Hij hernoemt het bestand om er geen spatie meer in te hebben.
 
 ```bash
-student@linux-ess:~$ cd linuscraft
-student@linux-ess:~/linuscraft$ ls
-administration  backuplog.txt  backups  contact.txt  playerinfo  secrets  todo.txt
-student@linux-ess:~/linuscraft$ rename 's/\.txt//' *.txt
-student@linux-ess:~/linuscraft$ ls
-administration  backuplog  backups  contact  playerinfo  secrets  todo
+ubuntu@linux-ess:~/.ssh$ mv "authorized_keys backup" authorized_keys.backup
+ubuntu@linux-ess:~/.ssh$ ls
+authorized_keys  authorized_keys.backup
 ```
 
-De map `secrets` en de inhoud ervan zijn niet langer nodig, dus Linus besluit deze te verwijderen terwijl hij `~/linuscraft` als werkmap heeft (`cd ~/linuscraft`): 
+
+
+Overzichtelijker zou misschien zijn indien alle backups samen staan in een mapje *backups* rechtstreeks in zijn homefolder. Dit kan als volgt:
 
 ```bash
-student@linux-ess:~/linuscraft$ rm -rf secrets
+ubuntu@linux-ess:~/.ssh$ cd
+ubuntu@linux-ess:~$ mkdir backups
+ubuntu@linux-ess:~$ mv .ssh/authorized_keys.backup backups/
+ubuntu@linux-ess:~$ ls .ssh
+authorized_keys
+ubuntu@linux-ess:~$ ls backups/
+authorized_keys.backup
+ubuntu@linux-ess:~$ tree .ssh backups
+.ssh
+└── authorized_keys
+backups
+└── authorized_keys.backup
+
+2 directories, 2 files
 ```
 
-In het lab van het volgende hoofdstuk zullen we leren hoe we bestandsinhoud kunnen toevoegen aan de bestanden die we zojuist hebben gemaakt.
+
+
+## Opslaan van Publiek IP 
+
+Het IP adres van de server zou in principe steeds hetzelfde moeten blijven. Om dit eventueel op een later tijdstip te checken wil Linus het huidige IP adres in een bestandje zetten.
+
+Eerst achterhaald hij het huidige publieke IP adres. Hij kent het commando niet meer, maar weet dat het iets was met *curl*. Hij zoekt in de historiek van zijn shell commando's door de toetsencombinatie ***CTRL+r***. 
+
+```bash
+ubuntu@linux-ess:~$     (CTRL+r)
+(reverse-i-search)`curl': curl checkip.amazonaws.com
+ubuntu@linux-ess:~$ curl checkip.amazonaws.com
+54.87.203.25
+```
+
+
+
+Dit IP adres kan hij in een bestandje plaatsen genaamd *PublicIP* met het commando ***nano PublicIP***.  De editor (nano) afsluiten kan met de toetsencombinaties ***CTRL+s*** (=save) gevolgd door ***CTRL+x*** (=exit).
+
+```bash
+ubuntu@linux-ess:~$ nano PublicIP
+...
+ubuntu@linux-ess:~$ cat PublicIP
+54.87.203.25
+```
+

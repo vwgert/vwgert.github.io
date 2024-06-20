@@ -198,6 +198,10 @@ When there are some updates waiting it is always nice to do these first.
 
 ![Ubuntu_Desktop_Snapshot_Revert_To_Snapshot](../images/02/LAB_Ubuntu_Desktop_Snapshot_Revert_To_Snapshot.png)
 
+
+
+
+
 ## Task 5 - Explore the Desktop Environment
 
 In the Ubuntu desktop machine, try to execute the following subtasks:
