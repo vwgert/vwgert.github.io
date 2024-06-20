@@ -159,9 +159,9 @@ The name change will be visible in the prompt the next time you make an ssh conn
 
 
 
-We loggen even opnieuw in om een aantal zaken van de instance te checken.
+We log in again to check a number of things about the instance.
 
-We weten dat we een connectie maken over ssh naar de gebruiker ubuntu op de server. Dit kunnen we checken met ***whoami***.
+We know we are connecting over ssh to the user ubuntu on the server. We can check this with ***whoami***.
 
 ```bash
 ubuntu@linux-ess:~$ whoami
@@ -170,7 +170,7 @@ ubuntu
 
 
 
-We zullen soms ook commando's moeten gaan uitvoeren die even meer rechten nodig hebben om correct uitgevoerd te kunnen worden. Bijvoorbeeld bij commando's die systeeminstellingen aanpassen. We kunnen commando's uitvoeren met meer rechten door voor het commando een extra commando te typen, namelijk het commando *sudo*. We mogen het commando *sudo* gebruiken omdat we ook in de group *sudo* zitten. Dit kunnen we controleren met  ***groups***.
+We will sometimes also have to execute commands that require more rights to be executed correctly. For example, with commands that adjust system settings. We can execute commands with more rights by typing an extra command before the command, namely the command *sudo*. We can use the command *sudo* because we are also in the group *sudo*. We can check this with ***groups***.
 
 ```bash
 ubuntu@linux-ess:~$ groups
@@ -179,7 +179,7 @@ ubuntu adm cdrom sudo dip lxd
 
 
 
-Van zodra we ingelogd zijn, komen we in onze homefolder terecht. Om te kijken in welke folder we ons bevinden gebruiken we het commando ***pwd***.
+As soon as we are logged in, we end up in our home folder. To see which folder we are in, we use the command ***pwd***.
 
 ```bash
 ubuntu@linux-ess:~$ pwd
@@ -188,7 +188,7 @@ ubuntu@linux-ess:~$ pwd
 
 
 
-Indien we de inhoud wensen te zien van de folder waarin we ons bevinden, kunnen we gebruik maken van het commando ***ls***. Het lijkt hier alsof er geen inhoud aanwezig is.
+If we want to see the contents of the folder we are in, we can use the command ***ls***. It seems like there is no content here.
 
 ```bash
 ubuntu@linux-ess:~$ ls
@@ -197,7 +197,7 @@ ubuntu@linux-ess:~$
 
 
 
-Maar opgelet! Je bent pas zeker van zodra je ook de verborgen bestanden en directories opvraagt. Dit doe je met het commando ***ls -a***.
+But be careful! You can only be sure once you also request the hidden files and directories. You do this with the command ***ls -a***.
 
 ```bash
 ubuntu@linux-ess:~$ ls -a
@@ -207,7 +207,7 @@ ubuntu@linux-ess:~$ ls -a
 
 
 
-Indien je geen kleuren hebt (directories in blauw) kan je nog achterhalen welke de files zijn en welke de directories. Dit doe je met het commando ***ls -la***. De regels met de directories beginnen dan met de letter *d*.
+If you have no colors (directories in blue) you can still find out which are the files and which are the directories. You do this with the command ***ls -la***. The lines with the directories then start with the letter *d*.
 
 ```bash
 ubuntu@linux-ess:~$ ls -la
@@ -228,7 +228,7 @@ drwx------ 2 ubuntu ubuntu 4096 Jun  8 11:20 .ssh
 
 
 
-Verder hebben we tijdens het aanmaken van de Instance een bepaald type moeten kiezen. Wij hebben gekozen voor een t2.medium met Ubuntu. Dit had 2 vCPU's, 4GiB Memory.   De cpu-informatie kunnen we controleren met het commando **lscpu**. We zien dat we één CPU hebben (in 1 socket) met 2 cores, die elk 1 thread kunnen uitvoeren.
+Furthermore, we had to choose a certain type while creating the Instance. We opted for a t2.medium with Ubuntu. This had 2 vCPUs, 4GiB Memory.   We can check the CPU information with the command **lscpu**. We see that we have one CPU (in 1 socket) with 2 cores, each of which can execute 1 thread.
 
 ```bash
 ubuntu@linux-ess:~$ lscpu
@@ -249,7 +249,7 @@ Vendor ID:                GenuineIntel
 
 
 
-We kunnen ook het RAM geheugen checken met het commando ***free -h***. We zien dat er nog 3.4Gi vrij is. Dus voorlopig nog meer als genoeg.
+We can also check the RAM with the command ***free -h***. We see that there is still 3.4Gi available. So more than enough for now.
 
 ```bash
 ubuntu@linux-ess:~$ free -h
@@ -260,7 +260,7 @@ Swap:             0B          0B          0B
 
 
 
-Als we grootte van de harde schijf willen controleren, dan gebruiken we het commando ***df -h***. We zien hier dat de grootte van /dev/root (/) 6.8 G is, waarvan 33% in gebruik en dus nog 4.6G vrij. Dit is voldoende voor onze server.
+If we want to check the size of the hard drive, we use the command ***df -h***. We see here that the size of /dev/root (/) is 6.8 G, of which 33% is in use and therefore 4.6G is still free. This is sufficient for our server.
 
 ```bash
 ubuntu@linux-ess:~$ df -h
@@ -276,7 +276,7 @@ tmpfs           392M   12K  392M   1% /run/user/1000
 
 
 
-De 7G van vorig puntje is een stuk (=partitie) van de volledige harde schijf. Om te kijken in welke partities de schijf is ingedeeld kunnen we gebruik maken van het commando ***lsblk -e7***.
+The 7G from the previous point is a part (=partition) of the entire hard drive. To see which partitions the disk is divided into, we can use the command ***lsblk -e7***.
 
 ```bash
 ubuntu@linux-ess:~$ lsblk -e7
@@ -290,7 +290,7 @@ xvda     202:0    0    8G  0 disk
 
 
 
-De server heeft een IP adres om communicatie te hebben binnen de Private Cloud Omgeving. Om de naam van de netwerkkaart of zijn instellingen te zien kunnen we gebruik maken van het commando ***ip a***. We zien hier het loopback device *lo* met IP adres *127.0.0.1*. We zien ook het device *enX0* met IP adres 172.31.63.234.
+The server has an IP address for communication within the Private Cloud Environment. To see the name of the network card or its settings we can use the command ***ip a***. Here we see the loopback device *lo* with IP address *127.0.0.1*. We also see the device *enX0* with IP address 172.31.63.234.
 
 ```bash
 ubuntu@linux-ess:~$ ip a
@@ -310,7 +310,7 @@ ubuntu@linux-ess:~$ ip a
 
 
 
-Maar de server is ook bereikbaar vanaf het Internet met een publiek IP adres (hier door een Elastic IP). Om het Publiek IP adres te achterhalen kunnen we onderandere volgend commando gebruiken: ***curl checkip.amazonaws.com***
+But the server can also be reached from the Internet with a public IP address (here through an Elastic IP). To find out the Public IP address we can use the following command: ***curl checkip.amazonaws.com***
 
 ```bash
 ubuntu@linux-ess:~$ curl checkip.amazonaws.com
@@ -319,7 +319,7 @@ ubuntu@linux-ess:~$ curl checkip.amazonaws.com
 
 
 
-We weten dat we op de server aan het werken zijn over een SSH-verbinding. Om te kijken of de SSH-server runt op de server kunnen we gebruik maken van het commando:  ***systemctl status ssh --no-pager***. We zien dat de service *active (running)* is.
+We know we are working on the server over an SSH connection. To see if the SSH server is running on the server we can use the command: ***systemctl status ssh --no-pager***. We see that the service is *active (running)*.
 
 ```bash
 ubuntu@linux-ess:~$ systemctl status ssh --no-pager
@@ -348,7 +348,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 
 
 
-Iedere service luistert op een welgekende poort. Voor SSH is dit poort 22. We kunnen de status van de poorten van onze server opvragen met: ***ss -ltn***. We zien hier dat er geluisterd (LISTEN) wordt op poort 22.
+Each service listens on a well-known port. For SSH this is port 22. We can query the status of the ports from our server with: ***ss -ltn***. We see here that there is listening (LISTEN) on port 22.
 
 ```bash
 ubuntu@linux-ess:~$ ss -ltn
