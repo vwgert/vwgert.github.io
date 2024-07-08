@@ -1,13 +1,5 @@
 # Lab <!-- {docsify-ignore} -->
 
-Er is geen lab voor dit hoofdstuk. 
-
-
-
-TODO: Output redirecten naar html pagina in website om te kunnen zien via webbrowser
-
-
-
 Linus wil een paar statistieken trekken uit de access-file.
 
 Eerst zal hij de verschillende access-files samenvoegen  (niet de gezipte) in een full-access file.
@@ -121,6 +113,144 @@ chmod u+x visitors_by_country.sh
 
 
 
+Linus wilt dit overzicht ook via een webpagina ter beschikking hebben. Daarom redirect hij de output van het script naar een html pagina:
+
+```bash
+ubuntu@linux-ess:~$ ./scriptomuittelezen fullaccess.log > /var/www/html/monitor.html
+-bash: /var/www/html/monitor.html: Permission denied
+ubuntu@linux-ess:~$ ./scriptomuittelezen fullaccess.log | sudo tee  /var/www/html/monitor.html
+Bezoekers per land:
+IP Address not found: 100
+US: 10
+BE: 7
+HR: 3
+NL: 2
+CN: 2
+RU: 1
+PT: 1
+ES: 1
+ubuntu@linux-ess:~$ cat !$
+cat /var/www/html/monitor.html
+Bezoekers per land:
+IP Address not found: 100
+US: 10
+BE: 7
+HR: 3
+NL: 2
+CN: 2
+RU: 1
+PT: 1
+ES: 1
+```
+
+
+
+Om dit te checken kan er gesurfd worden naar de webpagina  https://<ip>//monitor.html
+
+We zien dan dat alles op één regel wordt getoond 
+
+```html
+Bezoekers per land: IP Address not found: 100 US: 10 BE: 7 HR: 3 NL: 2 CN: 2 RU: 1 PT: 1 ES: 1
+```
+
+
+
+Om dit op te lossen plaatsen we een aantal line-breaks in de output (aanpassingen onderaan het script):
+
+```bash
+#!/bin/bash
+
+# Controleer of het logbestand als argument is doorgegeven
+if [ -z "$1" ]; then
+  echo "Gebruik: $0 /pad/naar/nginx-access.log"
+  exit 1
+fi
+
+LOGFILE=$1
+
+# Controleer of het logbestand bestaat
+if [ ! -f "$LOGFILE" ]; then
+  echo "Het bestand $LOGFILE bestaat niet."
+  exit 1
+fi
+
+declare -A COUNTRY_COUNT
+
+# Gebruik een while-loop om door elke regel van het logbestand te lopen
+while read -r line; do
+  # Haal het IP-adres uit de regel (eerste veld)
+  IP=$(echo "$line" | cut -d ' ' -f 1)
+  
+  # Voer geoiplookup uit voor het IP-adres
+  GEOIP_OUTPUT=$(geoiplookup "$IP")
+  
+  # Haal het land uit de geoiplookup output
+  COUNTRY=$(echo "$GEOIP_OUTPUT" | cut -d ':' -f 2 | cut -d ',' -f 1 | xargs)
+  
+  # Verhoog de teller voor het land
+  if [ -n "$COUNTRY" ]; then
+    COUNTRY_COUNT["$COUNTRY"]=$((COUNTRY_COUNT["$COUNTRY"] + 1))
+  fi
+done < "$LOGFILE"
+
+# Print het resultaat
+echo "<h1>Bezoekers per land:</h1>"
+for COUNTRY in "${!COUNTRY_COUNT[@]}"; do
+  echo "$COUNTRY: ${COUNTRY_COUNT[$COUNTRY]} <br />"
+done | sort -t ':' -k 2 -nr
+```
+
+
+
+We redirecten de uitvoer van het script opnieuw naar de HTML pagina:
+
+```bash
+ubuntu@linux-ess:~$ ./scriptomuittelezen fullaccess.log | sudo tee  /var/www/html/monitor.html
+Bezoekers per land:
+IP Address not found: 100
+US: 10
+BE: 7
+HR: 3
+NL: 2
+CN: 2
+RU: 1
+PT: 1
+ES: 1
+ubuntu@linux-ess:~$ cat !$
+cat /var/www/html/monitor.html
+Bezoekers per land:
+IP Address not found: 100
+US: 10
+BE: 7
+HR: 3
+NL: 2
+CN: 2
+RU: 1
+PT: 1
+ES: 1
+```
+
+
+
+Wanneer we nu opnieuw de webpagina bekijken zien we dat de regels onder elkaar worden getoond:
+
+```html
+Bezoekers per land:
+IP Address not found: 100
+US: 10
+BE: 7
+HR: 3
+NL: 2
+CN: 2
+RU: 1
+PT: 1
+ES: 1
+```
+
+
+
+
+
 Linus wil ook een overzicht van wanneer en van welk IP adres er verzoeken zijn gebeurd naar webpagina's die niet bestonden (HTML status 404):
 
 ```
@@ -134,4 +264,6 @@ Op dezelfde manier wil hij ook een overzicht van de onbeschikbare pagina's die g
 ```
 grep " 404 " fullaccess.log | cut -d '"' -f2 | cut -d' ' -f2 | sort | uniq -c | sort -nr
 ```
+
+
 
