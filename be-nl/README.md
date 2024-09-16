@@ -19,4 +19,4 @@ Na het volgen van deze cursus kunt u:
 * Eenvoudige taken met behulp van basisscripts en OS-functies automatiseren. 
 * ... 
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br /> Inhoud op deze site is gelicentieerd onder een <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International licentie.</a>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="./images/CCL.png" /></a><br /> Inhoud op deze site is gelicentieerd onder een <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International licentie.</a>
