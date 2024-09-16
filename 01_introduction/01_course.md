@@ -34,7 +34,7 @@ We are still using the Linux kernel today. The kernel is being further developed
 Linux distributions (distros in short) simplify the process of installing gnu/linux and other apps on your computer. Well-known distros are Ubuntu, RedHat, Fedora, CentOS, Debian, Archlinux and Oracle Linux. Because linux is very scalable, there are also special distros for a certain purpose, for example clonezilla.
 
 ![distros](../images/01/distros.png)
-
+![linuxusers](../images/01/linuxusers.png)
 
 <i class="fa-solid fa-film"></i> [Unix vs Linux (first 10:30 minutes)](https://www.youtube.com/watch?v=jowCUo_UGts)   
 

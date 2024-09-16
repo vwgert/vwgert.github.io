@@ -39,6 +39,7 @@ brw-rw---- 1 root cdrom 11, 0 Nov 11 10:43 /dev/sr0
 
 File permissions worden op schijf geschreven als een veld met bits in de eigenschappen van het bestand. Een bit is ingesteld op 1 wanneer een toestemming wordt verleend, 0 wanneer dat niet het geval is. Dus rwxrw-r-- wordt 111110100. Omdat mensen niet erg goed zijn in het ontleden van binaire sequenties, worden ze weergegeven als octale getallen, getallen van 0 tot 7 (000 tot 111 in binair). Om het octale getal te berekenen, onthoud dat lezen 4 waard is, bewerken 2 en uitvoeren 1. Voeg die toe die je nodig hebt en je krijgt de octale notatie. Het bovenstaande voorbeeld wordt 764 (rwx = 4+2+1=7,      rw- = 4+2+0=6,      r-- =  4+0+0=4). 
 
+![file permissions](../images/10/filepermissions.png)
 
 ## Rechten wijzigen (chmod) 
 
@@ -473,6 +474,14 @@ student@linux-ess:~$ ls -l /bin/passwd
 student@linux-ess:~$ stat -c '%a %n' /bin/passwd
 4755 /bin/passwd 
 ```
+
+## Overzicht van speciale bits
+
+| Toestemming | Effect op bestanden                                                            | Effect op directories                                      | 
+| ------------ | ----------------------------------------------------------------------------- | ------------------ |
+| u+s (etuid)  | Het bestand wordt uitgevoerd als de eigenaar van het bestand, niet als de gebruiker die het uitvoerde | Geen effect         |
+| g+s (setgid) | Het bestand wordt uitgevoerd als de groep die het bestand bezit                | Bestanden die in de directory worden aangemaakt, krijgen dezelfde groepseigenaar als de directory |
+| o+t (sticky) | Geen effect                                                                    | Gebruikers met schrijfrechten voor de directory kunnen alleen bestanden verwijderen die ze zelf bezitten; ze kunnen geen bestanden van anderen verwijderen of geforceerd opslaan |
 
 ## Access control lists
 De ACL-functie is gemaakt om gebruikers de mogelijkheid te bieden om selectief bestanden en mappen te delen met andere gebruikers en groepen.  

@@ -34,7 +34,7 @@ We gebruiken vandaag de dag nog steeds de Linux kernel. De kernel wordt elke dag
 Linux-distributies (kortweg distro's) vereenvoudigen het proces van het installeren van gnu/linux en andere apps op je computer. Bekende distro's zijn Ubuntu, RedHat, Fedora, CentOS, Debian, Archlinux en Oracle Linux. Omdat linux erg schaalbaar is, zijn er ook speciale distro's voor bepaalde doelen, bijvoorbeeld clonezilla. 
 
 ![distros](../images/01/distros.png)
-
+![linuxusers](../images/01/linuxusers.png)
 
 <i class="fa-solid fa-film"></i> [Unix vs Linux (Eerste 10:30 minuten)](https://www.youtube.com/watch?v=jowCUo_UGts)  
 

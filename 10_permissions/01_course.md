@@ -8,7 +8,6 @@ Permission errors are a common source of problems. Understanding and manipulatin
 
 ?> <i class="fa-solid fa-circle-info"></i> Just because you can, doesn't mean you should. When troubleshooting permission errors always remember that permissions are your first line of defense against malicious actors. Always ask yourself why a program or a user should have access, and handle with caution. Don't just grant permissions to get rid of the error!
 
-
 ## Octal notations
 
 When looking at the extended info for a file using `ls` with the `-l` option (=long listing), you'll see three sets of three permissions applied to the file. The possible permissions are: **r**ead, **w**rite and e**x**ecute. Permission to read a file's content, permission to change a file's content and permission to execute a file as a script or program. When a permission is not granted, you'll find a - in the position of the permission denied. 
@@ -38,6 +37,8 @@ brw-rw---- 1 root cdrom 11, 0 Nov 11 10:43 /dev/sr0
 ```   
 
 File permissions are written on disk as a field of bits in the file's properties. A bit is set to 1 when a permission is granted, 0 when it's not. So rwxrw-r-- becomes 111110100. Because humans are not very good at parsing binary sequences, they are represented as as octal numbers, numbers from 0 to 7 (000 to 111 in binary). To calculate the octal number remember that read is worth 4, write 2 and execute 1. Add those you need and you'll get the octal notation. The example above becomes 764 (rwx = 4+2+1=7,      rw- = 4+2+0=6,        r-- = 4+0+0=4).
+
+![file permissions](../images/10/filepermissions.png)
 
 ## Changing permissions (chmod)
 
@@ -479,7 +480,13 @@ student@linux-ess:~$ stat -c '%a %n' /bin/passwd
 4755 /bin/passwd 
 ```
 
+## Special bits overview
 
+| Permission   | Effect on files                                                               | Effect on directories                                      | 
+| ------------ | ----------------------------------------------------------------------------- | ------------------ |
+| u+s (etuid)  | The file will execute as the owner of the file, not as the user who ran it    | No effect          |
+| g+s (setgid) | The file will execute as the group that owns the file                         | Files that are created in the directory will get the same groupowner as the directory |
+| o+t (sticky) | No effect                                                                     | Users with write access to the directory can only remove file they own, they cannot remove or force save someone elses files |
           
 ## Access control lists
 The ACL feature was created to give users the ability to selectively share files and folders with other users and groups. 

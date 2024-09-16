@@ -218,3 +218,4 @@ Onderaan het scherm zie je enkele van de sneltoetsen die je kunt gebruiken. Enke
 ?> <i class="fa-solid fa-circle-info"></i> De snelste manier om nano op te slaan en af te sluiten is door _ctrl+s_ te typen (om de wijzigingen op te slaan) gevolgd door _ctrl+x_ (om nano af te sluiten).  
 
 ?> Een andere zeer populaire teksteditor in Linux-systemen is `vi`. Deze editor is erg krachtig, maar heeft ook een steile leercurve. In deze cursus behandelen we `vi` niet, Maar voel je vrij om zelf te experimenteren. `vim`, een eenvoudigere variant van `vi` is ook op je systeem geïnstalleerd. Om hier meer over te leren, is er een tutor beschikbaar met het commando: `vimtutor`. 
+![vim](../images/06/vim.png) 
