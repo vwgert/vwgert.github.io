@@ -29,29 +29,7 @@ Probeer alleen de korte beschrijving van het commando `ls` te tonen.
 Probeer erachter te komen waar het commando `reboot` en zijn manpage op je schijf zijn opgeslagen. 
 
 ## Oefening 7 
-Maak verbinding met je server via SSH en blijf verbonden voor de oefeningen. Het voordeel is dat je dan met je muis door je schermen kunt scrollen. 
-
-Een SSH-verbinding instellen naar je Virtuele Machine van VMware Workstation doe je als volgt.
-
-*Eerst* moet je het IP-adres van de server krijgen. je typt `ip a` en zoekt naar het IP-adres van de netwerkinterface (ens33) 
-
-```bash
-ip a
-```
-
-![CLI_LAB_ip_a](../images/01/99_assignments/CLI_LAB_ip_a.png)
-<br />
-
-*Als tweede* open je Powershell om een ssh-verbinding met de server te maken. Je werkt nu vanaf jouw desktop op de server. Cool, nietwaar? 
-
-```bash
-ssh student@<server-ip>
-```
-
-![CLI_LAB_Powershell_SSH](../images/01/99_assignments/CLI_LAB_Powershell_SSH.png)
-<br />
-
-Zoals je kunt zien krijg je nu een prompt. Dit is een shell op jouw Ubuntu-server die in VMWare draait. Het idee klinkt misschien raar omdat je de virtuele machine met een CLI op jouw laptop zelf hebt draaien. Maar stel je een scenario voor waarin de virtuele machine niet op jouw laptop zou draaien, maar in plaats daarvan ergens op Amazon-webservices in de cloud zou worden gehost. Je zou het `ssh user@server-ip`-commando ook op jouw apparaat gebruiken om verbinding te maken met die server. 
+Maak verbinding met je server via SSH en blijf verbonden voor de oefeningen. Het voordeel is dat je nu met je muis door je schermen kunt scrollen. 
 
 ## Oefening 8  
 Voer het commando `cd` uit. Voer het commando uit om ook de verborgen bestanden in deze map weer te geven. Voer vervolgens het commando `cat .bashrc` uit. Dit bestand bevat een script dat wordt uitgevoerd elke keer je een nieuwe shell opent (bijv. Terminalvenster). We zullen het in een latere les nog uitleggen. Voer het commando uit om het scherm leeg te maken. 
@@ -88,3 +66,15 @@ Probeer verbinding te maken van de Ubuntu Desktop naar de Ubuntu Server via ssh.
 
 ## Oefening 16 
 Installeer `Windows Terminal` op je Windows-laptop via de `Microsoft Store`. Probeer verbinding te maken vanaf de Windows Terminal met de Ubuntu Server via ssh.  
+
+## Oefening 17
+Gebruik het `man`-commando om het `touch`-commando te verkennen. Ontdek hoe je een leeg bestand genaamd `example.txt` kunt maken en maak dit bestand vervolgens in je home directory. Controleer of het bestand is aangemaakt door de inhoud van de directory weer te geven.
+
+## Oefening 18
+Leer over het `mv`-commando met behulp van de manpagina. Gebruik het om het bestand `example.txt` te hernoemen naar `renamed_example.txt` in je home directory. Bevestig de hernoeming door de inhoud van de directory weer te geven.
+
+## Oefening 19
+Gebruik het `man`-commando om het `cp`-commando te verkennen. Maak een kopie van `renamed_example.txt` en noem deze `backup_example.txt` in je home directory. Toon de inhoud van de directory om te verifiëren dat beide bestanden bestaan.
+
+## Oefening 20
+Gebruik het `man`-commando om te ontdekken hoe het `rm`-commando werkt. Verwijder de bestanden `renamed_example.txt` en `backup_example.txt` die je in de vorige taken hebt gemaakt. Controleer of de bestanden zijn verwijderd door de inhoud van de directory weer te geven.

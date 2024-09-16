@@ -2,10 +2,7 @@
 
 Execute the first exercises while using the cli on the Ubuntu Server (no ssh). 
 
-
-
 ## Task 1
-
 Make use of the command `man` to figure out what the command `man -f` does and with what other command it can be replaced.
 
 ## Task 2
@@ -32,28 +29,6 @@ Try to figure out where the command `reboot` and its manpage are stored on the d
 
 ## Task 7
 Connect to your server over SSH and stay connected for the exercises. The benefit is that you can now scroll through your screens with a mouse.
-
-Setting up an SSH connection to your Virtual Machine in VMware Workstation goes as follows:
-
-*First* you need to get the IP address of the server. Type `ip a` and look for the IP address of the network interface (ens33)
-
-```bash
-ip a
-```
-
-![CLI_LAB_ip_a](../images/01/99_assignments/CLI_LAB_ip_a.png)
-<br />
-
-*Second* open Powershell on the Desktop and make an ssh-connection to the server. You're now working on the server from your desktop. Cool, isn't it?
-
-```bash
-ssh student@<server-ip>
-```
-
-![CLI_LAB_Powershell_SSH](../images/01/99_assignments/CLI_LAB_Powershell_SSH.png)
-<br />
-
-As you can see you now get a prompt. This is a shell on your Ubuntu server running in VMWare. The idea might sound weird because you have the virtual machine with a CLI running on your laptop. But imagine a scenario where the virtual machine wouldn't be running on your laptop but instead would be hosted somewhere on Amazon web services in the cloud. you would use the `ssh user@server-ip` command on your device to connect to that server as well.
 
 ## Task 8 
 Run the command `cd`. Run the command to also view the hidden files in this directory. Then run the command `cat .bashrc`. This file contains a script which runs every time you open a new shell (eg. terminal window). We will explain it in a later lesson. Run the command to clear the screen.
@@ -91,3 +66,15 @@ Try to connect from the Ubuntu Desktop to the Ubuntu Server over ssh.
 
 ## Task 16
 Install `Windows Terminal` on your Windows laptop via the 'Microsoft Store'. Try to connect from the Windows Terminal to the Ubuntu Server over ssh. 
+
+## Task 17
+Use the man command to explore the touch command. Find out how you can create an empty file named example.txt and then create it in your home directory. Check if the file is created by listing the contents of the directory.
+
+## Task 18
+Learn about the mv command using its manpage. Use it to rename the file example.txt to renamed_example.txt in your home directory. Confirm the rename by listing the contents of the directory.
+
+## Task 19
+Use the man command to explore the cp command. Create a copy of renamed_example.txt and name it backup_example.txt in your home directory. List the contents of the directory to verify that both files exist.
+
+## Task 20
+Use the man command to find out how the rm command works. Delete the files renamed_example.txt and backup_example.txt that you created in the previous tasks. Verify that the files are deleted by listing the contents of the directory.
