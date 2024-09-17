@@ -204,4 +204,3 @@ student@linux-ess:~$ history 4
 
 <i class="fa-solid fa-earth-europe"></i> [Linux manpages guide](https://itsfoss.com/linux-man-page-guide/) 
 
-<i class="fa-solid fa-film"></i> [[Pluralsight] Using linux help resources](https://app.pluralsight.com/course-player?clipId=45fc2a82-103b-4d44-83b8-641411aa9c58) 
