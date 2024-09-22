@@ -147,9 +147,9 @@ As you can see in the previous screenshot, we are now logged in to the server. I
 
 
 
-As an exercise, restart an ssh session with the instance and change the *name* of the server to *linux-ess* with the command:
+As an exercise, restart an ssh session with the instance and change the *name* of the server to *aws-linux-ess* with the command:
 
-***sudo hostnamectl set-hostname linux-ess***
+***sudo hostnamectl set-hostname aws-linux-ess***
 
 
 
@@ -164,7 +164,7 @@ We log in again to check a number of things about the instance.
 We know we are connecting over ssh to the user ubuntu on the server. We can check this with ***whoami***.
 
 ```bash
-ubuntu@linux-ess:~$ whoami
+ubuntu@aws-linux-ess:~$ whoami
 ubuntu
 ```
 
@@ -173,7 +173,7 @@ ubuntu
 We will sometimes also have to execute commands that require more rights to be executed correctly. For example, with commands that adjust system settings. We can execute commands with more rights by typing an extra command before the command, namely the command *sudo*. We can use the command *sudo* because we are also in the group *sudo*. We can check this with ***groups***.
 
 ```bash
-ubuntu@linux-ess:~$ groups
+ubuntu@aws-linux-ess:~$ groups
 ubuntu adm cdrom sudo dip lxd
 ```
 
@@ -182,7 +182,7 @@ ubuntu adm cdrom sudo dip lxd
 As soon as we are logged in, we end up in our home folder. To see which folder we are in, we use the command ***pwd***.
 
 ```bash
-ubuntu@linux-ess:~$ pwd
+ubuntu@aws-linux-ess:~$ pwd
 /home/ubuntu
 ```
 
@@ -191,8 +191,8 @@ ubuntu@linux-ess:~$ pwd
 If we want to see the contents of the folder we are in, we can use the command ***ls***. It seems like there is no content here.
 
 ```bash
-ubuntu@linux-ess:~$ ls
-ubuntu@linux-ess:~$ 
+ubuntu@aws-linux-ess:~$ ls
+ubuntu@aws-linux-ess:~$ 
 ```
 
 
@@ -200,7 +200,7 @@ ubuntu@linux-ess:~$
 But be careful! You can only be sure once you also request the hidden files and directories. You do this with the command ***ls -a***.
 
 ```bash
-ubuntu@linux-ess:~$ ls -a
+ubuntu@aws-linux-ess:~$ ls -a
 .   .bash_history  .bashrc  .config   .local    .ssh
 ..  .bash_logout   .cache   .lesshst  .profile  .sudo_as_admin_successful
 ```
@@ -210,7 +210,7 @@ ubuntu@linux-ess:~$ ls -a
 If you have no colors (directories in blue) you can still find out which are the files and which are the directories. You do this with the command ***ls -la***. The lines with the directories then start with the letter *d*.
 
 ```bash
-ubuntu@linux-ess:~$ ls -la
+ubuntu@aws-linux-ess:~$ ls -la
 total 44
 drwxr-x--- 6 ubuntu ubuntu 4096 Jun 19 07:36 .
 drwxr-xr-x 3 root   root   4096 Jun  8 11:20 ..
@@ -231,7 +231,7 @@ drwx------ 2 ubuntu ubuntu 4096 Jun  8 11:20 .ssh
 Furthermore, we had to choose a certain type while creating the Instance. We opted for a t2.medium with Ubuntu. This had 2 vCPUs, 4GiB Memory.   We can check the CPU information with the command **lscpu**. We see that we have one CPU (in 1 socket) with 2 cores, each of which can execute 1 thread.
 
 ```bash
-ubuntu@linux-ess:~$ lscpu
+ubuntu@aws-linux-ess:~$ lscpu
 Architecture:             x86_64
   CPU op-mode(s):         32-bit, 64-bit
   Address sizes:          46 bits physical, 48 bits virtual
@@ -252,7 +252,7 @@ Vendor ID:                GenuineIntel
 We can also check the RAM with the command ***free -h***. We see that there is still 3.4Gi available. So more than enough for now.
 
 ```bash
-ubuntu@linux-ess:~$ free -h
+ubuntu@aws-linux-ess:~$ free -h
                total        used        free      shared  buff/cache   available
 Mem:           3.8Gi       438Mi       3.2Gi       880Ki       447Mi       3.4Gi
 Swap:             0B          0B          0B
@@ -263,7 +263,7 @@ Swap:             0B          0B          0B
 If we want to check the size of the hard drive, we use the command ***df -h***. We see here that the size of /dev/root (/) is 6.8 G, of which 33% is in use and therefore 4.6G is still free. This is sufficient for our server.
 
 ```bash
-ubuntu@linux-ess:~$ df -h
+ubuntu@aws-linux-ess:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       6.8G  2.2G  4.6G  33% /
 tmpfs           2.0G     0  2.0G   0% /dev/shm
@@ -279,7 +279,7 @@ tmpfs           392M   12K  392M   1% /run/user/1000
 The 7G from the previous point is a part (=partition) of the entire hard drive. To see which partitions the disk is divided into, we can use the command ***lsblk -e7***.
 
 ```bash
-ubuntu@linux-ess:~$ lsblk -e7
+ubuntu@aws-linux-ess:~$ lsblk -e7
 NAME     MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 xvda     202:0    0    8G  0 disk
 ├─xvda1  202:1    0    7G  0 part /
@@ -293,7 +293,7 @@ xvda     202:0    0    8G  0 disk
 The server has an IP address for communication within the Private Cloud Environment. To see the name of the network card or its settings we can use the command ***ip a***. Here we see the loopback device *lo* with IP address *127.0.0.1*. We also see the device *enX0* with IP address 172.31.63.234.
 
 ```bash
-ubuntu@linux-ess:~$ ip a
+ubuntu@aws-linux-ess:~$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -313,7 +313,7 @@ ubuntu@linux-ess:~$ ip a
 But the server can also be reached from the Internet with a public IP address (here through an Elastic IP). To find out the Public IP address we can use the following command: ***curl checkip.amazonaws.com***
 
 ```bash
-ubuntu@linux-ess:~$ curl checkip.amazonaws.com
+ubuntu@aws-linux-ess:~$ curl checkip.amazonaws.com
 54.87.203.25
 ```
 
@@ -322,7 +322,7 @@ ubuntu@linux-ess:~$ curl checkip.amazonaws.com
 We know we are working on the server over an SSH connection. To see if the SSH server is running on the server we can use the command: ***systemctl status ssh --no-pager***. We see that the service is *active (running)*.
 
 ```bash
-ubuntu@linux-ess:~$ systemctl status ssh --no-pager
+ubuntu@aws-linux-ess:~$ systemctl status ssh --no-pager
 ● ssh.service - OpenBSD Secure Shell server
      Loaded: loaded (/usr/lib/systemd/system/ssh.service; disabled; preset: enabled)
     Drop-In: /usr/lib/systemd/system/ssh.service.d
@@ -351,7 +351,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 Each service listens on a well-known port. For SSH this is port 22. We can query the status of the ports from our server with: ***ss -ltn***. We see here that there is listening (LISTEN) on port 22.
 
 ```bash
-ubuntu@linux-ess:~$ ss -ltn
+ubuntu@aws-linux-ess:~$ ss -ltn
 State         Recv-Q        Send-Q               Local Address:Port               Peer Address:Port       Process
 LISTEN        0             4096                    127.0.0.54:53                      0.0.0.0:*
 LISTEN        0             4096                 127.0.0.53%lo:53                      0.0.0.0:*

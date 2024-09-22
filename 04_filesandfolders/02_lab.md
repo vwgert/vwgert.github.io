@@ -10,7 +10,7 @@ In a previous chapter we created a cloud instance (=server) and we also created 
 Before he can find anything, Linus wants to know the best way to search the folders. Using the command ***apropos find*** he discovers that there are several commands available to search in a folder structure. This is how he finds the commands *find* and *locate*.
 
 ```bash
-ubuntu@ip-172-31-63-234:~$ apropos find
+ubuntu@aws-linux-ess:~$ apropos find
 ...
 find (1)             - search for files in a directory hierarchy
 ...
@@ -21,7 +21,7 @@ locate (1)           - find files by name, quickly
 He figures out how to use the *locate* command:
 
 ```bash
-student@linux-ess:~$ man locate
+ubuntu@aws-linux-ess:~$ man locate
 locate(1)                                      General Commands Manual                                      locate(1)
 
 NAME
@@ -39,7 +39,7 @@ DESCRIPTION
 Searching for files or folders with the word key in the name produces the following results:
 
 ```bash
-ubuntu@ip-172-31-63-234:~$ locate key
+ubuntu@aws-linux-ess:~$ locate key
 /boot/grub/i386-pc/at_keyboard.mod
 /boot/grub/i386-pc/keylayouts.mod
 /boot/grub/i386-pc/keystatus.mod
@@ -81,7 +81,7 @@ The last visible line above shows how somewhere in his home folder there is a fi
 Linus also figures out how he could have used the *find* command:
 
 ```bash
-student@linux-ess:~$ man find
+ubuntu@aws-linux-ess:~$ man find
 ```
 
 
@@ -89,7 +89,7 @@ student@linux-ess:~$ man find
 Searching, with *find*, for files or folders with the word key in the name produces the following results:
 
 ```bash
-ubuntu@linux-ess:~$ find -name "*key*"
+ubuntu@aws-linux-ess:~$ find -name "*key*"
 ./.ssh/authorized_keys
 ```
 
@@ -98,7 +98,7 @@ ubuntu@linux-ess:~$ find -name "*key*"
 Note that the output of the command starts with *./*. This indicates that *.ssh* is located in the current directory. The fact that the folder *.ssh* starts with a period (.) indicates that this folder is hidden. The ls command will therefore not show this folder. We will have to use the command *ls -a* so that the hidden files and folders are also visible.
 
 ```bash
-ubuntu@linux-ess:~$ ls -a
+ubuntu@aws-linux-ess:~$ ls -a
 .   .bash_history  .bashrc  .config   .local    .ssh
 ..  .bash_logout   .cache   .lesshst  .profile  .sudo_as_admin_successful
 ```
@@ -108,7 +108,7 @@ ubuntu@linux-ess:~$ ls -a
 With the *file* command, Linus can find out what type of file *.ssh* is.
 
 ```bash
-ubuntu@linux-ess:~$ file .ssh
+ubuntu@aws-linux-ess:~$ file .ssh
 .ssh: directory
 ```
 
@@ -117,10 +117,10 @@ ubuntu@linux-ess:~$ file .ssh
 He moves around the folder, looks at the contents and determines which type of file *authorized_keys* is.
 
 ```
-ubuntu@linux-ess:~$ cd .ssh
-ubuntu@linux-ess:~/.ssh$ ls
+ubuntu@aws-linux-ess:~$ cd .ssh
+ubuntu@aws-linux-ess:~/.ssh$ ls
 authorized_keys
-ubuntu@linux-ess:~/.ssh$ file authorized_keys
+ubuntu@aws-linux-ess:~/.ssh$ file authorized_keys
 authorized_keys: OpenSSH ED25519 public key
 ```
 
@@ -131,7 +131,7 @@ So this is the public key that belongs to the private key that was downloaded on
 You can view the contents of the file with ***cat authorized_keys***
 
 ```bash
-ubuntu@linux-ess:~/.ssh$ cat authorized_keys
+ubuntu@aws-linux-ess:~/.ssh$ cat authorized_keys
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGg8jhO/tYNeKuHodLUbgnmUn1mUJiRofPkWWWf17Mnp gert-key
 ```
 
@@ -142,8 +142,8 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGg8jhO/tYNeKuHodLUbgnmUn1mUJiRofPkWWWf17Mnp
 To be on the safe side, Linus wants to backup the *authorized_keys* file in the same folder. He does this by copying the file. He needs to use quotes because he wants a space in the name.
 
 ```bash
-ubuntu@linux-ess:~/.ssh$ cp authorized_keys "authorized_keys backup"
-ubuntu@linux-ess:~/.ssh$ ls
+ubuntu@aws-linux-ess:~/.ssh$ cp authorized_keys "authorized_keys backup"
+ubuntu@aws-linux-ess:~/.ssh$ ls
  authorized_keys  'authorized_keys backup'
 ```
 
@@ -152,8 +152,8 @@ ubuntu@linux-ess:~/.ssh$ ls
 On second thought, perhaps the space makes it unnecessarily more difficult. He renames the file to no longer have any spaces in it.
 
 ```bash
-ubuntu@linux-ess:~/.ssh$ mv "authorized_keys backup" authorized_keys.backup
-ubuntu@linux-ess:~/.ssh$ ls
+ubuntu@aws-linux-ess:~/.ssh$ mv "authorized_keys backup" authorized_keys.backup
+ubuntu@aws-linux-ess:~/.ssh$ ls
 authorized_keys  authorized_keys.backup
 ```
 
@@ -162,14 +162,14 @@ authorized_keys  authorized_keys.backup
 It would perhaps be clearer if all backups were stored together in a folder *backups* directly in the home folder. This can be done as follows:
 
 ```bash
-ubuntu@linux-ess:~/.ssh$ cd
-ubuntu@linux-ess:~$ mkdir backups
-ubuntu@linux-ess:~$ mv .ssh/authorized_keys.backup backups/
-ubuntu@linux-ess:~$ ls .ssh
+ubuntu@aws-linux-ess:~/.ssh$ cd
+ubuntu@aws-linux-ess:~$ mkdir backups
+ubuntu@aws-linux-ess:~$ mv .ssh/authorized_keys.backup backups/
+ubuntu@aws-linux-ess:~$ ls .ssh
 authorized_keys
-ubuntu@linux-ess:~$ ls backups/
+ubuntu@aws-linux-ess:~$ ls backups/
 authorized_keys.backup
-ubuntu@linux-ess:~$ tree .ssh backups
+ubuntu@aws-linux-ess:~$ tree .ssh backups
 .ssh
 └── authorized_keys
 backups
@@ -187,9 +187,9 @@ In principle, the IP address of the server should always remain the same. To che
 First he finds out the current public IP address. He no longer knows the command to do this, but knows that it was something with *curl* and that he has executed this command before. He therefore searches the history of his shell commands with the key combination ***CTRL+r***.
 
 ```bash
-ubuntu@linux-ess:~$     (CTRL+r)
+ubuntu@aws-linux-ess:~$     (CTRL+r)
 (reverse-i-search)`curl': curl checkip.amazonaws.com
-ubuntu@linux-ess:~$ curl checkip.amazonaws.com
+ubuntu@aws-linux-ess:~$ curl checkip.amazonaws.com
 54.87.203.25
 ```
 
@@ -198,9 +198,9 @@ ubuntu@linux-ess:~$ curl checkip.amazonaws.com
 He can place this IP address in a file called *PublicIP* with the command ***nano PublicIP***.  You can close the editor (nano) with the key combinations ***CTRL+s*** (=save) followed by ***CTRL+x*** (=exit).
 
 ```bash
-ubuntu@linux-ess:~$ nano PublicIP
+ubuntu@aws-linux-ess:~$ nano PublicIP
 ...
-ubuntu@linux-ess:~$ cat PublicIP
+ubuntu@aws-linux-ess:~$ cat PublicIP
 54.87.203.25
 ```
 

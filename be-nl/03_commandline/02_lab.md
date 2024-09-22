@@ -147,7 +147,7 @@ Zoals je in vorige screenshot kan zien zijn we dan ingelogd op de server. Indien
 
 
 
-Als wijze van oefening start je opnieuw een ssh-sessie met de instance en pas je de *naam* van de server aan naar *linux-ess* met het commando:
+Als wijze van oefening start je opnieuw een ssh-sessie met de instance en pas je de *naam* van de server aan naar *aws-linux-ess* met het commando:
 
 ***sudo hostnamectl set-hostname linux-ess***
 
@@ -164,7 +164,7 @@ We loggen even opnieuw in om een aantal zaken van de instance te checken.
 We weten dat we een connectie maken over ssh naar de gebruiker ubuntu op de server. Dit kunnen we checken met ***whoami***.
 
 ```bash
-ubuntu@linux-ess:~$ whoami
+ubuntu@aws-linux-ess:~$ whoami
 ubuntu
 ```
 
@@ -173,7 +173,7 @@ ubuntu
 We zullen soms ook commando's moeten gaan uitvoeren die even meer rechten nodig hebben om correct uitgevoerd te kunnen worden. Bijvoorbeeld bij commando's die systeeminstellingen aanpassen. We kunnen commando's uitvoeren met meer rechten door voor het commando een extra commando te typen, namelijk het commando *sudo*. We mogen het commando *sudo* gebruiken omdat we ook in de group *sudo* zitten. Dit kunnen we controleren met  ***groups***.
 
 ```bash
-ubuntu@linux-ess:~$ groups
+ubuntu@aws-linux-ess:~$ groups
 ubuntu adm cdrom sudo dip lxd
 ```
 
@@ -182,7 +182,7 @@ ubuntu adm cdrom sudo dip lxd
 Van zodra we ingelogd zijn, komen we in onze homefolder terecht. Om te kijken in welke folder we ons bevinden gebruiken we het commando ***pwd***.
 
 ```bash
-ubuntu@linux-ess:~$ pwd
+ubuntu@aws-linux-ess:~$ pwd
 /home/ubuntu
 ```
 
@@ -191,8 +191,8 @@ ubuntu@linux-ess:~$ pwd
 Indien we de inhoud wensen te zien van de folder waarin we ons bevinden, kunnen we gebruik maken van het commando ***ls***. Het lijkt hier alsof er geen inhoud aanwezig is.
 
 ```bash
-ubuntu@linux-ess:~$ ls
-ubuntu@linux-ess:~$ 
+ubuntu@aws-linux-ess:~$ ls
+ubuntu@aws-linux-ess:~$ 
 ```
 
 
@@ -200,7 +200,7 @@ ubuntu@linux-ess:~$
 Maar opgelet! Je bent pas zeker van zodra je ook de verborgen bestanden en directories opvraagt. Dit doe je met het commando ***ls -a***.
 
 ```bash
-ubuntu@linux-ess:~$ ls -a
+ubuntu@aws-linux-ess:~$ ls -a
 .   .bash_history  .bashrc  .config   .local    .ssh
 ..  .bash_logout   .cache   .lesshst  .profile  .sudo_as_admin_successful
 ```
@@ -210,7 +210,7 @@ ubuntu@linux-ess:~$ ls -a
 Indien je geen kleuren hebt (directories in blauw) kan je nog achterhalen welke de files zijn en welke de directories. Dit doe je met het commando ***ls -la***. De regels met de directories beginnen dan met de letter *d*.
 
 ```bash
-ubuntu@linux-ess:~$ ls -la
+ubuntu@aws-linux-ess:~$ ls -la
 total 44
 drwxr-x--- 6 ubuntu ubuntu 4096 Jun 19 07:36 .
 drwxr-xr-x 3 root   root   4096 Jun  8 11:20 ..
@@ -231,7 +231,7 @@ drwx------ 2 ubuntu ubuntu 4096 Jun  8 11:20 .ssh
 Verder hebben we tijdens het aanmaken van de Instance een bepaald type moeten kiezen. Wij hebben gekozen voor een t2.medium met Ubuntu. Dit had 2 vCPU's, 4GiB Memory.   De cpu-informatie kunnen we controleren met het commando **lscpu**. We zien dat we één CPU hebben (in 1 socket) met 2 cores, die elk 1 thread kunnen uitvoeren.
 
 ```bash
-ubuntu@linux-ess:~$ lscpu
+ubuntu@aws-linux-ess:~$ lscpu
 Architecture:             x86_64
   CPU op-mode(s):         32-bit, 64-bit
   Address sizes:          46 bits physical, 48 bits virtual
@@ -252,7 +252,7 @@ Vendor ID:                GenuineIntel
 We kunnen ook het RAM geheugen checken met het commando ***free -h***. We zien dat er nog 3.4Gi vrij is. Dus voorlopig nog meer als genoeg.
 
 ```bash
-ubuntu@linux-ess:~$ free -h
+ubuntu@aws-linux-ess:~$ free -h
                total        used        free      shared  buff/cache   available
 Mem:           3.8Gi       438Mi       3.2Gi       880Ki       447Mi       3.4Gi
 Swap:             0B          0B          0B
@@ -263,7 +263,7 @@ Swap:             0B          0B          0B
 Als we grootte van de harde schijf willen controleren, dan gebruiken we het commando ***df -h***. We zien hier dat de grootte van /dev/root (/) 6.8 G is, waarvan 33% in gebruik en dus nog 4.6G vrij. Dit is voldoende voor onze server.
 
 ```bash
-ubuntu@linux-ess:~$ df -h
+ubuntu@aws-linux-ess:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       6.8G  2.2G  4.6G  33% /
 tmpfs           2.0G     0  2.0G   0% /dev/shm
@@ -279,7 +279,7 @@ tmpfs           392M   12K  392M   1% /run/user/1000
 De 7G van vorig puntje is een stuk (=partitie) van de volledige harde schijf. Om te kijken in welke partities de schijf is ingedeeld kunnen we gebruik maken van het commando ***lsblk -e7***.
 
 ```bash
-ubuntu@linux-ess:~$ lsblk -e7
+ubuntu@aws-linux-ess:~$ lsblk -e7
 NAME     MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 xvda     202:0    0    8G  0 disk
 ├─xvda1  202:1    0    7G  0 part /
@@ -293,7 +293,7 @@ xvda     202:0    0    8G  0 disk
 De server heeft een IP adres om communicatie te hebben binnen de Private Cloud Omgeving. Om de naam van de netwerkkaart of zijn instellingen te zien kunnen we gebruik maken van het commando ***ip a***. We zien hier het loopback device *lo* met IP adres *127.0.0.1*. We zien ook het device *enX0* met IP adres 172.31.63.234.
 
 ```bash
-ubuntu@linux-ess:~$ ip a
+ubuntu@aws-linux-ess:~$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -313,7 +313,7 @@ ubuntu@linux-ess:~$ ip a
 Maar de server is ook bereikbaar vanaf het Internet met een publiek IP adres (hier door een Elastic IP). Om het Publiek IP adres te achterhalen kunnen we onderandere volgend commando gebruiken: ***curl checkip.amazonaws.com***
 
 ```bash
-ubuntu@linux-ess:~$ curl checkip.amazonaws.com
+ubuntu@aws-linux-ess:~$ curl checkip.amazonaws.com
 54.87.203.25
 ```
 
@@ -322,7 +322,7 @@ ubuntu@linux-ess:~$ curl checkip.amazonaws.com
 We weten dat we op de server aan het werken zijn over een SSH-verbinding. Om te kijken of de SSH-server runt op de server kunnen we gebruik maken van het commando:  ***systemctl status ssh --no-pager***. We zien dat de service *active (running)* is.
 
 ```bash
-ubuntu@linux-ess:~$ systemctl status ssh --no-pager
+ubuntu@aws-linux-ess:~$ systemctl status ssh --no-pager
 ● ssh.service - OpenBSD Secure Shell server
      Loaded: loaded (/usr/lib/systemd/system/ssh.service; disabled; preset: enabled)
     Drop-In: /usr/lib/systemd/system/ssh.service.d
@@ -351,7 +351,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 Iedere service luistert op een welgekende poort. Voor SSH is dit poort 22. We kunnen de status van de poorten van onze server opvragen met: ***ss -ltn***. We zien hier dat er geluisterd (LISTEN) wordt op poort 22.
 
 ```bash
-ubuntu@linux-ess:~$ ss -ltn
+ubuntu@aws-linux-ess:~$ ss -ltn
 State         Recv-Q        Send-Q               Local Address:Port               Peer Address:Port       Process
 LISTEN        0             4096                    127.0.0.54:53                      0.0.0.0:*
 LISTEN        0             4096                 127.0.0.53%lo:53                      0.0.0.0:*
