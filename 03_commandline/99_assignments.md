@@ -28,7 +28,7 @@ Try to only show the short description of the command `ls`.
 Try to figure out where the command `reboot` and its manpage are stored on the disk.
 
 ## Task 7
-Connect to your server over SSH and stay connected for the exercises. The benefit is that you can now scroll through your screens with a mouse.
+Connect to your server over SSH and stay connected for the exercises. The benefit is that you can now scroll through your screens with a mouse and are able to copy and paste.
 
 ## Task 8 
 Run the command `cd`. Run the command to also view the hidden files in this directory. Then run the command `cat .bashrc`. This file contains a script which runs every time you open a new shell (eg. terminal window). We will explain it in a later lesson. Run the command to clear the screen.

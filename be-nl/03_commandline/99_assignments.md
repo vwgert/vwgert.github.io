@@ -29,7 +29,7 @@ Probeer alleen de korte beschrijving van het commando `ls` te tonen.
 Probeer erachter te komen waar het commando `reboot` en zijn manpage op je schijf zijn opgeslagen. 
 
 ## Oefening 7 
-Maak verbinding met je server via SSH en blijf verbonden voor de oefeningen. Het voordeel is dat je nu met je muis door je schermen kunt scrollen. 
+Maak verbinding met je server via SSH en blijf verbonden voor de oefeningen. Het voordeel is dat je nu met je muis door je schermen kunt scrollen en kan kopiëren en plakken. 
 
 ## Oefening 8  
 Voer het commando `cd` uit. Voer het commando uit om ook de verborgen bestanden in deze map weer te geven. Voer vervolgens het commando `cat .bashrc` uit. Dit bestand bevat een script dat wordt uitgevoerd elke keer je een nieuwe shell opent (bijv. Terminalvenster). We zullen het in een latere les nog uitleggen. Voer het commando uit om het scherm leeg te maken. 
