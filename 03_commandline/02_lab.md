@@ -30,7 +30,26 @@ Move this key to the folder .*ssh* under your account *"C:\Users\\<your loginnam
 
 ![AWSCreateSSH](../images/01/02_lab/AWSCreateSSH_5_KeyPairPaste.png)
 
+If you get the following error:
+![AWSCreateSSH](../images/01/02_lab/AwsErrorLogin.png)
 
+To solve this in Linux or MacOS:
+```bash
+cd .ssh
+sudo chmod 400 "yourkeynamehere"
+```
+
+To solve this in Windows powershell:
+```powershell
+# Source: https://stackoverflow.com/a/43317244
+$path = ".\aws-ec2-key.pem"
+# Reset to remove explict permissions
+icacls.exe $path /reset
+# Give current user explicit read-permission
+icacls.exe $path /GRANT:R "$($env:USERNAME):(R)"
+# Disable inheritance and remove inherited permissions
+icacls.exe $path /inheritance:r
+```
 
 ### Creating the Cloud instance 
 
