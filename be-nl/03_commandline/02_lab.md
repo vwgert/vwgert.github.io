@@ -26,7 +26,26 @@ Verplaats deze key naar het mapje .ssh onder jouw account *"C:\Users\\<jouw logi
 
 ![AWSCreateSSH](../images/01/02_lab/AWSCreateSSH_5_KeyPairPaste.png)
 
+Als je de volgende error krijgt:
+![AWSCreateSSH](../images/01/02_lab/AwsErrorLogin.png)
 
+Om dit op te lossen in Linux of MacOS:
+```bash
+cd .ssh
+sudo chmod 400 "yourkeynamehere"
+```
+
+Om dit op te lossen in Windows powershell
+```powershell
+# bron: https://stackoverflow.com/a/43317244
+$path = ".\aws-ec2-key.pem"
+# Reset om explicite permissies te verwijderen
+icacls.exe $path /reset
+# Geef de guide gebruiker explicier lees-rechten
+icacls.exe $path /GRANT:R "$($env:USERNAME):(R)"
+# Zet inheritance uit en verwijder de inheritance rechten
+icacls.exe $path /inheritance:r
+```
 
 ### Aanmaken van de Cloud instance 
 
