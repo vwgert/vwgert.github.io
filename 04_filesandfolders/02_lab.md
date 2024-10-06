@@ -20,7 +20,7 @@ locate (1)           - find files by name, quickly
 
 
 
-?> <i class="fa-solid fa-circle-info"></i> If the commando ***apropos find*** results in the text  *find: nothing appropriate.*  ,you must rebuild the man-database with the command ***sudo mandb*** and try again.
+?> <i class="fa-solid fa-circle-info"></i> If the commando ***apropos find*** results in the text  *find: nothing appropriate.*  ,you must rebuild the man-database with the command ***sudo mandb*** and try again. If the command doesn't find locate, it's because locate isn't installed yet. First install the package with ***sudo apt install plocate***.  If the package *plocate* can't be found for installation, you firstly have to run the command ***sudo apt update***
 
 
 
@@ -41,6 +41,12 @@ DESCRIPTION
        given). It does this by means of an index made by updatedb(8) or (less commonly) converted from another  index
        by plocate-build(8).
 ```
+
+
+
+?> <i class="fa-solid fa-circle-info"></i> If the commando ***man locate*** results in the text  *find: nothing appropriate.*  ,you must rebuild the man-database with the command ***sudo mandb*** and try again.
+
+
 
 Searching for files or folders with the word key in the name produces the following results:
 
@@ -205,7 +211,7 @@ He can place this IP address in a file called *PublicIP* with the command ***nan
 
 ```bash
 ubuntu@aws-linux-ess:~$ nano PublicIP
-...
+...  <typ the IP address> ... CTRL+s ...  CTRL+x
 ubuntu@aws-linux-ess:~$ cat PublicIP
 54.87.203.25
 ```

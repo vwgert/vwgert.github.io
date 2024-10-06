@@ -22,7 +22,7 @@ locate (1)           - find files by name, quickly
 
 
 
-?> <i class="fa-solid fa-circle-info"></i> Indien het commando ***apropos find*** resulteert in enkel de  *find: nothing appropriate.*  , moet je de man-database heropbouwen met het commando ***sudo mandb*** en nadien opnieuw proberen.
+?> <i class="fa-solid fa-circle-info"></i> Indien het commando ***apropos find*** resulteert in enkel de  *find: nothing appropriate.*  , moet je de man-database heropbouwen met het commando ***sudo mandb*** en nadien opnieuw proberen. Indien het commando *locate*  niet laat zien, dan is dat omdat locate nog niet geïnstalleerd is. Installeer dan eerst het package met ***sudo apt install plocate***.  Indien het package *plocate*  niet gevonden kan worden voor installatie moet je het commando uitvoeren: ***sudo apt update***
 
 
 
@@ -104,7 +104,7 @@ ubuntu@aws-linux-ess:~$ find -name "*key*"
 ```
 
 
-Merk op dat de uitvoer van het commando begint met *./*. Dit duidt erop dat *.ssh* zicht bevindt in de huidige map. Dat de map *.ssh* begint met een punt (.) duidt er op dat deze map verborgen is. Het commando ls zal deze map dus niet tonen. We zullen het commando *ls -a* moeten gebruiken, zodanig dat de verborgen bestanden en mappen ook zichtbaar zijn.  
+Merk op dat de uitvoer van het commando begint met *./*. Dit duidt erop dat *.ssh* zich bevindt in de huidige map. Dat de map *.ssh* begint met een punt (.) duidt er op dat deze map verborgen is. Het commando ls zal deze map dus niet tonen. We zullen het commando *ls -a* moeten gebruiken, zodanig dat de verborgen bestanden en mappen ook zichtbaar zijn.  
 
 ```bash
 ubuntu@aws-linux-ess:~$ ls -a
@@ -193,7 +193,7 @@ backups
 
 Het IP adres van de server zou in principe steeds hetzelfde moeten blijven. Om dit eventueel op een later tijdstip te checken wil Linus het huidige IP adres in een bestandje zetten.
 
-Eerst achterhaald hij het huidige publieke IP adres. Hij kent het commando niet meer, maar weet dat het iets was met *curl*. Hij zoekt in de historiek van zijn shell commando's door de toetsencombinatie ***CTRL+r***. 
+Eerst achterhaald hij het huidige publieke IP adres. Hij kent het commando niet meer, maar weet dat het iets was met *curl*. Hij zoekt in de historiek van zijn shell commando's met de toetsencombinatie ***CTRL+r***. 
 
 ```bash
 ubuntu@aws-linux-ess:~$     (CTRL+r)
@@ -208,7 +208,7 @@ Dit IP adres kan hij in een bestandje plaatsen genaamd *PublicIP* met het comman
 
 ```bash
 ubuntu@aws-linux-ess:~$ nano PublicIP
-...
+...  <type het IP adres> ... CTRL+s ...  CTRL+x
 ubuntu@aws-linux-ess:~$ cat PublicIP
 54.87.203.25
 ```
