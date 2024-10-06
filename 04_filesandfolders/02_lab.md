@@ -18,6 +18,12 @@ locate (1)           - find files by name, quickly
 ...
 ```
 
+
+
+?> <i class="fa-solid fa-circle-info"></i> If the commando ***apropos find*** results in the text  *find: nothing appropriate.*  ,you must rebuild the man-database with the command ***sudo mandb*** and try again.
+
+
+
 He figures out how to use the *locate* command:
 
 ```bash

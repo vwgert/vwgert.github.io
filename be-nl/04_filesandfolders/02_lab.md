@@ -18,6 +18,16 @@ locate (1)           - find files by name, quickly
 ...
 ```
 
+
+
+
+
+?> <i class="fa-solid fa-circle-info"></i> Indien het commando ***apropos find*** resulteert in enkel de  *find: nothing appropriate.*  , moet je de man-database heropbouwen met het commando ***sudo mandb*** en nadien opnieuw proberen.
+
+
+
+
+
 Hij zoekt uit hoe hij het commando *locate* kan gebruiken: 
 
 ```bash
