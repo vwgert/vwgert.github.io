@@ -307,7 +307,7 @@ student@ubuntu-server:~$ tree /tmp/Downloads/
 
 ```
 
-
+![tar](../images/05/tar.png)   
 
 ### Installing packages via a tarball
 
@@ -391,7 +391,7 @@ student@linux-ess:~$ sudo snap install mapscii
 mapscii 0.3.1 from Nathan Haines (nhaines) installed
 student@linux-ess:~$ mapscii 
 ```
-![mapscii](../images/06/mapscii.png)   
+![mapscii](../images/05/mapscii.png)   
 
 ?> To navigate and zoom you can use the *arrow keys* and *a* and *z* 
 
