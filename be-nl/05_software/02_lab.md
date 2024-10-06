@@ -26,9 +26,9 @@ Als dat niet werkt, dan kan je het proberen met het verwijderen van de pc-speake
 
 
 
-### **De webserver installeren** 
+### **Upgraden** 
 
-We installeren de nginx-webserver. Maar eerst updaten we alle geïnstalleerde pakketten naar hun laatste versie.
+Eerst updaten we alle geïnstalleerde pakketten naar hun laatste versie.
 
 
 
@@ -56,6 +56,8 @@ Herstart de Webserver-Instance met
 ![img](../images/05/AD_4nXewrU_Ii3JCeJSkbrnfDb7uLWZBZcG4tIcfkhCaqyLEOMTUhtieuRWvkTVMJFjbDXkMlKSZSeP6f6t61n252jMZe56wTRtoyWEZV7NvlhHHT9kskhcyVcUDkBIHwJMZg2-m1X6DbDXlT1fFEZQhbKY-HMYI.png)
 
 
+
+### **De webserver installeren** 
 
 Nu installeren we de webserver met
 ***sudo apt -y install nginx***

@@ -2,9 +2,9 @@
 
 In Windows we have several options to install software. We usually use installers that we find on discs and websites or even the Windows app store where we can find software in an online catalog. 
 
-Remember that latest hyped video game that you preordered and turned out to be a total bust? When installing that game it might prompt you saying/asking that you need to install the lastest version of DirectX or Visual C++ Redistributable? These are other pieces of software that are needed to run the initial application or game. We call these pieces of software _dependencies_. Most of the times the original installer installs these for us but sometimes we have to manually find and install these dependencies ourselves.
+Remember that latest hyped video game that you preordered and turned out to be a total bust? When installing that game it might prompt you saying/asking that you need to install the lastest version of DirectX or Visual C++ Redistributable? These are other pieces of software that are needed to run the initial application or game. We call these pieces of software _**dependencies**_. Most of the times the original installer installs these for us but sometimes we have to manually find and install these dependencies ourselves.
 
-Installing software on Linux systems hasn't always been easy. Back in the days we had to download source code and compile applications ourselves, put them in the right folders and make sure we have all the needed dependencies to run the application.  We might come across this process in the present day, but most of the time we are gonna install software using _package managers_. These are tools that run through a database to find the application that we want to install. If it finds an application matching the specified name it will install the application as well as all the required dependencies. If we remove an application it will also remove all dependencies that are no longer required. Another benefit is that the package manager will also manage updates of all our applications and dependencies.
+Installing software on Linux systems hasn't always been easy. Back in the days we had to download source code and compile applications ourselves, put them in the right folders and make sure we have all the needed dependencies to run the application.  We might come across this process in the present day, but most of the time we are gonna install software using _**package managers**_. These are tools that run through a database to find the application that we want to install. If it finds an application matching the specified name it will install the application as well as all the required dependencies. If we remove an application it will also remove all dependencies that are no longer required. Another benefit is that the package manager will also manage updates of all our applications and dependencies.
 
 ## installing, removing and updating software (apt)
 
@@ -27,7 +27,7 @@ DESCRIPTION
        specialized APT tools like apt-get(8) and apt-cache(8).
 ```
 
-As described above `apt` (or it's predecessor `apt-get`) is a package manager. We can use this tool to install packages (read: software) on our Linux machine. Note that `apt` is the specific package manager for Ubuntu. There are several alternatives available such as `dpkg`, `pacman`, `rpm`, `yum`, `dnf`, ... which might come pre-installed with a specific linux distribution.
+As described above `apt` (or it's predecessor `apt-get`) is a package manager. We can use this tool to install packages (read: software) on our Linux machine. Note that `apt` is the specific package manager for Ubuntu. There are several alternatives available such as `pacman`, `rpm`, `yum`, `dnf`, ... which might come pre-installed with a specific linux distribution.
 
 ### Repositories
 An important thing to note about `apt` is that it uses a database of available packages. We can update this list of packages by running the command below:
@@ -58,9 +58,9 @@ Fetched 8672 kB in 2s (3651 kB/s)
 ```
 ?> <i class="fa-solid fa-circle-info"></i> Note that we used the `sudo` command. This is needed because `apt` is a system wide command that impacts the entire system (installing/removing/updating software). Therefore we cannot run it as a user with default permissions.
 
-We can see that this command gets data from a bunch of lists. These lists are called _repositories_ (lists with a collection of packages for certain purposes). When we install software later, it will use the database based on these repositories to check if the package that we want to install is available.
+We can see that this command gets data from a bunch of lists. These lists are called _**repositories**_ (lists with a collection of packages for certain purposes). When we install software later, it will use the database based on these repositories to check if the package that we want to install is available and which is the latest version.
 
-The list of repositories that `apt` uses can be found in the file `/etc/apt/sources.list`. We can manually add more repositories to this file or use the command `add-apt-repository` but we will not go into this for now.
+The list of repositories that `apt` uses can be found in the file `/etc/apt/sources.list` or `/etc/apt/sources.list.d/...`  . We can manually add more repositories to this file or use the command `add-apt-repository` but we will not go into this for now.
 
 ### Finding software (apt search) 
 Imagine that we downloaded a file that ends with `.zip` and we have to find a program that can deal with this kind of file. We could use the following command, making use of a regular expression in the search term: 

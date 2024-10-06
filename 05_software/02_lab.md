@@ -26,7 +26,7 @@ If that doesn't work, you can try removing the PC speaker kernel module (if it i
 
 ### **Installing the web server** 
 
-We install the nginx web server. But first we upgrade all the packages to their latest version.
+First we upgrade all the packages to their latest version.
 
 ***sudo apt update*** 
 
@@ -53,6 +53,8 @@ Restart the Webserver-Instance with
 ![img](../images/05/AD_4nXewrU_Ii3JCeJSkbrnfDb7uLWZBZcG4tIcfkhCaqyLEOMTUhtieuRWvkTVMJFjbDXkMlKSZSeP6f6t61n252jMZe56wTRtoyWEZV7NvlhHHT9kskhcyVcUDkBIHwJMZg2-m1X6DbDXlT1fFEZQhbKY-HMYI.png)
 
 
+
+### **Installing the web server** 
 
 Now we install the webserver with
 

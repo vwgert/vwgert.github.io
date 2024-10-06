@@ -1,9 +1,9 @@
 # Software en pakketten 
 In Windows hebben we verschillende opties om software te installeren. We gebruiken meestal installatieprogramma's die we vinden op schijven en websites of zelfs de Windows-app store waar we software kunnen vinden in een online catalogus.  
 
-Herinner je je die nieuwste gehypte videogame die je vooraf hebt besteld en die een totale ramp bleek te zijn? Wanneer je dat spel installeert, kan het je zeggen/vragen dat je de nieuwste versie van DirectX of Visual C ++ Redistributable moet installeren? Dit zijn andere stukjes software die nodig zijn om de eerste toepassing of game uit te voeren. We noemen deze stukjes software _dependencies/afhankelijkheden_. Meestal installeert het oorspronkelijke installatieprogramma deze voor ons, maar soms moeten we deze dependencies zelf handmatig vinden en installeren. 
+Herinner je je die nieuwste gehypte videogame die je vooraf hebt besteld en die een totale ramp bleek te zijn? Wanneer je dat spel installeert, kan het je zeggen/vragen dat je de nieuwste versie van DirectX of Visual C ++ Redistributable moet installeren? Dit zijn andere stukjes software die nodig zijn om de eerste toepassing of game uit te voeren. We noemen deze stukjes software **_dependencies_**. Meestal installeert het oorspronkelijke installatieprogramma deze voor ons, maar soms moeten we deze dependencies zelf handmatig vinden en installeren. 
 
-Het installeren van software op Linux-systemen is niet altijd eenvoudig geweest. Vroeger moesten we zelf broncode downloaden en applicaties compileren, deze in de juiste mappen plaatsen en ervoor zorgen dat we alle benodigde dependencies hadden om de applicatie uit te voeren. We kunnen dit proces tegenwoordig nog tegenkomen, maar meestal gaan we software installeren met behulp van _package managers/pakketbeheerders_. Dit zijn tools die door een database zoeken om de applicatie te vinden die we willen installeren. Als er een toepassing wordt gevonden die overeenkomt met de opgegeven naam, wordt de toepassing en alle vereiste dependencies geïnstalleerd. Als we een toepassing verwijderen, worden ook alle dependencies verwijderd die niet langer nodig zijn. Een ander voordeel is dat de pakketbeheerder ook updates van al onze applicaties en dependencies beheert. 
+Het installeren van software op Linux-systemen is niet altijd eenvoudig geweest. Vroeger moesten we zelf broncode downloaden en applicaties compileren, deze in de juiste mappen plaatsen en ervoor zorgen dat we alle benodigde dependencies hadden om de applicatie uit te voeren. We kunnen dit proces tegenwoordig nog tegenkomen, maar meestal gaan we software installeren met behulp van _**package managers**_. Dit zijn tools die door een database zoeken om de applicatie te vinden die we willen installeren. Als er een toepassing wordt gevonden die overeenkomt met de opgegeven naam, wordt de toepassing en alle vereiste dependencies geïnstalleerd. Als we een toepassing verwijderen, worden ook alle dependencies verwijderd die niet langer nodig zijn. Een ander voordeel is dat de package ma ook updates van al onze applicaties en dependencies beheert. 
 
 ## Software installeren, verwijderen en bijwerken (apt) 
 Bij het installeren van softwarepakketten in Ubuntu gebruiken we vaak het commando `apt` (advanced package system). De manpage geeft ons alle informatie die we nodig hebben om het commando te gebruiken: 
@@ -25,10 +25,10 @@ DESCRIPTION
        specialized APT tools like apt-get(8) and apt-cache(8).
 ```
 
-Zoals hierboven beschreven is `apt` (of zijn voorganger `apt-get`) een pakketbeheerder. We kunnen deze tool gebruiken om pakketten (lees: software) op onze Linux-machine te installeren. Merk op dat `apt` de specifieke pakketbeheerder voor Ubuntu is. Er zijn verschillende alternatieven beschikbaar zoals `dpkg`, `pacman`, `rpm`, `yum`, `dnf`, ... die vooraf geïnstalleerd met een specifieke Linux-distributie kunnen worden geleverd. 
+Zoals hierboven beschreven is `apt` (of zijn voorganger `apt-get`) een package manager. We kunnen deze tool gebruiken om pakketten (lees: software) op onze Linux-machine te managen (installeren, upgraden, verwijderen). Merk op dat `apt` de specifieke package manager voor Ubuntu is. Er zijn verschillende alternatieven beschikbaar zoals  `pacman`, `rpm`, `yum`, `dnf`, ... die vooraf geïnstalleerd met een specifieke Linux-distributie kunnen worden geleverd. 
 
 ### Opslagplaatsen 
-Belangrijk om op te merken over `apt` is dat het databases van beschikbare pakketten gebruikt. Deze databases, genaamd repositories, dienen eerst gedownload naar de computer. Dit doen we door het onderstaand commando uit te voeren: 
+Belangrijk om op te merken over `apt` is dat het databases van beschikbare pakketten gebruikt. Deze databases, genaamd ***repositories***, dienen eerst gedownload te worden naar de computer. Dit doen we door het onderstaand commando uit te voeren: 
 ```bash
 student@linux-ess:~/globbing$ sudo apt update
 [sudo] password for student:
@@ -54,11 +54,11 @@ Get:33 http://archive.ubuntu.com/ubuntu focal-backports/universe Translation-en 
 Get:34 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [860 B]
 Fetched 8672 kB in 2s (3651 kB/s)
 ```
-?> <i class="fa-solid fa-circle-info"></i> Merk op dat we het commando `sudo` hebben gebruikt. Dit is nodig omdat `apt` een systeembreed commando is die van invloed is op het hele systeem (software installeren/verwijderen/bijwerken). Daarom kunnen we het niet uitvoeren als een gebruiker met standaardmachtigingen. 
+?> <i class="fa-solid fa-circle-info"></i> Merk op dat we het commando `sudo` hebben gebruikt. Dit is nodig omdat `apt` systeembrede aanpassingen aanbrengt (software installeren/verwijderen/bijwerken). Daarom kunnen we het niet uitvoeren als een gebruiker met standaardmachtigingen. 
 
-We kunnen zien dat dit commando een heleboel lijsten download. Deze lijsten worden _repositories_ genoemd (lijsten met welbepaalde verzamelingen van pakketten). Wanneer we later software installeren, wordt de database op basis van deze repositories gebruikt om te controleren of het pakket dat we willen installeren beschikbaar is. 
+We kunnen zien dat dit commando een heleboel lijsten download. Deze lijsten worden _repositories_ genoemd (lijsten met welbepaalde verzamelingen van pakketten). Wanneer we later software installeren, wordt de database op basis van deze repositories gebruikt om te controleren of het pakket dat we willen installeren beschikbaar is en welk de laatste versie is.
 
-De lijst van repositories die `apt` gebruikt is te vinden in het bestand `/etc/apt/sources.list`. We kunnen handmatig meer repositories aan dit bestand toevoegen of het commando `add-apt-repository` gebruiken, maar we zullen hier voorlopig niet op ingaan. 
+De lijst van repositories die `apt` gebruikt is te vinden in het bestand `/etc/apt/sources.list` of `/etc/apt/sources.list.d/...`   . We kunnen handmatig meer repositories aan dit bestand toevoegen of het commando `add-apt-repository` gebruiken, maar we zullen hier voorlopig niet op ingaan. 
 
 ### Software zoeken (apt search) 
 Stel je voor dat we een bestand hebben gedownload dat eindigt om `.zip`. Dan kunnen we op zoek gaan naar een programma dat hiermee overweg kan. We kunnen het onderstaande commando uitvoeren gebruik makend van regular expressions in de zoekterm: 
@@ -320,6 +320,8 @@ De opties die we gebruiken zijn te vinden in de manpage, maar hieronder vind je 
 * `-C`: Hiermee wordt de map gewijzigd voordat deze wordt uitgepakt naar het pad dat als argument wordt opgegeven. Dit betekent dat de inhoud in deze map wordt uitgepakt. 
 * `-t`: Geeft alleen de inhoud van het archief weer op het scherm. Het zal niets uitpakken. 
 
+
+
 ## dpkg
 `dpkg` was de eerste pakketbeheerder voor Debian gebaseerde systemen. Waar Ubuntu tegenwoordig `apt` als standaard pakketbeheerder gebruikt, kunnen wij ook `dpkg` gebruiken. `dpkg` was de voorloper van `apt-get` en `apt`. `dpkg` maakt geen gebruik van repositories, dus we moeten het installatiebestand hebben voordat we het commando gebruiken. Het downloadt ook niet automatisch afhankelijkheden. Daarom noemden ze het vroeger *de dependancy hell* We kunnen `dpkg` gebruiken om `.deb`-bestanden te installeren / verwijderen / ... . In het onderstaande voorbeeld wordt het pakket `yourpackage` geïnstalleerd: 
 ```bash
@@ -332,7 +334,9 @@ student@linux-ess:~$ sudo dpkg-reconfigure keyboard-configuration
 ```
 
 
+
 ## snap
+
 Een van de relatief nieuwe spelers is snap. Een snap is een bundel van software die we willen installeren met al zijn afhankelijkheden opgeslagen in één bestand en uitgevoerd in zijn eigen bubbel. Dit betekent dat twee snaps elkaar niet kunnen verstoren. Dit maakt het bijvoorbeeld mogelijk om twee verschillende versies van dezelfde software tegelijkertijd te installeren en samen uit te voeren. Snaps hebben hun eigen bestandssysteem, maar kunnen ook werken met bestanden op je systeem. Je kunt snaps vinden in de snap store op een Desktop of met `snap search` op een server. Snaps worden steeds meer gebruikt omdat ze distro-onafhankelijk zijn. Als je de snap-daemon op de distro kunt installeren, kan je alle snaps uitvoeren.  
 
 De commando's voor het werken met snap zijn bijna vergelijkbaar met apt. Wij beschikken over: 
