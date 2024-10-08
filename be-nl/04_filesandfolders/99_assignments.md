@@ -151,7 +151,7 @@ Kopieer het bestand _SourceFile_ naar _chapter6_
 ## Oefening 32 
 Kopieer het bestand _SourceFile_ van _chapter6_ naar je homefolder, maar wijzig de naam ook naar _SourceFile.backup_ tijdens het kopiëren 
 
-## Taak 33 
+## Oefening 33 
 Kopieer de map _school_ met alle bestanden en submappen naar de map _/tmp_. 
 Bekijk een directorylijst van _/tmp_ 
 Bekijk de directory tree van _/tmp/school_ 
@@ -159,25 +159,25 @@ Start de server opnieuw op
 Kijk of de directory tree van _school_ nog aanwezig is in _/tmp_ 
 Gebruik `man hier` om te zoeken naar _/tmp_ en ontdek waarom 
 
-## Taak 34 
+## Oefening 34 
 Zoek uit wat voor type bestanden _/etc/passwd_, _/dev/tty1_ en _/dev/sda_ zijn 
 
-## Taak 35 
+## Oefening 35 
 Gebruik `sudo` om alle bestanden op het bestandssysteem te `vinden` die 'SourceFile' als __exacte naam__ hebben 
 
-## Taak 36 
+## Oefening 36 
 `vind` alle bestanden in je homefolder die 'file' hebben __in hun naam__, maar doe het deze keer __hoofdletterongevoelig__ 
 
-## Taak 37 
+## Oefening 37 
 Gebruik `sudo` om alle bestanden te `lokaliseren` die `SourceFile` in hun naam hebben 
 Als je geen bestanden kunt vinden, zoekt je in de manpage van `locate` naar de string __update__ om te zien welk commando je moet geven om de database bij te werken. Bekijk indien nodig de manpage van dit commando en voer dit commando uit om de database bij te werken. Probeer vervolgens het commando `locate` opnieuw. 
 
-## Taak 38 
+## Oefening 38 
 `Lokaliseer` alle bestanden die 'sourcefile' __in de naam__ hebben, maar doe het deze keer __hoofdletterongevoelig__
 Zoek in de manpage van `locate` en zoek op 'case' 
 
-## Taak 39 
+## Oefening 39 
 Verwijder het bestand _SourceFile.backup_ uit je homefolder
 
-## Taak 40 
+## Oefening 40 
 sluit de server via de ssh-sessie af
