@@ -93,6 +93,100 @@ Als laatste in de lijst zien we een pakket dat .zip files kan archiveren. De pro
 ?> <i class="fa-solid fa-circle-info"></i> Merk op dat je best eerst een `apt update` uitvoert om de laatste versie van de repositories te downloaden, want er wordt in deze gedownloade repositories gezocht naar de pakketten. Een verouderde repository bevat een pakket misschien nog niet, of download een verouderde versie van een pakket. 
 
 
+
+Hieronder de inhoud van het bestand */etc/apt/sources.list.d/ubuntu.sources*
+
+```
+Types: deb
+URIs: http://be.archive.ubuntu.com/ubuntu/
+Suites: noble noble-updates noble-backports
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb
+URIs: http://security.ubuntu.com/ubuntu/
+Suites: noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+```
+
+
+
+Hieronder de repositories die gecached (=gedownload) zijn op de server na *sudo apt update*
+
+```
+student@ubserv:~$ ls /var/lib/apt/lists/
+auxfiles                                                                                     be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_InRelease                                 be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_main_cnf_Commands-amd64                   be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_main_dep11_Components-amd64.yml.gz        be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_multiverse_cnf_Commands-amd64             be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_multiverse_dep11_Components-amd64.yml.gz  be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_restricted_cnf_Commands-amd64             be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_restricted_dep11_Components-amd64.yml.gz  be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_binary-amd64_Packages            be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_cnf_Commands-amd64               be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_dep11_Components-amd64.yml.gz    be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_i18n_Translation-en              be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_InRelease                                           be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble_main_binary-amd64_Packages                          
+lock
+be.archive.ubuntu.com_ubuntu_dists_noble_main_cnf_Commands-amd64                             
+partial
+be.archive.ubuntu.com_ubuntu_dists_noble_main_dep11_Components-amd64.yml.gz                  security.ubuntu.com_ubuntu_dists_noble-security_InRelease
+be.archive.ubuntu.com_ubuntu_dists_noble_main_i18n_Translation-en                            security.ubuntu.com_ubuntu_dists_noble-security_main_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_binary-amd64_Packages                    security.ubuntu.com_ubuntu_dists_noble-security_main_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_cnf_Commands-amd64                       security.ubuntu.com_ubuntu_dists_noble-security_main_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_dep11_Components-amd64.yml.gz            security.ubuntu.com_ubuntu_dists_noble-security_main_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_i18n_Translation-en                      security.ubuntu.com_ubuntu_dists_noble-security_multiverse_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble_restricted_binary-amd64_Packages                    security.ubuntu.com_ubuntu_dists_noble-security_multiverse_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble_restricted_cnf_Commands-amd64                       security.ubuntu.com_ubuntu_dists_noble-security_multiverse_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_restricted_i18n_Translation-en                      security.ubuntu.com_ubuntu_dists_noble-security_multiverse_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages                      security.ubuntu.com_ubuntu_dists_noble-security_restricted_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_cnf_Commands-amd64                         security.ubuntu.com_ubuntu_dists_noble-security_restricted_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_dep11_Components-amd64.yml.gz              security.ubuntu.com_ubuntu_dists_noble-security_restricted_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_i18n_Translation-en                        security.ubuntu.com_ubuntu_dists_noble-security_restricted_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_InRelease                                   security.ubuntu.com_ubuntu_dists_noble-security_universe_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_binary-amd64_Packages                  security.ubuntu.com_ubuntu_dists_noble-security_universe_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_cnf_Commands-amd64                     security.ubuntu.com_ubuntu_dists_noble-security_universe_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_dep11_Components-amd64.yml.gz          security.ubuntu.com_ubuntu_dists_noble-security_universe_i18n_Translation-en
+```
+
+
+
+Hieronder een voorbeeld van de gegevens voor de package "zip", uit één van bovenstaande files.
+
+```
+Package: zip
+Architecture: amd64
+Version: 3.0-13build1
+Multi-Arch: foreign
+Priority: optional
+Section: utils
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Santiago Vila <sanvila@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 536
+Depends: libbz2-1.0, libc6 (>= 2.34)
+Recommends: unzip
+Filename: pool/main/z/zip/zip_3.0-13build1_amd64.deb
+Size: 175418
+MD5sum: 31b4161417c3ba2f6c02c17d4775543c
+SHA1: 6b19302c15eab7c8fd7a6fcc3fab3664c74c878b
+SHA256: 5c1a2dfb052f50e7031037aa2e267839804d2254c4d282040fdfe826ffba1e38
+SHA512: 6e18366ade8761f3a86c53a3ccaa40d6e5959886266138a4c638b10783444c1f26cda774b4753b7c7721e8666c42c74c0e2b06e45f82e94e7132037979c6efa3
+Homepage: https://infozip.sourceforge.net/Zip.html
+Description: Archiver for .zip files
+Task: ubuntu-desktop-minimal, ubuntu-desktop, ubuntu-desktop-raspi, kubuntu-desktop, xubuntu-minimal, xubuntu-desktop, lubuntu-desktop, ubuntustudio-desktop-core, ubuntustudio-desktop, ubuntukylin-desktop, ubuntukylin-desktop-minimal, ubuntu-mate-core, ubuntu-mate-desktop, ubuntu-budgie-desktop-minimal, ubuntu-budgie-desktop, ubuntu-budgie-desktop-raspi, ubuntu-unity-desktop, edubuntu-desktop-gnome-minimal, edubuntu-desktop-gnome-raspi, ubuntucinnamon-desktop-minimal, ubuntucinnamon-desktop-raspi
+Description-md5: 581928d34d669e63c353cd694bd040b0
+```
+
+
+
+
+
+
 ### Software installeren (apt install) 
 Stel je voor dat we het `zip`-pakket willen installeren. We kunnen eenvoudig het onderstaande commando uitvoeren: 
 ```bash

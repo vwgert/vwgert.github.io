@@ -2,7 +2,7 @@
 
 In Windows we have several options to install software. We usually use installers that we find on discs and websites or even the Windows app store where we can find software in an online catalog. 
 
-Remember that latest hyped video game that you preordered and turned out to be a total bust? When installing that game it might prompt you saying/asking that you need to install the lastest version of DirectX or Visual C++ Redistributable? These are other pieces of software that are needed to run the initial application or game. We call these pieces of software _**dependencies**_. Most of the times the original installer installs these for us but sometimes we have to manually find and install these dependencies ourselves.
+Remember that latest hyped video game that you preordered and turned out to be a total bust? When installing that game it might prompt you saying/asking that you need to install the lastest version of DirectX or Visual C++ Redistributable? These are other pieces of software that are needed to run the initial application or game. We call these pieces of software **dependencies**. Most of the times the original installer installs these for us but sometimes we have to manually find and install these dependencies ourselves.
 
 Installing software on Linux systems hasn't always been easy. Back in the days we had to download source code and compile applications ourselves, put them in the right folders and make sure we have all the needed dependencies to run the application.  We might come across this process in the present day, but most of the time we are gonna install software using _**package managers**_. These are tools that run through a database to find the application that we want to install. If it finds an application matching the specified name it will install the application as well as all the required dependencies. If we remove an application it will also remove all dependencies that are no longer required. Another benefit is that the package manager will also manage updates of all our applications and dependencies.
 
@@ -60,7 +60,103 @@ Fetched 8672 kB in 2s (3651 kB/s)
 
 We can see that this command gets data from a bunch of lists. These lists are called _**repositories**_ (lists with a collection of packages for certain purposes). When we install software later, it will use the database based on these repositories to check if the package that we want to install is available and which is the latest version.
 
+
+
 The list of repositories that `apt` uses can be found in the file `/etc/apt/sources.list` or `/etc/apt/sources.list.d/...`  . We can manually add more repositories to this file or use the command `add-apt-repository` but we will not go into this for now.
+
+
+
+Below is the contents of the file */etc/apt/sources.list.d/ubuntu.sources*
+
+```
+Types: deb
+URIs: http://be.archive.ubuntu.com/ubuntu/
+Suites: noble noble-updates noble-backports
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb
+URIs: http://security.ubuntu.com/ubuntu/
+Suites: noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+```
+
+
+
+Below you can see the repositories that are cached (=downloaded) on the server after *sudo apt update*
+
+```
+student@ubserv:~$ ls /var/lib/apt/lists/
+auxfiles                                                                                     be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_InRelease                                 be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_main_cnf_Commands-amd64                   be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_main_dep11_Components-amd64.yml.gz        be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_multiverse_cnf_Commands-amd64             be.archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_multiverse_dep11_Components-amd64.yml.gz  be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_restricted_cnf_Commands-amd64             be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_restricted_dep11_Components-amd64.yml.gz  be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_binary-amd64_Packages            be.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_cnf_Commands-amd64               be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_dep11_Components-amd64.yml.gz    be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-backports_universe_i18n_Translation-en              be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_InRelease                                           be.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble_main_binary-amd64_Packages                          
+lock
+be.archive.ubuntu.com_ubuntu_dists_noble_main_cnf_Commands-amd64                             
+partial
+be.archive.ubuntu.com_ubuntu_dists_noble_main_dep11_Components-amd64.yml.gz                  security.ubuntu.com_ubuntu_dists_noble-security_InRelease
+be.archive.ubuntu.com_ubuntu_dists_noble_main_i18n_Translation-en                            security.ubuntu.com_ubuntu_dists_noble-security_main_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_binary-amd64_Packages                    security.ubuntu.com_ubuntu_dists_noble-security_main_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_cnf_Commands-amd64                       security.ubuntu.com_ubuntu_dists_noble-security_main_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_dep11_Components-amd64.yml.gz            security.ubuntu.com_ubuntu_dists_noble-security_main_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble_multiverse_i18n_Translation-en                      security.ubuntu.com_ubuntu_dists_noble-security_multiverse_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble_restricted_binary-amd64_Packages                    security.ubuntu.com_ubuntu_dists_noble-security_multiverse_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble_restricted_cnf_Commands-amd64                       security.ubuntu.com_ubuntu_dists_noble-security_multiverse_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_restricted_i18n_Translation-en                      security.ubuntu.com_ubuntu_dists_noble-security_multiverse_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages                      security.ubuntu.com_ubuntu_dists_noble-security_restricted_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_cnf_Commands-amd64                         security.ubuntu.com_ubuntu_dists_noble-security_restricted_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_dep11_Components-amd64.yml.gz              security.ubuntu.com_ubuntu_dists_noble-security_restricted_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble_universe_i18n_Translation-en                        security.ubuntu.com_ubuntu_dists_noble-security_restricted_i18n_Translation-en
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_InRelease                                   security.ubuntu.com_ubuntu_dists_noble-security_universe_binary-amd64_Packages
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_binary-amd64_Packages                  security.ubuntu.com_ubuntu_dists_noble-security_universe_cnf_Commands-amd64
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_cnf_Commands-amd64                     security.ubuntu.com_ubuntu_dists_noble-security_universe_dep11_Components-amd64.yml.gz
+be.archive.ubuntu.com_ubuntu_dists_noble-updates_main_dep11_Components-amd64.yml.gz          security.ubuntu.com_ubuntu_dists_noble-security_universe_i18n_Translation-en
+```
+
+
+
+Below is the data for the package "zip", found in one of the above files.
+
+```
+Package: zip
+Architecture: amd64
+Version: 3.0-13build1
+Multi-Arch: foreign
+Priority: optional
+Section: utils
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Santiago Vila <sanvila@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 536
+Depends: libbz2-1.0, libc6 (>= 2.34)
+Recommends: unzip
+Filename: pool/main/z/zip/zip_3.0-13build1_amd64.deb
+Size: 175418
+MD5sum: 31b4161417c3ba2f6c02c17d4775543c
+SHA1: 6b19302c15eab7c8fd7a6fcc3fab3664c74c878b
+SHA256: 5c1a2dfb052f50e7031037aa2e267839804d2254c4d282040fdfe826ffba1e38
+SHA512: 6e18366ade8761f3a86c53a3ccaa40d6e5959886266138a4c638b10783444c1f26cda774b4753b7c7721e8666c42c74c0e2b06e45f82e94e7132037979c6efa3
+Homepage: https://infozip.sourceforge.net/Zip.html
+Description: Archiver for .zip files
+Task: ubuntu-desktop-minimal, ubuntu-desktop, ubuntu-desktop-raspi, kubuntu-desktop, xubuntu-minimal, xubuntu-desktop, lubuntu-desktop, ubuntustudio-desktop-core, ubuntustudio-desktop, ubuntukylin-desktop, ubuntukylin-desktop-minimal, ubuntu-mate-core, ubuntu-mate-desktop, ubuntu-budgie-desktop-minimal, ubuntu-budgie-desktop, ubuntu-budgie-desktop-raspi, ubuntu-unity-desktop, edubuntu-desktop-gnome-minimal, edubuntu-desktop-gnome-raspi, ubuntucinnamon-desktop-minimal, ubuntucinnamon-desktop-raspi
+Description-md5: 581928d34d669e63c353cd694bd040b0
+```
+
+
+
+
 
 ### Finding software (apt search) 
 Imagine that we downloaded a file that ends with `.zip` and we have to find a program that can deal with this kind of file. We could use the following command, making use of a regular expression in the search term: 
