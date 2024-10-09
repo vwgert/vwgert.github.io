@@ -3,18 +3,19 @@
 Om de inhoud van bestanden te bekijken, kunnen we het commando `cat` gebruiken. Met dit commando wordt een pad naar een bestand als argument gebruikt: 
 ```bash
 student@linux-ess:~$ cat /etc/os-release
-PRETTY_NAME="Ubuntu 22.04.3 LTS"
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
 NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04. LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
+VERSION_ID="24.04"
+VERSION="24.04.1 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
 ID=ubuntu
 ID_LIKE=debian
 HOME_URL="https://www.ubuntu.com/"
 SUPPORT_URL="https://help.ubuntu.com/"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
 ```
 Hiermee wordt de volledige bestandsinhoud in de terminal afgedrukt. 
 
@@ -23,18 +24,19 @@ Hiermee wordt de volledige bestandsinhoud in de terminal afgedrukt.
 Het `tac` commando is het `cat` commando geschreven in omgekeerde volgorde. Dit is ook precies wat dit commando doet, het toont de bestandsinhoud in omgekeerde volgorde (van onder naar boven): 
 ```bash
 student@linux-ess:~$ tac /etc/os-release
-UBUNTU_CODENAME=jammy
+LOGO=ubuntu-logo
+UBUNTU_CODENAME=noble
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 SUPPORT_URL="https://help.ubuntu.com/"
 HOME_URL="https://www.ubuntu.com/"
 ID_LIKE=debian
 ID=ubuntu
-VERSION_CODENAME=jammy
-VERSION="22.04.3 LTS (Jammy Jellyfish)"
-VERSION_ID="22.04"
+VERSION_CODENAME=noble
+VERSION="24.04.1 LTS (Noble Numbat)"
+VERSION_ID="24.04"
 NAME="Ubuntu"
-PRETTY_NAME="Ubuntu 22.04.3 LTS"
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
 ```
 
 De commando's `cat` en `tac` kunnen meerdere bestanden als argumenten gebruiken en zullen de inhoud in de terminal als volgt samenvoegen: 
@@ -68,16 +70,16 @@ news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
 Standaard worden met dit commando de eerste 10 regels van een bestand weergegeven. Bij gebruik van `tail` worden de laatste 10 regels weergegeven: 
 ```bash
 student@linux-ess:~$ tail /etc/passwd
-pollinate:x:105:1::/var/cache/pollinate:/bin/false
-sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
-syslog:x:107:113::/home/syslog:/usr/sbin/nologin
-uuidd:x:108:114::/run/uuidd:/usr/sbin/nologin
-tcpdump:x:109:115::/nonexistent:/usr/sbin/nologin
-tss:x:110:116:TPM software stack,,,:/var/lib/tpm:/bin/false
-landscape:x:111:117::/var/lib/landscape:/usr/sbin/nologin
-usbmux:x:112:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+polkitd:x:991:991:User for polkitd:/:/usr/sbin/nologin
+syslog:x:103:104::/nonexistent:/usr/sbin/nologin
+uuidd:x:104:105::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:105:107::/nonexistent:/usr/sbin/nologin
+tss:x:106:108:TPM software stack,,,:/var/lib/tpm:/bin/false
+landscape:x:107:109::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
 student:x:1000:1000:student:/home/student:/bin/bash
-lxd:x:999:100::/var/snap/lxd/common/lxd:/bin/false
 ```
 
 We kunnen het aantal regels in de opdrachtuitvoer als volgt manipuleren (je kan het getal `2` door een willekeurig getal wijzigen): 
@@ -90,11 +92,11 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 Dit commando wordt vaak gebruikt voor logboekbestanden, waarbij de laatste regels meestal informatie bevatten over de laatste gebeurtenissen. bv: 
 ```bash
 student@linux-ess:~$ tail -5 /var/log/auth.log
-Oct  7 16:23:06 ubuntu-server systemd-logind[840]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
-Oct  7 16:23:26 ubuntu-server sshd[1100]: Accepted password for student from 192.168.109.1 port 63147 ssh2
-Oct  7 16:23:26 ubuntu-server sshd[1100]: pam_unix(sshd:session): session opened for user student(uid=1000) by (uid=0)
-Oct  7 16:23:26 ubuntu-server systemd-logind[840]: New session 1 of user student.
-Oct  7 16:23:26 ubuntu-server systemd: pam_unix(systemd-user:session): session opened for user student(uid=1000) by (uid=0)
+2024-10-09T19:30:48.004065+00:00 linux-ess sshd[1145]: Server listening on :: port 22.
+2024-10-09T19:30:49.947204+00:00 linux-ess sshd[1147]: Accepted password for student from 192.168.234.1 port 52232 ssh2
+2024-10-09T19:30:49.949910+00:00 linux-ess sshd[1147]: pam_unix(sshd:session): session opened for user student(uid=1000) by student(uid=0)
+2024-10-09T19:30:49.964087+00:00 linux-ess systemd-logind[859]: New session 1 of user student.
+2024-10-09T19:30:50.027265+00:00 linux-ess (systemd): pam_unix(systemd-user:session): session opened for user student(uid=1000) by student(uid=0)
 ```
 
 ?> <i class="fa-solid fa-circle-info"></i> We kunnen zelfs logbestanden live bekijken door `tail -f` (`-f` staat voor _follow_) te gebruiken. Hiermee wordt een actief proces gestart dat in eerste instantie de laatste 10 regels van een bestand weergeeft. Wanneer iets aan dit bestand wordt toegevoegd, wordt het live toegevoegd aan de opdrachtuitvoer. Om dit actieve proces te beëindigen, gebruik je `ctrl+c`. 
@@ -104,11 +106,11 @@ Oct  7 16:23:26 ubuntu-server systemd: pam_unix(systemd-user:session): session o
 Bij het bekijken van grote bestanden met `cat` is het je misschien opgevallen dat de terminal alleen het laatste stukje van de inhoud toont. We kunnen commando's als `more` en `less` gebruiken om de hele content te bekijken (en er doorheen te scrollen). Bij `more` kun je alleen naar beneden scrollen en dit één scherm tegelijk door op de _spatiebalk_ of _page down_ te drukken. Met `less` kun je ook omhoog scrollen door op _page up_ te drukken. Met `less´` kan scrollen ook met maar één regel worden gedaan door het _pijltje omhoog_ of _pijltje omlaag_ te gebruiken. Om `more` of `less` af te sluiten kun je simpelweg op _q_ of _ctrl+c_ drukken. 
 ```bash
 student@linux-ess:~$ less /var/log/dpkg.log
-2022-09-19 21:52:34 startup packages remove
-2022-09-19 21:52:34 status installed linux-virtual:amd64 5.4.0.81.85
+2024-10-06 13:17:28 startup archives unpack
+2024-10-06 13:17:28 install unzip:amd64 <none> 6.0-28ubuntu4.1
 ... output omitted
-2022-09-19 21:52:34 status half-configured linux-headers-5.4.0-81:all 5.4.0-81.91
-2022-09-19 21:52:34 status half-installed linux-headers-5.4.0-81:all 5.4.0-81.91
+2024-10-09 19:02:21 status half-configured man-db:amd64 2.12.0-4build2
+2024-10-09 19:02:21 status installed man-db:amd64 2.12.0-4build2
 ```
 ?> <i class="fa-solid fa-circle-info"></i> Wist je dat manpages standaard ook geopend worden met `less`. Je kan dus ook zoeken in bestanden die zijn geopend met `less` door _/_ en _n_ te gebruiken voor volgende, _N_ voor vorige. Als je hoofdletterongevoelig wilt zoeken, kan je _-i_ typen. Je kan ook naar de eerste regel gaan door op _g_ te drukken en naar de laatste regel door op _G_ te drukken. 
 
@@ -151,7 +153,7 @@ We kunnen ook het cat-commando gebruiken in combinatie met de _output redirectio
 ```bash
 student@linux-ess:~$ cat > jokes.txt    
 What is a Linux user's favorite game?
-sudo ku
+sudo ku                                      CTRL+d
 student@linux-ess:~$ cat jokes.txt
 What is a Linux user's favorite game?
 sudo ku

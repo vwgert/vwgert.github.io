@@ -33,7 +33,7 @@ Zoek de file *nginx.conf* met find in */etc/* of één van zijn submappen.
 Zoek de file ook eens met  ***locate nginx.conf*** 
 
 
-TIP: *locate* blijkt nog niet geïnstalleerd te zijn. Installeer het pakket met *sudo apt install plocate* 
+TIP: indien *locate* nog niet geïnstalleerd blijkt te zijn, installeer het pakket dan met *sudo apt install plocate* 
 
 → ***sudo apt install plocate***
 
@@ -64,7 +64,7 @@ Bekijk de configuratiefile met *less*
 
 Zoek binnen *less* naar de regels met de tekst *log*
 
-TIP: Zoeken kan je door de *slash* (/) te typen en dan je *zoekstring*. Naar het volgende voorkomen gaan kan door het drukken van de letter *n*. Naar de vorige door het drukken van de *hoofdletter N*.
+TIP: Zoeken kan je door de *slash* (/) te typen en dan je *zoekstring*. Naar het volgende voorkomen gaan kan door het drukken van de letter *n*. Naar het vorige door het drukken van de *hoofdletter N*.
 *g* brengt je terug naar de eerste lijn. *G* brengt je naar de laatste lijn.
 
 => je ziet een *access-log* en een *error-log*
@@ -73,20 +73,20 @@ TIP: Zoeken kan je door de *slash* (/) te typen en dan je *zoekstring*. Naar het
 
 ​     => in de *access-log* file zie je wanneer er mensen naar je website zijn gekomen
 
-​     => in de *error-log* file zitten de foutmeldingen (en eventueel nog niets) 
+​     => in de *error-log* file zitten de foutmeldingen (en eventueel nu nog niets) 
 
 ​       => met het commando ***file /var/log/nginx/access.log*** kan je zien dat de file ASCII-tekst 
  		bevat of dat de file nog leeg is
 
  => je kan de grootte van een bestand ook bekijken met *ls -lh*
 
-→ ***ls -lh /var/log/nginx/{access,error}.log***
+→ ***ls -lh /var/log/nginx***
 
 
 
 #### **Editeren van de configuratiefile met nano**
 
-De algemene configuratie van onze webserver bevindt zich in de *nginx.conf* file
+De algemene configuratie van onze webserver is neergeschreven in de *nginx.conf* file
 
 Editeer deze file met nano.
 
@@ -172,7 +172,7 @@ Linus heeft op zijn laptop een eigen website ontwikkelt en wilt die overbrengen 
 
 #### Website overbrengen
 
-Download eerst de zipfile door [hier](./LinusCraft.zip) te klikken.
+Download eerst de zipfile door [hier](./06_filecontents/LinusCraft.zip) te klikken.
 
 Gebruik scp (vanuit Powershell) om je gedownload bestand over te brengen naar je Webserver.
 

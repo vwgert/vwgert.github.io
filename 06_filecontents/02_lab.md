@@ -32,9 +32,9 @@ Locate the file *nginx.conf* with find in */etc/* or one of its subdirectories.
 Also search for the file with ***locate nginx.conf*** 
 
 
-TIP: *locate* appears not to have been installed yet. Install the package with *sudo apt install locate* 
+TIP: if *locate* appears to not have been installed yet, you can install the package with *sudo apt install plocate* 
 
-→ ***sudo apt install locate***
+→ ***sudo apt install plocate***
 
 → ***locate nginx.conf*** (or *up arrow* for history or find with *CTRL-R* and then reverse search for the letters *loc*)
 
@@ -78,13 +78,13 @@ TIP: You can search by typing the *slash* (/) and then your *search string*. You
 
  => you can also view the size of a file with *ls -lh*
 
-→ ***ls -lh /var/log/nginx/{access,error}.log***
+→ ***ls -lh /var/log/nginx***
 
 
 
 **Editing the configuration file with nano**
 
-The general configuration of our web server is located in the *nginx.conf* file
+The general configuration of our web server is written in the *nginx.conf* file
 
 Edit this file with nano.
 
@@ -170,7 +170,7 @@ Linus has developed his own website on his laptop and wants to transfer it to th
 
 #### Transfer website
 
-First download the zip file by clicking [here](./LinusCraft.zip).
+First download the zip file by clicking [here](./06_filecontents/LinusCraft.zip).
 
 Use scp (from Powershell) to transfer your downloaded file to your Web server.
 

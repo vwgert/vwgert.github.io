@@ -3,18 +3,19 @@
 To view file contents we can use the `cat` command. This command takes in a path to a file as an argument:
 ```bash
 student@linux-ess:~$ cat /etc/os-release
-PRETTY_NAME="Ubuntu 22.04.3 LTS"
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
 NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.3 LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
+VERSION_ID="24.04"
+VERSION="24.04.1 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
 ID=ubuntu
 ID_LIKE=debian
 HOME_URL="https://www.ubuntu.com/"
 SUPPORT_URL="https://help.ubuntu.com/"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
 ```
 This will print the entire file contents in the terminal.
 
@@ -23,18 +24,19 @@ This will print the entire file contents in the terminal.
 The `tac` command is the `cat` command written in reverse order. This is also exactly what this command does, it outputs the file contents in reverse order (from bottom to top):
 ```bash
 student@linux-ess:~$ tac /etc/os-release
-UBUNTU_CODENAME=jammy
+LOGO=ubuntu-logo
+UBUNTU_CODENAME=noble
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 SUPPORT_URL="https://help.ubuntu.com/"
 HOME_URL="https://www.ubuntu.com/"
 ID_LIKE=debian
 ID=ubuntu
-VERSION_CODENAME=jammy
-VERSION="22.04.3 LTS (Jammy Jellyfish)"
-VERSION_ID="22.04"
+VERSION_CODENAME=noble
+VERSION="24.04.1 LTS (Noble Numbat)"
+VERSION_ID="24.04"
 NAME="Ubuntu"
-PRETTY_NAME="Ubuntu 22.04.3 LTS"
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
 ```
 
 The `cat` and `tac` commands can take multiple files as arguments and will concatenate the contents in the terminal as follows:
@@ -67,16 +69,16 @@ news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
 By default this command will show the first 10 lines of a file. When using `tail` it will show the last 10 lines:
 ```bash
 student@linux-ess:~$ tail /etc/passwd
-pollinate:x:105:1::/var/cache/pollinate:/bin/false
-sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
-syslog:x:107:113::/home/syslog:/usr/sbin/nologin
-uuidd:x:108:114::/run/uuidd:/usr/sbin/nologin
-tcpdump:x:109:115::/nonexistent:/usr/sbin/nologin
-tss:x:110:116:TPM software stack,,,:/var/lib/tpm:/bin/false
-landscape:x:111:117::/var/lib/landscape:/usr/sbin/nologin
-usbmux:x:112:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+polkitd:x:991:991:User for polkitd:/:/usr/sbin/nologin
+syslog:x:103:104::/nonexistent:/usr/sbin/nologin
+uuidd:x:104:105::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:105:107::/nonexistent:/usr/sbin/nologin
+tss:x:106:108:TPM software stack,,,:/var/lib/tpm:/bin/false
+landscape:x:107:109::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
 student:x:1000:1000:student:/home/student:/bin/bash
-lxd:x:999:100::/var/snap/lxd/common/lxd:/bin/false
 ```
 
 We can manipulate the amount of lines in the command output as follows (you can change the number `2` by any number):
@@ -89,11 +91,11 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 This command is often used for log files, where the last lines usually have information about the latest events. eg:
 ```bash
 student@linux-ess:~$ tail -5 /var/log/auth.log
-Oct  7 16:23:06 ubuntu-server systemd-logind[840]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
-Oct  7 16:23:26 ubuntu-server sshd[1100]: Accepted password for student from 192.168.109.1 port 63147 ssh2
-Oct  7 16:23:26 ubuntu-server sshd[1100]: pam_unix(sshd:session): session opened for user student(uid=1000) by (uid=0)
-Oct  7 16:23:26 ubuntu-server systemd-logind[840]: New session 1 of user student.
-Oct  7 16:23:26 ubuntu-server systemd: pam_unix(systemd-user:session): session opened for user student(uid=1000) by (uid=0)
+2024-10-09T19:30:48.004065+00:00 linux-ess sshd[1145]: Server listening on :: port 22.
+2024-10-09T19:30:49.947204+00:00 linux-ess sshd[1147]: Accepted password for student from 192.168.234.1 port 52232 ssh2
+2024-10-09T19:30:49.949910+00:00 linux-ess sshd[1147]: pam_unix(sshd:session): session opened for user student(uid=1000) by student(uid=0)
+2024-10-09T19:30:49.964087+00:00 linux-ess systemd-logind[859]: New session 1 of user student.
+2024-10-09T19:30:50.027265+00:00 linux-ess (systemd): pam_unix(systemd-user:session): session opened for user student(uid=1000) by student(uid=0)
 ```
 
 ?> <i class="fa-solid fa-circle-info"></i> We can even view log files in realtime by using `tail -f` (`-f` stands for _follow_). This will start an active process that at first will show the last 10 lines of a file. When something gets added to this file, it will be added in realtime in the command output. To terminate this active process use `ctrl+c`.
@@ -102,11 +104,11 @@ Oct  7 16:23:26 ubuntu-server systemd: pam_unix(systemd-user:session): session o
 When viewing big files with `cat` you might have noticed that the terminal will only show the last bit of the content. We can use commands such as `more` and `less` to view (and scroll through) the entire content. With `more` you can only scroll down and this one screen at a time by pressing the _spacebar_ or _page down_. With `less` you can also scroll up by pressing _page up_.  With `less` scrolling only one line can also be done by using the _up arrow_ or _down arrow_. To exit `more`or `less` you can simply press _q_ or _ctrl+c_.
 ```bash
 student@linux-ess:~$ less /var/log/dpkg.log
-2022-09-19 21:52:34 startup packages remove
-2022-09-19 21:52:34 status installed linux-virtual:amd64 5.4.0.81.85
+2024-10-06 13:17:28 startup archives unpack
+2024-10-06 13:17:28 install unzip:amd64 <none> 6.0-28ubuntu4.1
 ... output omitted
-2022-09-19 21:52:34 status half-configured linux-headers-5.4.0-81:all 5.4.0-81.91
-2022-09-19 21:52:34 status half-installed linux-headers-5.4.0-81:all 5.4.0-81.91
+2024-10-09 19:02:21 status half-configured man-db:amd64 2.12.0-4build2
+2024-10-09 19:02:21 status installed man-db:amd64 2.12.0-4build2
 ```
 ?> <i class="fa-solid fa-circle-info"></i> Did you know that by default manpages are also opened with `less`. So you can also search within files opened with `less` by using _/_ and _n_ for next, _N_ for previous. If you want to search case insensitive you can type _-i_. You can also go to the first line by pressing _g_ and to the last line by pressing _G_.
 
@@ -149,7 +151,7 @@ We can also use the cat command in combination with the _output redirection (`>`
 ```bash
 student@linux-ess:~$ cat > jokes.txt    
 What is a Linux user's favorite game?
-sudo ku
+sudo ku                                     CTRL+d
 student@linux-ess:~$ cat jokes.txt
 What is a Linux user's favorite game?
 sudo ku
