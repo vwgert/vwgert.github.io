@@ -184,6 +184,8 @@ Description-md5: 581928d34d669e63c353cd694bd040b0
 
 
 
+Je kan bovenstaande informatie ook ongeveer zien met het commando *apt show zip*
+
 
 
 

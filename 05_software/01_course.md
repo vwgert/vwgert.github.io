@@ -156,6 +156,8 @@ Description-md5: 581928d34d669e63c353cd694bd040b0
 
 
 
+You can see the information shown above with the command *apt show zip*
+
 
 
 ### Finding software (apt search) 
