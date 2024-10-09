@@ -174,7 +174,7 @@ First download the zip file by clicking [here](./06_filecontents/LinusCraft.zip)
 
 Use scp (from Powershell) to transfer your downloaded file to your Web server.
 
-***scp -i "<path to ssh-key>" <path to zip file> ubuntu@<webserver-ip>:*** 
+***scp -i "\<path to ssh-key\>" \<path to zip file\> ubuntu\@<webserver-ip\>:*** 
 
 
 

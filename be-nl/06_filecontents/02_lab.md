@@ -176,7 +176,7 @@ Download eerst de zipfile door [hier](/06_filecontents/LinusCraft.zip) te klikke
 
 Gebruik scp (vanuit Powershell) om je gedownload bestand over te brengen naar je Webserver.
 
-***scp   -i  "<pad naar ssh-key>"  <pad naar zipfile>  ubuntu@<webserver-ip>:*** 
+***scp   -i  "\<pad naar ssh-key\>"  \<pad naar zipfile\>  ubuntu@\<webserver-ip\>:*** 
 
 
 Opgelet! Vergeet de dubbele punt niet achteraan de commandoregel!
