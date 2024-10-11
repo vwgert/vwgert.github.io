@@ -27,70 +27,38 @@ DESCRIPTION
 
 Zoals hierboven beschreven is `apt` (of zijn voorganger `apt-get`) een package manager. We kunnen deze tool gebruiken om pakketten (lees: software) op onze Linux-machine te managen (installeren, upgraden, verwijderen). Merk op dat `apt` de specifieke package manager voor Ubuntu is. Er zijn verschillende alternatieven beschikbaar zoals  `pacman`, `rpm`, `yum`, `dnf`, ... die vooraf geïnstalleerd met een specifieke Linux-distributie kunnen worden geleverd. 
 
-### Opslagplaatsen 
+### Repositories 
 Belangrijk om op te merken over `apt` is dat het databases van beschikbare pakketten gebruikt. Deze databases, genaamd ***repositories***, dienen eerst gedownload te worden naar de computer. Dit doen we door het onderstaand commando uit te voeren: 
 ```bash
 student@linux-ess:~/globbing$ sudo apt update
 [sudo] password for student:
-Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
-Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease
-Get:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
-Get:4 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1490 kB]
-Get:5 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [257 kB]
-Get:6 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [10.4 kB]
-Get:7 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [948 kB]
-Get:8 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [135 kB]
-Get:9 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 c-n-f Metadata [520 B]
-Get:10 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [705 kB]
-Get:11 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [126 kB]
-Get:12 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [14.5 kB]
-...
-Get:28 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [596 B]
-Get:29 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [44.5 kB]
-Get:30 http://archive.ubuntu.com/ubuntu focal-backports/main Translation-en [10.9 kB]
-Get:31 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [980 B]
-Get:32 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [23.8 kB]
-Get:33 http://archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [15.9 kB]
-Get:34 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [860 B]
-Fetched 8672 kB in 2s (3651 kB/s)
+Hit:1 http://be.archive.ubuntu.com/ubuntu noble InRelease
+Get:2 http://be.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Hit:4 http://be.archive.ubuntu.com/ubuntu noble-backports InRelease
+Get:5 http://be.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [542 kB]
+Get:6 http://be.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [133 kB]
+Get:7 http://be.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [9,048 B]
+Get:8 http://be.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [386 kB]
+Get:9 http://be.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [160 kB]
+Get:10 http://be.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [15.0 kB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [384 kB]
+Get:12 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [84.6 kB]
+Get:13 http://security.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [4,708 B]
+Get:14 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [278 kB]
+Get:15 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [117 kB]
+Get:16 http://security.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [10.4 kB]
+Fetched 2,377 kB in 1s (1,827 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+8 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ```
 ?> <i class="fa-solid fa-circle-info"></i> Merk op dat we het commando `sudo` hebben gebruikt. Dit is nodig omdat `apt` systeembrede aanpassingen aanbrengt (software installeren/verwijderen/bijwerken). Daarom kunnen we het niet uitvoeren als een gebruiker met standaardmachtigingen. 
 
 We kunnen zien dat dit commando een heleboel lijsten download. Deze lijsten worden _repositories_ genoemd (lijsten met welbepaalde verzamelingen van pakketten). Wanneer we later software installeren, wordt de database op basis van deze repositories gebruikt om te controleren of het pakket dat we willen installeren beschikbaar is en welk de laatste versie is.
 
 De lijst van repositories die `apt` gebruikt is te vinden in het bestand `/etc/apt/sources.list` of `/etc/apt/sources.list.d/...`   . We kunnen handmatig meer repositories aan dit bestand toevoegen of het commando `add-apt-repository` gebruiken, maar we zullen hier voorlopig niet op ingaan. 
-
-### Software zoeken (apt search) 
-Stel je voor dat we een bestand hebben gedownload dat eindigt om `.zip`. Dan kunnen we op zoek gaan naar een programma dat hiermee overweg kan. We kunnen het onderstaande commando uitvoeren gebruik makend van regular expressions in de zoekterm: 
-```bash
-student@linux-ess:~$ apt search "\.zip file"       # \.  om aan te duiden dat hier letterlijk naar een punt moet gezocht worden
-Sorting... Done
-Full Text Search... Done
-goldendict/jammy 1.5.0~rc2+git20210630+ds-2 amd64
-  feature-rich dictionary lookup program
-
-node-jszip/jammy 3.7.1+dfsg-1 all
-  Create, read and edit .zip files with Javascript
-
-node-jszip-utils/jammy 0.1.0+dfsg-1 all
-  collection of cross-browser utilities to go along with JSZip
-
-unicode-cldr-core/jammy 32.0.1-1.1 all
-  Common data from Unicode CLDR (core)
-
-unzip/jammy-updates,jammy-security 6.0-26ubuntu3.1 amd64
-  De-archiver for .zip files
-
-zip/jammy 3.0-12build2 amd64
-  Archiver for .zip files
-
-student@linux-ess:~$
-```
-Als laatste in de lijst zien we een pakket dat .zip files kan archiveren. De procedure om dit te vinden was:
-* Het doorzoekt alle repositories die we gedownload hebben van het Internet (/etc/apt/sources.list) om een pakket te vinden dat voldoet aan onze zoekterm. 
-* Er worden pakketten gevonden, zoals het `zip`-pakket en `unzip`-pakket. 
-
-?> <i class="fa-solid fa-circle-info"></i> Merk op dat je best eerst een `apt update` uitvoert om de laatste versie van de repositories te downloaden, want er wordt in deze gedownloade repositories gezocht naar de pakketten. Een verouderde repository bevat een pakket misschien nog niet, of download een verouderde versie van een pakket. 
 
 
 
@@ -188,11 +156,49 @@ Je kan bovenstaande informatie ook ongeveer zien met het commando *apt show zip*
 
 
 
+### Software zoeken (apt search) 
+Stel je voor dat we een bestand hebben gedownload dat eindigt om `.zip`. Dan kunnen we op zoek gaan naar een programma dat hiermee overweg kan. We kunnen het onderstaande commando uitvoeren gebruik makend van regular expressions in de zoekterm: 
+```bash
+student@linux-ess:~$ apt search "\.zip file"       # \.  om aan te duiden dat hier letterlijk naar een punt moet gezocht worden
+Sorting... Done
+Full Text Search... Done
+
+goldendict/noble 1.5.0-1build4 amd64
+  feature-rich dictionary lookup program
+
+node-jszip/noble 3.10.1+dfsg-2 all
+  Create, read and edit .zip files with Javascript
+
+node-jszip-utils/noble 0.1.0+dfsg-2 all
+  collection of cross-browser utilities to go along with JSZip
+
+unicode-cldr-core/noble 44-0.1 all
+  Common data from Unicode CLDR (core)
+
+unzip/noble-updates,noble-security,now 6.0-28ubuntu4.1 amd64 [installed,automatic]
+  De-archiver for .zip files
+
+zip/noble,now 3.0-13build1 amd64 [installed]
+  Archiver for .zip files
+
+student@linux-ess:~$
+```
+Als laatste in de lijst zien we een pakket dat .zip files kan archiveren. De procedure om dit te vinden was:
+* Het doorzoekt alle repositories die we gedownload hebben van het Internet (/etc/apt/sources.list) om een pakket te vinden dat voldoet aan onze zoekterm. 
+* Er worden pakketten gevonden, zoals het `zip`-pakket en `unzip`-pakket. 
+
+?> <i class="fa-solid fa-circle-info"></i> Merk op dat je best eerst een `apt update` uitvoert om de laatste versie van de repositories te downloaden, want er wordt in deze gedownloade repositories gezocht naar de pakketten. Een verouderde repository bevat een pakket misschien nog niet, of download een verouderde versie van een pakket. 
+
+
+
+
+
 
 ### Software installeren (apt install) 
 Stel je voor dat we het `zip`-pakket willen installeren. We kunnen eenvoudig het onderstaande commando uitvoeren: 
 ```bash
 student@linux-ess:~$ sudo apt install zip
+sudo apt install zip
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
@@ -200,23 +206,26 @@ The following additional packages will be installed:
   unzip
 The following NEW packages will be installed:
   unzip zip
-0 upgraded, 2 newly installed, 0 to remove and 175 not upgraded.
-Need to get 336 kB of archives.
-After this operation, 1231 kB of additional disk space will be used.
+0 upgraded, 2 newly installed, 0 to remove and 8 not upgraded.
+Need to get 350 kB of archives.
+After this operation, 933 kB of additional disk space will be used.
 Do you want to continue? [Y/n] y
-Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 unzip amd64 6.0-25ubuntu1 [169 kB]
-Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 zip amd64 3.0-11build1 [167 kB]
-Fetched 336 kB in 1s (444 kB/s)
+Get:1 http://be.archive.ubuntu.com/ubuntu noble-updates/main amd64 unzip amd64 6.0-28ubuntu4.1 [174 kB]
+Get:2 http://be.archive.ubuntu.com/ubuntu noble/main amd64 zip amd64 3.0-13build1 [175 kB]
+Fetched 350 kB in 0s (1,172 kB/s)
 Selecting previously unselected package unzip.
-(Reading database ... 32259 files and directories currently installed.)
-Preparing to unpack .../unzip_6.0-25ubuntu1_amd64.deb ...
-Unpacking unzip (6.0-25ubuntu1) ...
+(Reading database ... 121629 files and directories currently installed.)
+Preparing to unpack .../unzip_6.0-28ubuntu4.1_amd64.deb ...
+Unpacking unzip (6.0-28ubuntu4.1) ...
 Selecting previously unselected package zip.
-Preparing to unpack .../zip_3.0-11build1_amd64.deb ...
-Unpacking zip (3.0-11build1) ...
-Setting up unzip (6.0-25ubuntu1) ...
-Setting up zip (3.0-11build1) ...
-Processing triggers for man-db (2.9.1-1) ...
+Preparing to unpack .../zip_3.0-13build1_amd64.deb ...
+Unpacking zip (3.0-13build1) ...
+Setting up unzip (6.0-28ubuntu4.1) ...
+Setting up zip (3.0-13build1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Scanning processes...
+Scanning linux images...
+...
 ```
 Als we de uitvoer van het commando analyseren, zien we een paar dingen gebeuren: 
 * Het leest de repositories om het `zip`-pakket te vinden. Nadat dit is gebeurd, bouwt het een afhankelijkheidsboom om te zien welke afhankelijkheden het `zip`-pakket nodig heeft. 
@@ -235,6 +244,7 @@ zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]
   The default action is to add or replace zipfile entries from list, which
   can include the special name - to compress standard input.
   If zipfile and list are omitted, zip compresses stdin to stdout.
+...
 ```
 ?> <i class="fa-solid fa-circle-info"></i> Je vraagt je misschien af waar het uitvoerbare bestand van `zip` zich bevindt en hoe de shell weet hoe dat exacte uitvoerbare bestand moet worden uitgevoerd. We kunnen dit controleren door het commando `which zip` uit te voeren. Dit zal ons vertellen dat, wanneer we het `zip`-commando uitvoeren, het eigenlijk het `zip` binaire bestand (=executable) op `/usr/bin/zip` zal uitvoeren. `/usr/bin` is een van de mappen waarin binaire bestanden (=uitvoerbare bestanden) worden opgeslagen. Je zou dit kunnen vergelijken met de map `c:\program files` in Windows-systemen. Linux heeft meerdere plaatsen waar binaire bestanden worden opgeslagen. Deze zijn vaak gebundeld in de variabele `$PATH` die we in een later hoofdstuk zullen leren gebruiken.  
 
@@ -260,14 +270,33 @@ The following package was automatically installed and is no longer required:
 Use 'sudo apt autoremove' to remove it.
 The following packages will be REMOVED:
   zip
-0 upgraded, 0 newly installed, 1 to remove and 175 not upgraded.
-After this operation, 638 kB disk space will be freed.
+0 upgraded, 0 newly installed, 1 to remove and 8 not upgraded.
+After this operation, 549 kB disk space will be freed.
 Do you want to continue? [Y/n] y
-(Reading database ... 32291 files and directories currently installed.)
-Removing zip (3.0-11build1) ...
-Processing triggers for man-db (2.9.1-1) ...
+(Reading database ... 121661 files and directories currently installed.)
+Removing zip (3.0-13build1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
  ```
+
+
 Merk op hoe het niet automatisch de afhankelijkheden verwijdert waar we het eerder over hadden. Dit komt omdat er mogelijk andere pakketten zijn die deze afhankelijkheid vereisen. We kunnen het commando `sudo apt autoremove` gebruiken om ongebruikte afhankelijkheden te verwijderen. 
+
+ ```bash
+student@linux-ess:~$ sudo apt autoremove
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages will be REMOVED:
+  unzip
+0 upgraded, 0 newly installed, 1 to remove and 8 not upgraded.
+After this operation, 384 kB disk space will be freed.
+Do you want to continue? [Y/n]
+(Reading database ... 121647 files and directories currently installed.)
+Removing unzip (6.0-28ubuntu4.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+ ```
+
+
 
 We hebben ook een wat agressiever commando om pakketten te verwijderen: `sudo apt purge <pakketnaam>`. Het verschil tussen `remove` en `purge` is dat bij het gebruik van `purge` ook alle configuratiebestanden worden verwijderd die aan die toepassing zijn gekoppeld. Bij gebruik van `remove` blijven die configuratiebestanden op het systeem staan. 
 
@@ -288,12 +317,12 @@ Als we een bestand comprimeren, behouden we de inhoud, maar wordt de bestandsgro
 
 ```bash
 student@ubuntu-server:~$ cd
-student@ubuntu-server:~$ cp /var/lib/apt/lists/be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages .
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 62M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages
-student@ubuntu-server:~$ gzip be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 17M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages.gz
+student@ubuntu-server:~$ cp /var/lib/apt/lists/be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages .
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student  70M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages
+student@ubuntu-server:~$ gzip be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student 19M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.gz
 ```
 
 Het bestand heeft de extensie gz en is nu een stuk kleiner, maar je kunt de inhoud niet zien. Het originele bestand is verdwenen en we hebben nu alleen het gecomprimeerde bestand. 
@@ -302,11 +331,11 @@ Het bestand heeft de extensie gz en is nu een stuk kleiner, maar je kunt de inho
 
 Als we het bestand willen decomprimeren, kunnen we gunzip gebruiken. 
 ```bash
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 17M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages.gz
-student@ubuntu-server:~$ gunzip be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages.gz
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 62M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student 19M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.gz
+student@ubuntu-server:~$ gunzip be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.gz
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student 70M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages
 ```
 
 Het bestand heeft zijn oorspronkelijke grootte teruggekregen en de inhoud kan opnieuw worden bekeken/bewerkt. Het gezipte bestand is weer weg en we hebben alleen het originele bestand nog. 

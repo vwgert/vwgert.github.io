@@ -34,27 +34,27 @@ An important thing to note about `apt` is that it uses a database of available p
 ```bash
 student@linux-ess:~/globbing$ sudo apt update
 [sudo] password for student:
-Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
-Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease
-Get:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
-Get:4 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1490 kB]
-Get:5 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [257 kB]
-Get:6 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [10.4 kB]
-Get:7 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [948 kB]
-Get:8 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [135 kB]
-Get:9 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 c-n-f Metadata [520 B]
-Get:10 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [705 kB]
-Get:11 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [126 kB]
-Get:12 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [14.5 kB]
-...
-Get:28 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [596 B]
-Get:29 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [44.5 kB]
-Get:30 http://archive.ubuntu.com/ubuntu focal-backports/main Translation-en [10.9 kB]
-Get:31 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [980 B]
-Get:32 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [23.8 kB]
-Get:33 http://archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [15.9 kB]
-Get:34 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [860 B]
-Fetched 8672 kB in 2s (3651 kB/s)
+Hit:1 http://be.archive.ubuntu.com/ubuntu noble InRelease
+Get:2 http://be.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Hit:4 http://be.archive.ubuntu.com/ubuntu noble-backports InRelease
+Get:5 http://be.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [542 kB]
+Get:6 http://be.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [133 kB]
+Get:7 http://be.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [9,048 B]
+Get:8 http://be.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [386 kB]
+Get:9 http://be.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [160 kB]
+Get:10 http://be.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [15.0 kB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [384 kB]
+Get:12 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [84.6 kB]
+Get:13 http://security.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [4,708 B]
+Get:14 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [278 kB]
+Get:15 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [117 kB]
+Get:16 http://security.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [10.4 kB]
+Fetched 2,377 kB in 1s (1,827 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+8 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ```
 ?> <i class="fa-solid fa-circle-info"></i> Note that we used the `sudo` command. This is needed because `apt` is a system wide command that impacts the entire system (installing/removing/updating software). Therefore we cannot run it as a user with default permissions.
 
@@ -166,22 +166,23 @@ Imagine that we downloaded a file that ends with `.zip` and we have to find a pr
 student@linux-ess:~$ apt search "\.zip file"       # \.  to make clear that we are searching for a dot
 Sorting... Done
 Full Text Search... Done
-goldendict/jammy 1.5.0~rc2+git20210630+ds-2 amd64
+
+goldendict/noble 1.5.0-1build4 amd64
   feature-rich dictionary lookup program
 
-node-jszip/jammy 3.7.1+dfsg-1 all
+node-jszip/noble 3.10.1+dfsg-2 all
   Create, read and edit .zip files with Javascript
 
-node-jszip-utils/jammy 0.1.0+dfsg-1 all
+node-jszip-utils/noble 0.1.0+dfsg-2 all
   collection of cross-browser utilities to go along with JSZip
 
-unicode-cldr-core/jammy 32.0.1-1.1 all
+unicode-cldr-core/noble 44-0.1 all
   Common data from Unicode CLDR (core)
 
-unzip/jammy-updates,jammy-security 6.0-26ubuntu3.1 amd64
+unzip/noble-updates,noble-security,now 6.0-28ubuntu4.1 amd64 [installed,automatic]
   De-archiver for .zip files
 
-zip/jammy 3.0-12build2 amd64
+zip/noble,now 3.0-13build1 amd64 [installed]
   Archiver for .zip files
 
 student@linux-ess:~$
@@ -193,10 +194,16 @@ The last entry in the list shows us a package that can archive .zip files. The p
 
 ?> <i class="fa-solid fa-circle-info"></i> Mind that it's best practice to do an `apt update` to download the latest versions of the repositories, right before you search for a package. This way you will find all available packages and latest version of every package.
 
+
+
+
+
 ### Installing software (apt install)
+
 Imagine we would like to install the `zip` package. We could simply run the command below:
 ```bash
 student@linux-ess:~$ sudo apt install zip
+sudo apt install zip
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
@@ -204,23 +211,26 @@ The following additional packages will be installed:
   unzip
 The following NEW packages will be installed:
   unzip zip
-0 upgraded, 2 newly installed, 0 to remove and 175 not upgraded.
-Need to get 336 kB of archives.
-After this operation, 1231 kB of additional disk space will be used.
+0 upgraded, 2 newly installed, 0 to remove and 8 not upgraded.
+Need to get 350 kB of archives.
+After this operation, 933 kB of additional disk space will be used.
 Do you want to continue? [Y/n] y
-Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 unzip amd64 6.0-25ubuntu1 [169 kB]
-Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 zip amd64 3.0-11build1 [167 kB]
-Fetched 336 kB in 1s (444 kB/s)
+Get:1 http://be.archive.ubuntu.com/ubuntu noble-updates/main amd64 unzip amd64 6.0-28ubuntu4.1 [174 kB]
+Get:2 http://be.archive.ubuntu.com/ubuntu noble/main amd64 zip amd64 3.0-13build1 [175 kB]
+Fetched 350 kB in 0s (1,172 kB/s)
 Selecting previously unselected package unzip.
-(Reading database ... 32259 files and directories currently installed.)
-Preparing to unpack .../unzip_6.0-25ubuntu1_amd64.deb ...
-Unpacking unzip (6.0-25ubuntu1) ...
+(Reading database ... 121629 files and directories currently installed.)
+Preparing to unpack .../unzip_6.0-28ubuntu4.1_amd64.deb ...
+Unpacking unzip (6.0-28ubuntu4.1) ...
 Selecting previously unselected package zip.
-Preparing to unpack .../zip_3.0-11build1_amd64.deb ...
-Unpacking zip (3.0-11build1) ...
-Setting up unzip (6.0-25ubuntu1) ...
-Setting up zip (3.0-11build1) ...
-Processing triggers for man-db (2.9.1-1) ...
+Preparing to unpack .../zip_3.0-13build1_amd64.deb ...
+Unpacking zip (3.0-13build1) ...
+Setting up unzip (6.0-28ubuntu4.1) ...
+Setting up zip (3.0-13build1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Scanning processes...
+Scanning linux images...
+...
 ```
 If we analyse the output of the command we can see a couple of things happening:
 
@@ -240,6 +250,7 @@ zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]
   The default action is to add or replace zipfile entries from list, which
   can include the special name - to compress standard input.
   If zipfile and list are omitted, zip compresses stdin to stdout.
+...
 ```
 ?> <i class="fa-solid fa-circle-info"></i> You might wonder where the `zip` executable is located and how the shell knows how to run that exact executable. We can check this by running the `which zip` command. This will tell us that, when we run the `zip` command it will actually run the `zip` binary (=executable) located at `/usr/bin/zip`. `/usr/bin` is one of the folders where binaries (=executable files) are stored. You could compare this to the folder `c:\program files` in Windows systems. Linux has multiple places where binaries are stored. These are often bundled in the `$PATH` variable which we will learn to use in a later chapter. 
 
@@ -266,14 +277,33 @@ The following package was automatically installed and is no longer required:
 Use 'sudo apt autoremove' to remove it.
 The following packages will be REMOVED:
   zip
-0 upgraded, 0 newly installed, 1 to remove and 175 not upgraded.
-After this operation, 638 kB disk space will be freed.
+0 upgraded, 0 newly installed, 1 to remove and 8 not upgraded.
+After this operation, 549 kB disk space will be freed.
 Do you want to continue? [Y/n] y
-(Reading database ... 32291 files and directories currently installed.)
-Removing zip (3.0-11build1) ...
-Processing triggers for man-db (2.9.1-1) ...
+(Reading database ... 121661 files and directories currently installed.)
+Removing zip (3.0-13build1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
 ```
+
+
  Notice how it doesn't automatically remove the dependencies we talked about earlier. This is because there might be other packages that require this dependency. We can use the `sudo apt autoremove` command to remove unused dependencies.
+
+ ```bash
+student@linux-ess:~$ sudo apt autoremove
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages will be REMOVED:
+  unzip
+0 upgraded, 0 newly installed, 1 to remove and 8 not upgraded.
+After this operation, 384 kB disk space will be freed.
+Do you want to continue? [Y/n]
+(Reading database ... 121647 files and directories currently installed.)
+Removing unzip (6.0-28ubuntu4.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+ ```
+
+
 
  We also have a somewhat more agressive command to remove packages: `sudo apt purge <packagename>`. The difference between `remove` and `purge` is that when using `purge` it will remove any config files linked to that application as well. When using `remove` those config files will stay on the system.
 
@@ -294,12 +324,12 @@ If we compress a file, we keep the content, but the filesize will become smaller
 
 ```bash
 student@ubuntu-server:~$ cd
-student@ubuntu-server:~$ cp /var/lib/apt/lists/be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages .
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 62M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages
-student@ubuntu-server:~$ gzip be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 17M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages.gz
+student@ubuntu-server:~$ cp /var/lib/apt/lists/be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages .
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student  70M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages
+student@ubuntu-server:~$ gzip be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student 19M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.gz
 ```
 
 The file has an extension of gz and  is a lot smaller now, but you cannot see its contents. The original file is gone and we only have the compressed file now.
@@ -309,11 +339,11 @@ The file has an extension of gz and  is a lot smaller now, but you cannot see it
 
 If we want to decompress the file we can use gunzip.
 ```bash
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 17M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages.gz
-student@ubuntu-server:~$ gunzip be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages.gz
-student@ubuntu-server:~$ ls -lh be.archive*
--rw-r--r-- 1 student student 62M Oct 10 19:40 be.archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student 19M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.gz
+student@ubuntu-server:~$ gunzip be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.gz
+student@ubuntu-server:~$ ls -lh be*
+-rw-r--r-- 1 student student 70M Oct 11 20:46 be.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages
 ```
 
 The file regained its original size and the content can be viewed/edited again. The zipped file is gone again and we only have the original file.
