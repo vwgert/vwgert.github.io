@@ -52,17 +52,17 @@ student@linux-ess:~$ pwd
 student@linux-ess:~$ ls
 emptyfile
 ```
-  
+
 ?> <i class="fa-solid fa-circle-info"></i> Het commando `touch` wordt hier gebruikt om een leeg bestand aan te maken met de naam `emptyfile`. Het commando wordt verderop in dit hoofdstuk nog uitgelegd. 
-  
+
 ![DirectoryEmptyFile](../images/04/Ch4_Emptyfile.png)
-  
+
 
 ?> <i class="fa-solid fa-circle-info"></i> We zouden ook het commando `cd -` kunnen gebruiken. Dit navigeert terug naar de folder waar je je bevond vooraleer je naar deze folder kwam: 
 ```bash
 student@linux-ess:~$ cd /etc/netplan
 student@linux-ess:/etc/netplan$ ls
-00-installer-config.yaml
+50-cloud-init.yaml
 student@linux-ess:/etc/netplan$ cd /var/log
 student@linux-ess:/var/log$ ls
 alternatives.log                dmesg                           syslog
@@ -78,9 +78,9 @@ student@linux-ess:/var/log$ cd -
 student@linux-ess:/etc/netplan$ pwd
 /etc/netplan
 student@linux-ess:/etc/netplan$ ls
-00-installer-config.yaml
+50-cloud-init.yaml
 ```
-  
+
 
 ### Een boomstructuur weergeven in de shell (tree) 
 
@@ -176,7 +176,7 @@ Wanneer je relatieve paden gebruikt, kunnen we enkele afkortingen gebruiken:
 . (één punt): verwijst naar de huidige map 
 .. (twee puntjes): Verwijst naar de bovenliggende map  
 ~ (tilde): Verwijst naar de thuismap van de huidige gebruiker 
-``` 
+```
 Dit betekent dat we, wanneer we in de map `/home/student/Downloads` staan, `..` kunnen gebruiken om naar de bovenliggende directory `/home/student` te navigeren 
 ```bash
 student@linux-ess:~/Downloads$ pwd
@@ -338,7 +338,7 @@ drwxrwxr-x 2 student student 4096 Oct  1 14:31 Downloads
 -rw-r--r-- 1 student student 0 Feb 12 09:50 File
 -rw-r--r-- 1 student student 0 Feb 12 09:50 'File Two'
 -rw-r--r-- 1 student student 0 Feb 12 09:50 One
-```  
+```
 ?> <i class="fa-solid fa-circle-info"></i> Merk op dat we ook enkele aanhalingstekens kunnen gebruiken `touch 'File Two'` of een backslash om de spatie als string te lezen `touch File\ Two`. 
 
 ### Bestanden verplaatsen (mv) 
@@ -354,11 +354,11 @@ student@linux-ess:~$ ls
 aFolder  backups  Downloads  emptyfile  File  fileOne  fileTwo  'File Two'  One
 student@linux-ess:~$ ls aFolder
 aFile
-```  
-  
-  
+```
+
+
 ![Directories_Ch4_MoveAndRenameFile](../images/04/Ch4_MoveAndRenameFile.png)  
-  
+
 
 Aangezien het tweede argument een doelbestand of -map is, kunnen we deze opdracht ook gebruiken om een bestand te hernoemen. In het onderstaande voorbeeld gebruiken we het commando `mv` om het bestand terug te verplaatsen naar de homefolder, maar ook om het te hernoemen: 
 ```bash
@@ -368,12 +368,12 @@ student@linux-ess:~/aFolder$ mv aFile ../newFileName
 student@linux-ess:~/aFolder$ ls 
 student@linux-ess:~/aFolder$ ls ~
 aFolder  backups  Downloads  emptyfile  File  fileOne  fileTwo  'File Two'  newFileName  One
-```   
-  
-  
+```
+
+
 ![Directories_Ch4_RenameFileWithMV.png](../images/04/Ch4_RenameFileWithMV.png) 
-  
-  
+
+
 Bij het hernoemen van slechts één bestand of map is `mv` het voorkeurscommando dat je wilt gebruiken. De voorbeelden gebruikten beide bestanden, maar dezelfde logica werkt ook voor het hernoemen en verplaatsen van mappen. 
 ```bash
 student@linux-ess:~$ ls 
@@ -451,7 +451,7 @@ cp: overwrite `emptyFile.bkp'? y
 ```
 
 ### Bestanden hernoemen (rename) 
- 
+
 ![Ch4_Rename](../images/04/Ch4_Rename.png) 
 
 We zagen dat we het commando `mv` konden gebruiken om bestanden en mappen te hernoemen. Dit werkt en is vaak heel eenvoudig, maar wanneer je bestanden in bulk moet hernoemen, wil je misschien een andere aanpak overwegen. Het commando `rename` is speciaal ontworpen om meerdere bestanden en mappen met één commando te hernoemen. Om dit te doen gebruikt het een _reguliere expressie/regular expression_ (Regex). Een Regex is een reeks tekens die een zoekpatroon definiëren. We zullen later in deze cursus meer leren over reguliere expressies. Het gebruikt dit zoekpatroon om bepaalde wijzigingen aan te brengen in de bestandsnamen: 
@@ -563,65 +563,86 @@ student@linux-ess:~$ find -name "*sh*"
 
 We kunnen ook een directory opgeven van waaruit de zoekopdracht moet worden gestart: 
 ```bash
-student@linux-ess:~$ find / -name "*networkmanager*"
-find: ‘/boot/lost+found’: Permission denied
-find: ‘/tmp/systemd-private-630e73882a5f4981b6052d8443c96a61-systemd-resolved.service-NhxvQ2’: Permission denied
-find: ‘/tmp/systemd-private-630e73882a5f4981b6052d8443c96a61-systemd-logind.service-XPeDAD’: Permission denied
-find: ‘/tmp/vmware-root_698-2730496923’: Permission denied
-find: ‘/tmp/systemd-private-630e73882a5f4981b6052d8443c96a61-ModemManager.service-our0IA’: Permission denied
-find: ‘/tmp/systemd-private-630e73882a5f4981b6052d8443c96a61-systemd-timesyncd.service-LpOYjL’: Permission denied
-find: ‘/tmp/snap.lxd’: Permission denied
-find: ‘/run/udisks2’: Permission denied
-find: ‘/run/user/1000/systemd/inaccessible/dir’: Permission denied
-find: ‘/run/sudo’: Permission denied
-find: ‘/run/cryptsetup’: Permission denied
-find: ‘/run/credentials/systemd-sysusers.service’: Permission denied
-find: ‘/run/systemd/propagate’: Permission denied
-find: ‘/run/systemd/unit-root’: Permission denied
-find: ‘/run/systemd/inaccessible/dir’: Permission denied
-find: ‘/run/lvm’: Permission denied
-find: ‘/run/lock/lvm’: Permission denied
-find: ‘/run/initramfs’: Permission denied
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-310.pyc
-/usr/lib/python3/dist-packages/sos/report/plugins/__pycache__/networkmanager.cpython-310.pyc
-/usr/lib/python3/dist-packages/sos/report/plugins/networkmanager.py
-find: ‘/etc/polkit-1/localauthority’: Permission denied
-find: ‘/etc/ssl/private’: Permission denied
+student@linux-ess:~$ find / -name "modem*"
 ...
+find: ‘/snap/core/17200/var/spool/cron/crontabs’: Permission denied
+find: ‘/snap/core/17200/var/spool/rsyslog’: Permission denied
+find: ‘/tmp/systemd-private-41192bfd59a644f3aabea034752dc85e-systemd-timesyncd.service-y5dhWM’: Permission denied
+find: ‘/tmp/snap-private-tmp’: Permission denied
+find: ‘/tmp/systemd-private-41192bfd59a644f3aabea034752dc85e-upower.service-quWyki’: Permission denied
+find: ‘/tmp/vmware-root_766-2990744190’: Permission denied
+find: ‘/tmp/systemd-private-41192bfd59a644f3aabea034752dc85e-polkit.service-zl4vVd’: Permission denied
+find: ‘/tmp/systemd-private-41192bfd59a644f3aabea034752dc85e-ModemManager.service-jhvr5E’: Permission denied
+find: ‘/tmp/systemd-private-41192bfd59a644f3aabea034752dc85e-systemd-resolved.service-T7IstT’: Permission denied
+find: ‘/tmp/systemd-private-41192bfd59a644f3aabea034752dc85e-systemd-logind.service-zMuUdp’: Permission denied
+find: ‘/boot/lost+found’: Permission denied
+find: ‘/root’: Permission denied
+/usr/share/lintian/overrides/modemmanager
+/usr/share/doc/modemmanager
+/usr/share/doc/util-linux/modems-with-agetty.txt
+/usr/share/doc/netplan/examples/modem.yaml
+/usr/lib/firmware/qcom/sdm845/modemuw.jsn
+/usr/lib/firmware/qcom/sdm845/modem_nm.mbn.zst
+/usr/lib/firmware/qcom/sdm845/modem.mbn.zst
+/usr/lib/firmware/qcom/qrb4210/modemuw.jsn
+/usr/lib/firmware/qcom/qrb4210/modem.mbn.zst
+/usr/lib/firmware/qcom/qrb4210/modemr.jsn
+/usr/lib/firmware/qcom/apq8016/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modemr.jsn
+/usr/lib/firmware/qcom/qcm2290/modemuw.jsn
+/usr/lib/firmware/qcom/qcm2290/modem.mbn.zst
+/usr/lib/firmware/qcom/qcm2290/modemr.jsn
 ```
 
 We zien te veel foutmeldingen. Het rommelt de weergave en we krijgen geen resultaten terug van de mappen waar we geen rechten hebben om de inhoud weer te geven. 
 De oplossing is om het commando `sudo` te gebruiken: 
 ```bash
-student@linux-ess:~$ sudo find / -name "*networkmanager*"
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-310.pyc
-/usr/lib/python3/dist-packages/sos/report/plugins/__pycache__/networkmanager.cpython-310.pyc
-/usr/lib/python3/dist-packages/sos/report/plugins/networkmanager.py
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-38.pyc
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/snap/core20/1518/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-38.pyc
-/snap/core20/1518/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
+student@linux-ess:~$ sudo find / -name "modem*"
+[sudo] password for student:
+/var/lib/dpkg/info/modemmanager.conffiles
+/var/lib/dpkg/info/modemmanager.md5sums
+/var/lib/dpkg/info/modemmanager.postinst
+/var/lib/dpkg/info/modemmanager.postrm
+/var/lib/dpkg/info/modemmanager.prerm
+/var/lib/dpkg/info/modemmanager.list
+/usr/share/lintian/overrides/modemmanager
+/usr/share/doc/modemmanager
+/usr/share/doc/util-linux/modems-with-agetty.txt
+/usr/share/doc/netplan/examples/modem.yaml
+/usr/lib/firmware/qcom/sdm845/modemuw.jsn
+/usr/lib/firmware/qcom/sdm845/modem_nm.mbn.zst
+/usr/lib/firmware/qcom/sdm845/modem.mbn.zst
+/usr/lib/firmware/qcom/qrb4210/modemuw.jsn
+/usr/lib/firmware/qcom/qrb4210/modem.mbn.zst
+/usr/lib/firmware/qcom/qrb4210/modemr.jsn
+/usr/lib/firmware/qcom/apq8016/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modemr.jsn
+/usr/lib/firmware/qcom/qcm2290/modemuw.jsn
+/usr/lib/firmware/qcom/qcm2290/modem.mbn.zst
+/usr/lib/firmware/qcom/qcm2290/modemr.jsn
+...
 ```
 
 Als we willen dat onze zoekopdracht hoofdletterongevoelig is, kunnen we `-iname` gebruiken in plaats van `-name`: 
 ```bash
-student@linux-ess:~$ sudo find / -iname "*networkmanager*"
-/run/NetworkManager
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-310.pyc
-/usr/lib/python3/dist-packages/sos/report/plugins/__pycache__/networkmanager.cpython-310.pyc
-/usr/lib/python3/dist-packages/sos/report/plugins/networkmanager.py
-/etc/NetworkManager
-/snap/core20/1405/etc/NetworkManager
-/snap/core20/1405/usr/lib/NetworkManager
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-38.pyc
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/snap/core20/1518/etc/NetworkManager
-/snap/core20/1518/usr/lib/NetworkManager
-/snap/core20/1518/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-38.pyc
-/snap/core20/1518/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
+student@linux-ess:~$ sudo find / -iname "modem*"
+/sys/fs/cgroup/system.slice/ModemManager.service
+/run/systemd/propagate/ModemManager.service
+/etc/ModemManager
+/etc/systemd/system/multi-user.target.wants/ModemManager.service
+/var/lib/dpkg/info/modemmanager.conffiles
+/var/lib/dpkg/info/modemmanager.md5sums
+/var/lib/dpkg/info/modemmanager.postinst
+/var/lib/dpkg/info/modemmanager.postrm
+/var/lib/dpkg/info/modemmanager.prerm
+/var/lib/dpkg/info/modemmanager.list
+/var/lib/systemd/deb-systemd-helper-enabled/multi-user.target.wants/ModemManager.service
+/var/lib/systemd/deb-systemd-helper-enabled/ModemManager.service.dsh-also
+/usr/share/ModemManager
+/usr/share/man/man8/ModemManager.8.gz
+...
 ```
 
 ### Zoeken in een bestandssysteemdatabase (locate) 
@@ -678,41 +699,30 @@ student@linux-ess:~$ sudo locate .profile
 
 Als we ook hoofdletterongevoelig willen zoeken, dan moeten we de optie `-i` gebruiken: 
 ```bash
-student@linux-ess:~$ sudo locate -i networkmanager
-/etc/NetworkManager
-/etc/NetworkManager/dispatcher.d
-/etc/NetworkManager/dispatcher.d/hook-network-manager
-/snap/core20/1405/etc/NetworkManager
-/snap/core20/1405/etc/NetworkManager/dispatcher.d
-/snap/core20/1405/etc/NetworkManager/dispatcher.d/hook-network-manager
-/snap/core20/1405/usr/lib/NetworkManager
-/snap/core20/1405/usr/lib/NetworkManager/conf.d
-/snap/core20/1405/usr/lib/NetworkManager/conf.d/no-mac-addr-change.conf
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-38.pyc
+student@linux-ess:~$ sudo locate -i modem
+/boot/grub/x86_64-efi/spkmodem.mod
+/etc/ModemManager
+/etc/ModemManager/connection.d
+/etc/ModemManager/fcc-unlock.d
+/etc/systemd/system/dbus-org.freedesktop.ModemManager1.service
+/etc/systemd/system/multi-user.target.wants/ModemManager.service
+/usr/include/linux/if_cablemodem.h
+/usr/lib/firmware/qcom/apq8016/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modemr.jsn
 ...
 ```
 
 Als we alleen in bestandsnamen willen zoeken en niet in mapnamen, moeten we de optie `-b` gebruiken: 
 ```bash
-student@linux-ess:~$ sudo locate -b -i networkmanager
-/etc/NetworkManager
-/snap/core20/1405/etc/NetworkManager
-/snap/core20/1405/usr/lib/NetworkManager
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/snap/core20/1405/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-38.pyc
-/snap/core20/1518/etc/NetworkManager
-/snap/core20/1518/usr/lib/NetworkManager
-/snap/core20/1518/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/snap/core20/1518/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-38.pyc
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/networkmanager_conf.py
-/usr/lib/python3/dist-packages/cloudinit/distros/parsers/__pycache__/networkmanager_conf.cpython-310.pyc
-/usr/lib/python3/dist-packages/sos/report/plugins/networkmanager.py
-/usr/lib/python3/dist-packages/sos/report/plugins/__pycache__/networkmanager.cpython-310.pyc
+student@linux-ess:~$ sudo locate -i -b modem
+/boot/grub/x86_64-efi/spkmodem.mod
+/etc/ModemManager
+/etc/systemd/system/dbus-org.freedesktop.ModemManager1.service
+/etc/systemd/system/multi-user.target.wants/ModemManager.service
+/usr/include/linux/if_cablemodem.h
+/usr/lib/firmware/qcom/apq8016/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modem.mbn.zst
+/usr/lib/firmware/qcom/apq8096/modemr.jsn
 ```
 
-## Extra cursusmateriaal <!-- {docsify-ignore} --> 
-
-<i class="fa-solid fa-film"></i> [[Pluralsight] Linux command syntax patterns](https://app.pluralsight.com/course-player?clipId=5c3b8432-e324-4b4b-adfd-2615298a7aba) 
-
-<i class="fa-solid fa-film"></i> [[Pluralsight] Working with files & directories](https://app.pluralsight.com/course-player?clipId=f98f5110-6ee4-43c4-af00-4de294c17bc9) 
