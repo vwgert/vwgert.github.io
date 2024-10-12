@@ -178,7 +178,7 @@ Use scp (from Powershell) to transfer your downloaded file to your Web server.
 
 
 
-Attention! Don't forget the colon at the end of the command line!
+Attention!  Don't forget the colon at the end of the command line!
 
 After uploading to the server, the file is located in the home folder of the Ubuntu user.
 
