@@ -170,9 +170,7 @@ Linus has developed his own website on his laptop and wants to transfer it to th
 
 #### Transfer website
 
-First download the zip file by clicking [here](06_filecontents/LinusCraft.zip).
-
-<a href="https://vwgert.github.io/be-nl/06_filecontents/LinusCraft.zip" download>Download ZIP</a>
+First download the zip file by clicking <a href="https://vwgert.github.io/be-nl/06_filecontents/LinusCraft.zip" download>here</a>.
 
 Use scp (from Powershell) to transfer your downloaded file to your Web server.
 
