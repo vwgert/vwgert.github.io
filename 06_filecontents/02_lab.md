@@ -172,6 +172,8 @@ Linus has developed his own website on his laptop and wants to transfer it to th
 
 First download the zip file by clicking [here](06_filecontents/LinusCraft.zip).
 
+<a href="https://vwgert.github.io/be-nl/06_filecontents/LinusCraft.zip" download>Download ZIP</a>
+
 Use scp (from Powershell) to transfer your downloaded file to your Web server.
 
 ***scp -i "\<path to ssh-key\>" \<path to zip file\> ubuntu\@<webserver-ip\>:*** 
