@@ -172,7 +172,7 @@ Linus heeft op zijn laptop een eigen website ontwikkelt en wilt die overbrengen 
 
 #### Website overbrengen
 
-Download eerst de zipfile door [hier](./be-nl/06_filecontents/LinusCraft.zip) te klikken.
+Download eerst de zipfile door [hier](be-nl/06_filecontents/LinusCraft.zip) te klikken.
 
 Gebruik scp (vanuit Powershell) om je gedownload bestand over te brengen naar je Webserver.
 
