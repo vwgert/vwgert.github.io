@@ -222,7 +222,7 @@ Je ziet de files die de website bevat.
 
 Kopieer de inhoud van de directory *LinusCraft* naar */var/www/html*
 
-→ ***sudo cp ~/LinusCraft/\*  /var/www/html***
+→ ***sudo cp ~/LinusCraft/`*`  /var/www/html***
 
 Doe een ls -l /var/www/html om te kijken of dit gelukt is
 
