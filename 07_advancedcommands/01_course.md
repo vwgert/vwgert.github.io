@@ -41,7 +41,7 @@ student@linux-ess:~$ echo '    I             like      to                  $acti
     I             like      to                  $action
 ```
 
-The `third option` is to escape every space. Don't use this mechanism within the value of a variable because it won't work.
+The `third option` is to escape every space. Don't use this mechanism. Use quotes instead!
 ```bash
 student@linux-ess:~$ action='play       games'  
 student@linux-ess:~$ echo \ \  I \ \ \ \ \ \ \ like \ \ to \ \ \ \ \ \ \ \ \ \ \ \ \ \ $action
@@ -154,7 +154,7 @@ student@linux-ess:~/globbing$ echo '**** TITLE ****'
 ```
 
 
-  
+
 
 ## Aliases
 Aliases are a way to give a simple name to a rather complex command as seen below:

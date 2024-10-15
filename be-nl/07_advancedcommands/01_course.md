@@ -41,7 +41,7 @@ student@linux-ess:~$ echo '    I             like      to                  $acti
     I             like      to                  $action
 ```
 
-De `derde optie` is om  elke spatie te escapen. Gebruik dit mechanisme niet binnen de waarde van een variabele omdat het niet werkt. 
+De `derde optie` is om  elke spatie te escapen. Gebruik dit mechanisme niet. Gebruik beter quotes! 
 ```bash
 student@linux-ess:~$ action='play       games'  
 student@linux-ess:~$ echo \ \  I \ \ \ \ \ \ \ like \ \ to \ \ \ \ \ \ \ \ \ \ \ \ \ \ $action
@@ -139,7 +139,7 @@ student@linux-ess:~/globbing$ echo \*\*\*\* TITLE \*\*\*\*
 ```
 
 ?> Je kan je voorstellen wat er zou gebeuren als we het bestand _file*_ zouden verwijderen zonder escaping te gebruiken. 
- 
+
 
 Je kan file globbing ook voorkomen door de tekst te omsluiten met dubbele- of enkele quotes:
 ```bash
@@ -152,9 +152,9 @@ student@linux-ess:~/globbing$ echo "**** TITLE ****"
 student@linux-ess:~/globbing$ echo '**** TITLE ****'
 **** TITLE ****
 ```
-  
 
-    
+
+​    
 ## Aliases 
 Aliassen zijn een manier om een eenvoudige naam te geven aan een vrij complex commando, zoals hieronder te zien is: 
 ```bash
