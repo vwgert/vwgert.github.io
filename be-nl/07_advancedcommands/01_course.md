@@ -54,24 +54,24 @@ student@linux-ess:~$ echo \ \  I \ \ \ \ \ \ \ like \ \ to \ \ \ \ \ \ \ \ \ \ \
 Bij het zoeken naar bestanden kunnen we de shell de bestandsnamen dynamisch laten genereren door een bepaald patroon te geven. Bijvoorbeeld: we willen alle bestanden vinden die beginnen met `temp` gevolgd door welke tekst of extensie dan ook. Het concept waarbij we dynamisch bestandsnamen genereren, wordt _file globbing_ genoemd. Er zijn een paar speciale tekens die we kunnen gebruiken, zoals te zien is in het onderstaande voorbeeld: 
 ```text
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec 
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls file*
 file  file1  file2  file3  filea  fileabc  fileb  filebc
 student@linux-ess:~/globbing$ ls *a
 a  afilea  filea
 student@linux-ess:~/globbing$ ls *a*
-a  afilea  filea  fileabc
+a  afilea  filea  fileabc Fragile
 student@linux-ess:~/globbing$ ls F*
-File  File4  File5  FileABC  Filec
+File  File4  File5  FileABC  Filec Fragile
 student@linux-ess:~/globbing$ ls f*c
 fileabc  filebc
 student@linux-ess:~/globbing$ ls F*ile*
-File  File4  File5  FileABC  Filec
+File  File4  File5  FileABC  Filec Fragile
 ```
-Een sterretje (`*`) in _file globbing_ betekent dat nul, één of meer tekens kunnen zijn wat ze willen. Dit wordt vaak een wildcard genoemd dat we één of meerdere keren in een bestandsnaam kunnen gebruiken. Een andere optie is een vraagteken (`?`) dat wordt geïnterpreteerd als precies _één karakter_ kan zijn wat het wil, zoals te zien is in het volgende voorbeeld: 
+Een sterretje (`*`) in _file globbing_ betekent dat nul, één of meer tekens kunnen zijn wat ze willen. Dit wordt vaak een wildcard genoemd dat we één of meerdere keren in een bestandsnaam kunnen gebruiken. Een andere optie is een vraagteken (`?`) dat wordt geïnterpreteerd als precies _één karakter_ kan zijn wat het wil, zoals te zien is in onderstaande voorbeelden: 
 ```text
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls ?
 a
 student@linux-ess:~/globbing$ ls ????
@@ -89,7 +89,7 @@ afilea
 Ten slotte kunnen we ook vierkante haken (`[ ]`) gebruiken die meestal een of meer tekens tussen de haakjes bevatten. De haakjes definiëren één teken dat overeenkomt met een van de tekens tussen de haakjes: 
 ```text
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec Fragile
 student@linux-ess:~/globbing$ ls file[12]
 file1  file2
 student@linux-ess:~/globbing$ ls file[a]
@@ -100,7 +100,7 @@ file1  filea
 Bij het gebruik van haakjes kunnen we ook bereiken definiëren: 
 ```text
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec Fragile
 student@linux-ess:~/globbing$ ls file[a-z]
 filea  fileb
 student@linux-ess:~/globbing$ ls File[A-Z]*
@@ -113,7 +113,7 @@ file1  file2  file3
 Bij het gebruik van haakjes kunnen we ook het opgegeven bereik uitsluiten door aan het begin een hoedje (^) of een uitroepteken (!) op te geven: 
 ```text
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls file[a-z]*
 filea  fileabc  fileb  filebc
 student@linux-ess:~/globbing$ ls file[^a-z]*
@@ -136,25 +136,18 @@ student@linux-ess:~/globbing$ echo **** TITLE ****
 File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc TITLE  File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc
 student@linux-ess:~/globbing$ echo \*\*\*\* TITLE \*\*\*\*
 **** TITLE ****
-```
-
-?> Je kan je voorstellen wat er zou gebeuren als we het bestand _file*_ zouden verwijderen zonder escaping te gebruiken. 
-
-
-Je kan file globbing ook voorkomen door de tekst te omsluiten met dubbele- of enkele quotes:
-```bash
-student@linux-ess:~/globbing$ ls
- File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc
-student@linux-ess:~/globbing$ echo **** TITLE ****
-File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc TITLE  File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc
 student@linux-ess:~/globbing$ echo "**** TITLE ****"
 **** TITLE ****
 student@linux-ess:~/globbing$ echo '**** TITLE ****'
 **** TITLE ****
 ```
 
+?> Je kan je voorstellen wat er zou gebeuren als we het bestand _file*_ zouden verwijderen zonder escaping te gebruiken. 
 
-​    
+
+
+
+
 ## Aliases 
 Aliassen zijn een manier om een eenvoudige naam te geven aan een vrij complex commando, zoals hieronder te zien is: 
 ```bash
@@ -209,12 +202,20 @@ Swap:             0B          0B          0B
 student@linux-ess:~$
 ```
 
+
+
 De volgorde waarin de shell controleert op opdrachten in de shell:  
+
 * Aliassen. Namen die door de aliasopdracht zijn ingesteld en die een bepaald commando met een reeks opties vertegenwoordigen.  
 * Ingebouwde commando's. Dit is een commando dat in de shell is ingebouwd. 
 * Bestandssysteem commando's. Deze commando's worden opgeslagen in en uitgevoerd vanuit het bestandssysteem van de computer. (Dit zijn de commando's uit directories die worden aangegeven door de waarde van de variabele PATH). 
 
+
+
+
+
 ## I/O-redirection 
+
 ### I/O-streams 
 Bij het werken met de shell werken we eigenlijk met iets dat streams wordt genoemd. Er zijn 3 basisstreams beschikbaar bij het gebruik van een shell: 
 ![iostreams](./../images/07/ioredirect.png)

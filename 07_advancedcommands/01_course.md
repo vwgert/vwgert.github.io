@@ -52,27 +52,27 @@ student@linux-ess:~$ echo \ \  I \ \ \ \ \ \ \ like \ \ to \ \ \ \ \ \ \ \ \ \ \
 
 
 ## File globbing
-When specifying filenames, we can get the shell to generate the filenames dynamically by giving a certain pattern. For example: we might want to find all the files starting with `temp` followed by whatever text or extention. The concept where we generate file names dynamically is called _file globbing_. There are a couple of special characters that we can use as seen in the example below:
+When specifying filenames, we can get the shell to generate the filenames dynamically by giving a certain pattern. For example: we might want to find all the files starting with `temp` followed by whatever text or extention. The concept where we generate file names dynamically is called _file globbing_. There are a couple of special characters that we can use as seen in the examples below:
 ```bash
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec 
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls file*
 file  file1  file2  file3  filea  fileabc  fileb  filebc
 student@linux-ess:~/globbing$ ls *a
 a  afilea  filea
 student@linux-ess:~/globbing$ ls *a*
-a  afilea  filea  fileabc
+a  afilea  filea  fileabc Fragile
 student@linux-ess:~/globbing$ ls F*
-File  File4  File5  FileABC  Filec
+File  File4  File5  FileABC  Filec Fragile
 student@linux-ess:~/globbing$ ls f*c
 fileabc  filebc
 student@linux-ess:~/globbing$ ls F*ile*
-File  File4  File5  FileABC  Filec
+File  File4  File5  FileABC  Filec Fragile
 ```
 an asterisk (`*`) in _file globbing_ means zero, one or more characters can be whatever they want. This is often called a wildcard that we can use one or multiple times in a filename. Another option would be a question mark (`?`) which is interpreted as exactly _one character_ can be what they want as seen in the following example:
 ```bash
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls ?
 a
 student@linux-ess:~/globbing$ ls ????
@@ -90,7 +90,7 @@ afilea
 Lastly we can also use square brackets (`[ ]`) which usually contain one or more characters in between the brackets. The brackets define one character that matches one of the characters between the brackets:
 ```bash
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls file[12]
 file1  file2
 student@linux-ess:~/globbing$ ls file[a]
@@ -101,7 +101,7 @@ file1  filea
 When using brackets we also can define ranges:
 ```bash
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls file[a-z]
 filea  fileb
 student@linux-ess:~/globbing$ ls File[A-Z]*
@@ -114,7 +114,7 @@ file1  file2  file3
 When using brackets we also can exclude the specified range by specifying a caret (^) or an exclamation mark (!) at the beginning:
 ```bash
 student@linux-ess:~/globbing$ ls
-a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec
+a  afilea  file  File  file1  file2  file3  File4  File5  filea  fileabc  FileABC  fileb  filebc  Filec  Fragile
 student@linux-ess:~/globbing$ ls file[a-z]*
 filea  fileabc  fileb  filebc
 student@linux-ess:~/globbing$ ls file[^a-z]*
@@ -132,26 +132,16 @@ student@linux-ess:~/globbing$ ls file*
 student@linux-ess:~/globbing$ ls file\*
 'file*'
 student@linux-ess:~/globbing$ echo **** TITLE ****
-File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc TITLE  File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc
+File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc   TITLE   File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc
 student@linux-ess:~/globbing$ echo \*\*\*\* TITLE \*\*\*\*
 **** TITLE ****
-```
-
-?> You can imagine what would happen if we would delete the file _file*_ without using the escaping.
-
-
-
-you can also prevent file globbing by putting the text within double- or single quotes:
-```bash
-student@linux-ess:~/globbing$ ls
- File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc
-student@linux-ess:~/globbing$ echo **** TITLE ****
-File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc TITLE  File4   File5   FileABC   Filec   afilea  'file*'   file1   file2   file3   filea   fileb   filebc
 student@linux-ess:~/globbing$ echo "**** TITLE ****"
 **** TITLE ****
 student@linux-ess:~/globbing$ echo '**** TITLE ****'
 **** TITLE ****
 ```
+
+?> You can imagine what would happen if we would delete the file _file*_ without using the escaping.
 
 
 
@@ -210,6 +200,8 @@ Swap:             0B          0B          0B
 student@linux-ess:~$
 ```
 
+
+
 The order in which the shell checks for commands in the shell: 
 
 * Aliases. Names set by the alias command that represent a particular command and a set of options. 
@@ -217,7 +209,11 @@ The order in which the shell checks for commands in the shell:
 * Filesystem command. This command is stored in and executed from the computer’s filesystem. (These are the commands that are indicated by the value of the PATH variable).
 
 
+
+
+
 ## I/O redirection
+
 ### I/O Streams
 When working with the shell we actually work with something called streams. There are 3 basic streams available when using a shell:
 ![iostreams](../images/07/ioredirect.png)
