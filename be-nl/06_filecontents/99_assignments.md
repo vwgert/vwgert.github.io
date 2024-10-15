@@ -114,7 +114,7 @@ This text is way more interesting.
 I still use multiple lines d'oh,
 just because I can.
 ```
-We hebben in dit hoofdstuk 2 commando's gezien waar we kunnen opgeven om ook de bestandsnaam af te drukken, controleer de manpages van de geziene commando's om erachter te komen welke 2 commando's kunnen worden gebruikt. Probeer ze uit en druk de volledige inhoud van de bestanden af met de bestandsnamen. 
+We hebben in dit hoofdstuk twee commando's gezien waar we kunnen opgeven om ook de bestandsnaam af te drukken, controleer de manpages van de geziene commando's om erachter te komen welke 2 commando's kunnen worden gebruikt. Probeer ze uit en druk de volledige inhoud van de bestanden af met de bestandsnamen. 
 
 ## Optionele Oefening 
 Gebruik het commando `vimtutor` om te leren hoe je vim gebruikt. Wat is er zo anders aan deze editor?  

@@ -104,7 +104,7 @@ Navigeer met behulp van het absolute-pad naar de  map log dat een submap is van 
 Navigeer naar je homefolder 
 
 ## Oefening 22 
-Gebruik cat om de inhoud af te drukken van het .bashrc-bestand dat zich in de thuismap van root bevindt. Gebruik de syntaxis van een relatief pad. Gebruik bang bang (!!) als je meer privileges nodig hebt! 
+Gebruik cat om de inhoud af te drukken van het .bashrc-bestand dat zich in de homefolder van root bevindt. Gebruik de syntaxis van een relatief pad. Gebruik bang bang (!!) als je meer privileges nodig hebt! 
 
 ## Oefening 23 
 Probeer naar de directory /etc/dhcp te navigeren met een maximum van 10 toetsaanslagen 
