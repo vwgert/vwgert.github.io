@@ -202,7 +202,7 @@ Onderaan het scherm zie je enkele van de sneltoetsen die je kunt gebruiken. Enke
 * _ctrl +u_: plak alle geknipte inhoud.  
   
 * _ctrl+w_: zoek een bepaalde tekst in het bestand (ctrl+q om in de tegenovergestelde richting te zoeken). 
-* alt+w: ga naar het volgend voorkomen van de gezochte tekst 
+* _alt+w_: ga naar het volgend voorkomen van de gezochte tekst 
 * _ctrl+\_: zoeken en vervangen - geef het woord om naar te zoeken en geef dan het woord om het te vervangen door (gebruik dan yes, no, all, ...) (je kan ctrl+< typen)  
 * _ctrl+/_: ga naar een bepaalde regel (en kolom). (je kan ook _ctrl+-_ typen) 
   

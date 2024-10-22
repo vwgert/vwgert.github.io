@@ -201,7 +201,7 @@ At the bottom of the screen it shows some of the shortcuts you can use. Some of 
 * _ctrl+u_: paste any cut content.  
   
 * _ctrl+w_: find a certain text in the file (ctrl+q to search in the opposite direction).
-* alt+w: goto the next occurrence you are searching for 
+* _alt+w_: goto the next occurrence you are searching for 
 * _ctrl+\_: search and replace - give the word to search for and then give the word to replace it with (then use yes, no, all, ...) (you can type ctrl+< ) 
 * _ctrl+/_: goto a certain line (and column). (you can also type _ctrl+-_)
   
