@@ -79,10 +79,10 @@ We zien dat er nog niet zo heel veel bezoekers zijn geweest. Als je toch veel re
 
 
 
-We gaan deze access file gaan uitbreiden met data via een script. Zodat het lijkt alsof we reeds veel meer bezoekers hebben gehad. Gebruik ook dit script op jouw server.
+We gaan deze access file gaan uitbreiden met data via een script. Zodat het lijkt alsof we reeds veel meer bezoekers hebben gehad. Gebruik ook dit script op jouw server. Maak een nieuwe file, genaamd script, met de editor nano.
 
 ```bash
-ubuntu@linux-ess:~$ cat script
+ubuntu@linux-ess:~$ cat script   # Plaats onderstaande tekst in de file
 #!/bin/bash
 
 # IP-adressen per land (voorbeeld)
@@ -171,6 +171,7 @@ total 32
 -rw-r----- 1 www-data adm  1267 Jun 18 11:36 access.log.3.gz
 -rw-r----- 1 www-data adm  3619 Jun 14 14:03 access.log.4.gz
 -rw-r----- 1 www-data adm     0 Jun 13 06:16 error.log
+ubuntu@linux-ess:~$ mkdir backups
 ubuntu@linux-ess:~$ cp /var/log/nginx/access* backups/
 ubuntu@linux-ess:~$ ls backups
 access.log  access.log.1  access.log.2.gz  access.log.3.gz  access.log.4.gz  authorized_keys.backup

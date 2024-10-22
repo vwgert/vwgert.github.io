@@ -80,10 +80,10 @@ We see that there have not been very many visitors yet. If you see a lot of line
 
 
 
-We are going to expand this access file with data via a script. So that it seems as if we have already had many more visitors. Also use this script on your server.
+We are going to expand this access file with data via a script. So that it seems as if we have already had many more visitors. Also use this script on your server. Make a new file, called script, with the editor nano.
 
 ```bash
-ubuntu@linux-ess:~$ cat script
+ubuntu@linux-ess:~$ cat script           # put this text in the file...
 #!/bin/bash
 
 # IP-adressen per land (voorbeeld)
@@ -173,6 +173,7 @@ total 32
 -rw-r----- 1 www-data adm  3619 Jun 14 14:03 access.log.4.gz
 -rw-r----- 1 www-data adm     0 Jun 13 06:16 error.log
 ubuntu@linux-ess:~$ cp /var/log/nginx/access* backups/
+ubuntu@linux-ess:~$ mkdir backups
 ubuntu@linux-ess:~$ ls backups
 access.log  access.log.1  access.log.2.gz  access.log.3.gz  access.log.4.gz  authorized_keys.backup
 ```
