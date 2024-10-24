@@ -109,13 +109,23 @@ Surf vanop je laptop naar het publieke IP van de website over **http** (voor het
 
 
 
-De website blijft een heel aantal minuten gewoon hangen bij het laden
+
 
 ![img](../images/05/AD_4nXf85uQOui-9oeRUFoSKUjbDDD3g4ZPIDtNrEoLEA3bTMZSsWosHwaUNQoXoIiKcdXr_VWPoKWFTABZ7itNuQPfME78z577IQK7kHK_32I8Qo2po-h1wXgCYptE88RHycPIknQJYDKUfE70HbQBvCkrjtdr8.png)
 
 
 
-Na een hele tijd krijgen we *The connection was reset*.  ![img](../images/05/AD_4nXdldFE0L2e1QyItb0UlK4jJvUH9LBSaxU5qqrNCNQjBAv63CwI1dBdE1XG9xaIUB9fESdhISLYH5QWp_HdgFDJKwVixgL2IIO251CzYS6vhDjKERLLBg0vr5wQEVp1nnKKSxwYthi0MIzHhKVKpVDoPlqWG.png)
+**Indien je een tweede maal in de *Address Bar* klikt met de muis, kan je controleren of je daadwerkelijk over http aan het surfen bent in plaats van https!!!  **
+
+
+
+De website blijft een heel aantal minuten gewoon hangen bij het laden
+
+Na een hele tijd krijgen we *The connection was reset*.  
+
+
+
+![img](../images/05/AD_4nXdldFE0L2e1QyItb0UlK4jJvUH9LBSaxU5qqrNCNQjBAv63CwI1dBdE1XG9xaIUB9fESdhISLYH5QWp_HdgFDJKwVixgL2IIO251CzYS6vhDjKERLLBg0vr5wQEVp1nnKKSxwYthi0MIzHhKVKpVDoPlqWG.png)
 
 Het blijkt dus nog niet te werken!
 

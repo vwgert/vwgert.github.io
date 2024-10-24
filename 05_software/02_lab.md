@@ -108,13 +108,25 @@ Surf from your laptop to the public IP of the website via **http** (for testing 
 
 
 
-The website hangs for several minutes while loading
+
 
 ![img](../images/05/AD_4nXf85uQOui-9oeRUFoSKUjbDDD3g4ZPIDtNrEoLEA3bTMZSsWosHwaUNQoXoIiKcdXr_VWPoKWFTABZ7itNuQPfME78z577IQK7kHK_32I8Qo2po-h1wXgCYptE88RHycPIknQJYDKUfE70HbQBvCkrjtdr8.png)
 
 
 
-After a long time we get *The connection was reset*.  ![img](../images/05/AD_4nXdldFE0L2e1QyItb0UlK4jJvUH9LBSaxU5qqrNCNQjBAv63CwI1dBdE1XG9xaIUB9fESdhISLYH5QWp_HdgFDJKwVixgL2IIO251CzYS6vhDjKERLLBg0vr5wQEVp1nnKKSxwYthi0MIzHhKVKpVDoPlqWG.png)
+**When you click a second time in *Address Bar* you can check whether you are going via http and not https!!!  **
+
+
+
+The website hangs for several minutes while loading.
+
+
+
+After a long time we get *The connection was reset*.  
+
+
+
+![img](../images/05/AD_4nXdldFE0L2e1QyItb0UlK4jJvUH9LBSaxU5qqrNCNQjBAv63CwI1dBdE1XG9xaIUB9fESdhISLYH5QWp_HdgFDJKwVixgL2IIO251CzYS6vhDjKERLLBg0vr5wQEVp1nnKKSxwYthi0MIzHhKVKpVDoPlqWG.png)
 
 - So it doesn't seem to work yet!
 
