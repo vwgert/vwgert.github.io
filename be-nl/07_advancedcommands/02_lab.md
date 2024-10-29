@@ -14,8 +14,8 @@ ubuntu@linux-ess:~$ getip
 Tevens wil hij een ICE(In Case of Emergency) aanmaken die de webserver onmiddellijk down brengt.
 
 ```bash
-ubuntu@linux-ess:~$ alias ice="sudo systemctl stop nginx; systemctl status nginx --no-pager"
-ubuntu@linux-ess:~$ ice
+ubuntu@linux-ess:~$ alias ice="systemctl stop nginx; systemctl status nginx --no-pager"
+ubuntu@linux-ess:~$ sudo ice
 ○ nginx.service - A high performance web server and a reverse proxy server
      Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
      Active: inactive (dead) since Fri 2024-06-21 11:04:58 UTC; 10ms ago
@@ -37,7 +37,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 
 
 
-Na controle van juiste uitvoer dient hij de aliases toe te voegen aan een (nieuw) bestand genaamd .bash_aliases in zijn homefolder. Dit bestand wordt uitgevoerd telkens er een nieuwe shell wordt gestart, zoals bijvoorbeeld bij het inloggen op de server.
+Na controle van juiste uitvoer dient hij de aliases toe te voegen aan een (nieuw) bestand genaamd .bash_aliases in zijn homefolder. Dit bestand wordt uitgevoerd telkens er een nieuwe shell wordt gestart, zoals bijvoorbeeld bij het inloggen op de server. Maak het bestand aan met *nano*.
 
 ```
 ubuntu@linux-ess:~$ cat .bash_aliases
@@ -75,11 +75,15 @@ ubuntu@linux-ess:~$ cat /var/log/nginx/access.log
 
 
 
+Indien je het bestand nginx.conf niet vindt met *locate*, dan moet je eerst de locate-database updaten met *updatedb*.
+
+
+
 We zien dat er nog niet zo heel veel bezoekers zijn geweest. Als je toch veel regels ziet, dan zijn dat waarschijnlijk requests naar onbestaande pagina's en scripts door anderen die aan het rondneuzen zijn voor vulnerabilities (=kwetsbaarheden in de veiligheid). Je website staat dan ook publiek voor de hele wereld. Dus er zijn altijd bezoekers met kwaad opzet.
 
 
 
-We gaan deze access file gaan uitbreiden met data via een script. Zodat het lijkt alsof we reeds veel meer bezoekers hebben gehad. Gebruik ook dit script op jouw server. Maak een nieuwe file, genaamd script, met de editor nano.
+We gaan deze access file gaan uitbreiden met data via een script. Zodat het lijkt alsof we reeds veel meer bezoekers hebben gehad. Gebruik ook dit script op jouw server. Maak een nieuwe file, genaamd script, met de editor *nano*.
 
 ```bash
 ubuntu@linux-ess:~$ cat script   # Plaats onderstaande tekst in de file
@@ -179,7 +183,7 @@ access.log  access.log.1  access.log.2.gz  access.log.3.gz  access.log.4.gz  aut
 
 
 
-We voegen de output van het script nu toe aan de access file.
+We voegen de output van het script nu toe aan de access file. Om dit te doen moeten we even switchen naar de gebruiker *root*
 
 ```bash
 ubuntu@linux-ess:~$ sudo su
@@ -191,7 +195,7 @@ ubuntu@linux-ess:~$
 
 
 
-Als laatste wil Linus zelf Loggen wanneer hij inlogt op de server en wat dan het publiek IP adres is. Hij zal dit telkens toevoegen aan het bestand *PublicIP* van in zijn homefolder.
+Als laatste wil Linus zelf bijhouden wanneer hij inlogt op de server en wat op dat ogenblik het publiek IP adres van de server was. Hij zal dit telkens toevoegen aan het bestand *PublicIP* van in zijn homefolder.
 
 ```bash
 ubuntu@linux-ess:~$ ls

@@ -15,8 +15,8 @@ ubuntu@linux-ess:~$ getip
 He also wants to create an ICE (In Case of Emergency) that will immediately bring down the web server.
 
 ```bash
-ubuntu@linux-ess:~$ alias ice="sudo systemctl stop nginx; systemctl status nginx --no-pager"
-ubuntu@linux-ess:~$ ice
+ubuntu@linux-ess:~$ alias ice="systemctl stop nginx; systemctl status nginx --no-pager"
+ubuntu@linux-ess:~$ sudo ice
 ○ nginx.service - A high performance web server and a reverse proxy server
      Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
      Active: inactive (dead) since Fri 2024-06-21 11:04:58 UTC; 10ms ago
@@ -38,7 +38,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 
 
 
-After checking the correct output, he should add the aliases to a (new) file called .bash_aliases in his home folder. This file is executed every time a new shell is started, such as when logging into the server.
+After checking the correct output, he should add the aliases to a (new) file called .bash_aliases in his home folder. This file is executed every time a new shell is started, such as when logging into the server. Create this file with *nano*.
 
 ```
 ubuntu@linux-ess:~$ cat .bash_aliases
@@ -76,11 +76,15 @@ ubuntu@linux-ess:~$ cat /var/log/nginx/access.log
 
 
 
+If you can't find the nginx.conf file with *locate*, you have to update de locate-database with *updatedb*.
+
+
+
 We see that there have not been very many visitors yet. If you see a lot of lines, they are probably requests to non-existent pages and scripts by others who are sniffing around for vulnerabilities. Your website is therefore public for the whole world. So there are always visitors with malicious intent.
 
 
 
-We are going to expand this access file with data via a script. So that it seems as if we have already had many more visitors. Also use this script on your server. Make a new file, called script, with the editor nano.
+We are going to expand this access file with data via a script. So that it seems as if we have already had many more visitors. Also use this script on your server. Make a new file, called script, with the editor *nano*.
 
 ```bash
 ubuntu@linux-ess:~$ cat script           # put this text in the file...
@@ -172,15 +176,15 @@ total 32
 -rw-r----- 1 www-data adm  1267 Jun 18 11:36 access.log.3.gz
 -rw-r----- 1 www-data adm  3619 Jun 14 14:03 access.log.4.gz
 -rw-r----- 1 www-data adm     0 Jun 13 06:16 error.log
-ubuntu@linux-ess:~$ cp /var/log/nginx/access* backups/
 ubuntu@linux-ess:~$ mkdir backups
+ubuntu@linux-ess:~$ cp /var/log/nginx/access* backups/
 ubuntu@linux-ess:~$ ls backups
 access.log  access.log.1  access.log.2.gz  access.log.3.gz  access.log.4.gz  authorized_keys.backup
 ```
 
 
 
-We now add the output of the script to the access file.
+We now add the output of the script to the access file. To do this we temporarily have to become root 
 
 ```bash
 ubuntu@linux-ess:~$ sudo su
@@ -192,7 +196,7 @@ ubuntu@linux-ess:~$
 
 
 
-Finally, Linus himself wants to Log when he logs in to the server and what the public IP address is. He will always add this to the *PublicIP* file in his home folder.
+Finally, Linus himself wants to keep record of when he logs in to the server and what the public IP address was at that time. He will always add this information to the *PublicIP* file in his home folder.
 
 ```bash
 ubuntu@linux-ess:~$ ls
