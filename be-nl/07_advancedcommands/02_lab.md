@@ -90,9 +90,9 @@ ubuntu@linux-ess:~$ cat script   # Plaats onderstaande tekst in de file
 #!/bin/bash
 
 # IP-adressen per land (voorbeeld)
-IPS_US=("192.0.2.1" "192.0.2.2" "192.0.2.3")
-IPS_UK=("198.51.100.1" "198.51.100.2" "198.51.100.3")
-IPS_AU=("203.0.113.1" "203.0.113.2" "203.0.113.3")
+IPS_US=("8.0.2.1" "8.250.2.2" "8.154.72.23")
+IPS_UK=("31.24.100.1" "31.29.198.22" "31.31.59.3")
+IPS_AU=("101.160.0.1" "101.165.12.4" "101.190.113.33")
 
 # Tijdstempel functie
 timestamp() {

@@ -521,9 +521,9 @@ This is a test.
 This has been tested
 ```
 
-Om te beginnen zullen we een aantal speciale symbolen gebruiken die we eerder hebben gebruikt. We hebben de impact van een sterretje (`*`) gezien in het hoofdstuk over _file globbing_. Een sterretje heeft een vergelijkbare functionaliteit in een regex, maar er zijn belangrijke belangrijke verschillen: 
+Om te beginnen zullen we een aantal speciale symbolen gebruiken die we eerder hebben gebruikt. We hebben de impact van een sterretje (`*`) gezien in het hoofdstuk over _file globbing_. Een sterretje heeft een vergelijkbare functionaliteit in een regex, maar er zijn belangrijke verschillen: 
 - In file globbing betekent een `*`-teken 0, één of meerdere willekeurige karakters 
-- In een regex betekent een `*`-teken 0, éénn of meerdere **van het vorige karakter** 
+- In een regex betekent een `*`-teken 0, één of meerdere **van het vorige karakter** 
 
 Neem het voorbeeld hieronder. We verwachten dat alleen de 'pxl'-varianten verschijnen, maar zoals we in de uitvoer kunnen zien, wordt alle bestandsinhoud weergegeven. Dit komt omdat elke regel overeenkomt met de regex `nul, één of meerdere voorkomens van de letter p`: 
 ```bash
@@ -736,6 +736,8 @@ Michael
 ```
 Hier zoeken we naar regels die beginnen met een hoofdletter `M` of eindigen met een kleine letter `n` 
 
+?> Merk op dat als we hier de optie -E niet gebruiken, we het pipeteken (|) moeten escapen. ... | grep "^M\\\|n$"
+
 We zouden hetzelfde kunnen doen door de optie -e meerdere keren te gebruiken: 
 ```bash
 student@linux-ess:~$ cat regexlist.txt | grep -e "^M" -e "n$"
@@ -757,10 +759,13 @@ Hier zoeken we naar regels die eindigen op een `a` en ook beginnen met een `E`
 
 Als we regels willen filteren die alleen de zoekstring als een volledig woord hebben, gebruiken we de optie `-w`: 
 ```bash
+student@ubuntu-server:~$ cat regexlist.txt | grep "test"
+This is a test.
+This has been tested
 student@ubuntu-server:~$ cat regexlist.txt | grep -w "test"
 This is a test.
 ```
-Hier zoeken we naar regels met `test` als één woord 
+In het laatste commando zoeken we naar regels met `test` als één woord 
 
 ## 
 
@@ -859,3 +864,4 @@ student@linux-ess:~$ grep -E "[0-9]{1,3}(\.[0-9]{1,3}){3}" regexlist.txt
 172.16.0.4
 127.0.0.1
 ```
+

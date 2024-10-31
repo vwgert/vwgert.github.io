@@ -35,7 +35,7 @@ sudo apt-get install geoip-bin
 
 
 ```bash
-cut -d' ' -f1 fullaccess.log | sort -n | uniq -c | while read line; do IP=$(echo $line | cut -d' ' -f2); COUNT=$(echo $line | cut -d' ' -f1 | xargs);echo "$IP $COUNT $(geoiplookup $IP)"; done
+cut -d' ' -f1 fullaccess.log | sort -n | uniq -c | while read line; do IP=$(echo $line | cut -d' ' -f2); COUNT=$(echo $line | cut -d' ' -f1);echo "$IP --- $COUNT --- $(geoiplookup $IP)"; done
 ```
 
 

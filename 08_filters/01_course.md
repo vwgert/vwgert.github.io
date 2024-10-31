@@ -632,7 +632,10 @@ Michael
 ```
 Here we search for lines beginning with an `M` or ending with an `n`
 
+?> Note that if we don't use the -E option here we have to escape the pipe symbol (|).   ... | grep "^M\\|n$"
+
 We could do the same with using the option -e multiple times:
+
 ```bash
 student@linux-ess:~$ cat regexlist.txt | grep -e "^M" -e "n$"
 Max
@@ -654,10 +657,13 @@ Here we search for lines ending with an `a` and beginning with a `E`
 
 If we want to filter lines that only have the searchstring as a whole word we use the option `-w`:
 ```bash
+student@ubuntu-server:~$ cat regexlist.txt | grep "test"
+This is a test.
+This has been tested
 student@ubuntu-server:~$ cat regexlist.txt | grep -w "test"
 This is a test.
 ```
-Here we search for lines with `test` as a single word   
+With the last command we search for lines with `test` as a single word   
 
 ## 
 
