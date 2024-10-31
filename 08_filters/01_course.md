@@ -4,18 +4,21 @@ When working with (text) files we often want to perform operations to manipulate
 For example: We have a huge logfile that logs all login attemps for our application where it logs usernames, ip adresses, timestamps, location, ISP info, metadata, ... We might want to quickly lookup all incorrect login attemps by user X and see what IP addresses he was connecting from. We could manually go through the file line by line to check it but often that process is long and tedious. What we want to do is use commands to filter, manipulate and structure the data to the desired result. To do this we can use a wide set of filter and structure commands that we can link together using _pipes_.
 
 For the examples in this chapter we will use a log file filled with data. To download this file you can run the following command:
+
+
+
 ```bash
-student@linux-ess:~$ wget https://d-ries.github.io/linux-essentials/data/auth.log
---2022-06-19 18:15:24--  https://d-ries.github.io/linux-essentials/data/auth.log
-Resolving d-ries.github.io (d-ries.github.io)... 185.199.109.153, 185.199.108.153, 185.199.111.153, ...
-Connecting to d-ries.github.io (d-ries.github.io)|185.199.109.153|:443... connected.
+student@linux-ess:~$ wget https://vwgert.github.io/data/auth.log
+--2024-10-31 11:09:32--  https://vwgert.github.io/data/auth.log
+Resolving vwgert.github.io (vwgert.github.io)... 185.199.110.153, 185.199.108.153, 185.199.109.153, ...
+Connecting to vwgert.github.io (vwgert.github.io)|185.199.110.153|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 1730 (1.7K) [text/plain]
-Saving to: 'auth.log'
+Saving to: ‘auth.log’
 
 auth.log                      100%[=================================================>]   1.69K  --.-KB/s    in 0s
 
-2022-06-19 18:15:25 (5.32 MB/s) - 'auth.log' saved [1730/1730]
+2024-10-31 11:09:32 (32.0 MB/s) - ‘auth.log’ saved [1730/1730]
 student@linux-ess:~$ cat auth.log
 Jun 09 11:11:11 linux-ess: Server listening on 0.0.0.0 port 22.
 Jun 09 11:11:11 linux-ess: Server listening on :: port 22.
@@ -33,7 +36,7 @@ A pipe (`|`) is a specific symbol that we can use to link commands together. The
 student@linux-ess:~$ head -3 auth.log | tail -2
 Jun 09 11:11:11 linux-ess: Server listening on :: port 22.
 Jun 09 12:32:24 linux-ess: Accepted publickey for: johndoe from 85.245.107.42 port 54259 ssh2: RSA SHA256:K18kPGZrTiz7g
-```
+ ```
 The example above will run the `head -3` command which will take the first 3 lines of the file `auth.log`. The output containing the first 3 lines of the file will then be used as input for the `tail -2` command which results in taking the bottom 2 lines of the first 3 lines of the file `auth.log`. This means that the result is the second and third line of the file.
 
 You can use as many pipes as you want in a command line. It will just keep passing the output of a command to the input of the next command and so on:
@@ -64,7 +67,7 @@ Jun 22 21:11:12 linux-ess: Failed password for: doeg from 192.168.0.10 port 8756
 tee: /filteredlogfile: Permission denied
 student@linux-ess:~$ cat /filteredlogfile
 cat: /filteredlogfile: No such file or directory
-student@linux-ess:~$ tail -3 auth.log | head -1 | sudo tee /filteredlogfile
+student@linux-ess:~$ tail -3 auth.log | head -1 | sudo tee /filteredlogfile                  # this command executed successful
 Jun 22 21:11:12 linux-ess: Failed password for: doeg from 192.168.0.10 port 87568 ssh2
 student@linux-ess:~$ cat /filteredlogfile
 Jun 22 21:11:12 linux-ess: Failed password for: doeg from 192.168.0.10 port 87568 ssh2
@@ -81,7 +84,7 @@ Jun 09 11:11:11 linux-ess: Server listening on 0.0.0.0 port 22.
 
 ## Filtering output
 ### Using content filters (grep)
-We often want to browse the contents of a file and retaining the lines containing a certain string or pattern. This is where the `grep` command comes in. `grep` is one of the most used filter commands in Linux systems. We can use it as a standalone command as follows:
+We often want to browse the contents of a file and retain an overview of the lines containing a certain string or pattern. This is where the `grep` command comes in. `grep` is one of the most used filter commands in Linux systems. We can use it as a standalone command as follows:
 ```bash
 student@linux-ess:~$ grep jane auth.log
 Jun 15 17:42:18 linux-ess: Failed password for: janedoe from 192.168.0.10 port 48239 ssh2
@@ -93,9 +96,9 @@ student@linux-ess:~$ cat auth.log | grep jane
 Jun 15 17:42:18 linux-ess: Failed password for: janedoe from 192.168.0.10 port 48239 ssh2
 Jun 17 18:22:22 linux-ess: Accepted password for: janedoe from 192.168.0.10 port 43448 ssh2
 ```
-Both commands give the same result and work the same. What we can see is that the `grep` command will filter the file contents based on a string or pattern (in this case the string `jane`). 
+Both commands give the same result. What we can see is that the `grep` command will filter the file contents based on a string or pattern (in this case the string `jane`). 
 
-?> An important note to make is that, by default, `grep` is a case sensitive command. It will only show the lines in the file containing that specific keyword. Note that searching for the string _failed_ in all lower case will result in 0 lines being returned:
+?> An important note to make is that, by default, `grep` is a case sensitive command. It will only show the lines in the file containing that specific keyword. Note that searching for the string - _failed_ in all lower case - will result in 0 lines being returned:
 ```bash
 student@linux-ess:~$ cat auth.log | grep failed
 student@linux-ess:~$
@@ -127,10 +130,10 @@ Knowing that we can use multiple pipes (`|`) in a command, we can combine multip
 ```bash
 student@linux-ess:~$ cat auth.log | grep -vi failed | grep janedoe
 Jun 17 18:22:22 linux-ess: Accepted password for: janedoe from 192.168.0.10 port 43448 ssh2
-```  
-  
+```
+
 or (there are multiple correct answers here)  
-  
+
 ```bash
 student@linux-ess:~$ cat auth.log | grep janedoe | grep Accepted
 Jun 17 18:22:22 linux-ess: Accepted password for: janedoe from 192.168.0.10 port 43448 ssh2
@@ -189,11 +192,11 @@ student@linux-ess:~$ find /sys -iname "*kernel*" |& grep debug
 find: '/sys/kernel/debug': Permission denied
 /sys/fs/cgroup/sys-kernel-debug.mount
 ```
-  
-  
+
+
 ### Using content structure (cut,sort,uniq)
 #### Using columns (cut)
-Using the `cut` command we can split lines in a file into columns. To do this we have to define a delimiter (this is a character that defines the start of a new column) for example a `space` or `:` sign. Then we can select which columns the command should display:
+Using the `cut` command we can split lines in a file into columns. To do this we have to define a delimiter (this is a character that defines the start of a new column) for example a `space` or `:` sign. Then we can select which columns (=fields) the command should display:
 ```bash
 student@linux-ess:~$ cat auth.log
 Jun 09 11:11:11 linux-ess: Server listening on 0.0.0.0 port 22.
@@ -368,7 +371,7 @@ Jun 22 21:11:12 linux-ess: Accepted password for: doeg from 192.168.0.10 port 44
  ```bash
 student@linux-ess:~$ echo "example this is an example" | sed 's/example/test/'
 test this is an example
-```
+ ```
 Only the first occurence of `example` is changed to `test`. If we want the `sed` command to change every occurence in a line, we have to use the `g` (global) flag as seen below:
 ```bash
 student@linux-ess:~$ echo "example this is an example" | sed 's/example/test/g'
@@ -407,43 +410,10 @@ student@linux-ess:~$ tail -4 auth.log | sed '/Failed/d'
 Jun 22 21:11:12 linux-ess: Accepted password for: doeg from 192.168.0.10 port 44293 ssh2
 ```
 
-Offcourse we can use our knowledge of regular expressions with sed, but if you want to use extended regular expressions you need to specify the option `-r`:
-```bash
-student@ubuntu-server:~$ grep -C2 www regexlist.txt
-32
-64
-htp://www.pxl.be
-http://www.pxl.be
-https://www.pxl.be
-192.168.1.19
-192.168.5.117
-student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed -r 's_https?://.*_url masked_'
-32
-64
-htp://www.pxl.be
-url masked
-url masked
-192.168.1.19
-192.168.5.117
-```
-  
-?> Because we use slashes (`/`) in our regex we can opt to use underscores (`_`) as seperator
-
-     
-?> Without the '-r'-option we'd have to escape the '?'-character
-```bash
-student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed 's_https\?://.*_url masked_'
-32
-64
-htp://www.pxl.be
-url masked
-url masked
-192.168.1.19
-192.168.5.117
-```
 
 
 ## Regular expressions
+
 In the examples of grep at the top of this page we only used simple strings to find certain lines in a file. Sometimes we want to filter on dynamic content. Imagine finding all logins from an ip address containing '192' followed by other characters, or finding users that have "doe" as a lastname. In these case we will search for strings via a certain pattern. To achieve this we have to use a dynamic syntax called a regular expression.
 
 Regular expressions can turn into a real rabbit hole. We will only focus on the most used cases and a couple of practical examples but know that there is a whole _regex_ world to be explored that is beyond the scope of this course!
@@ -452,17 +422,17 @@ The `grep` command can use different kinds of _regex_ patterns. By default it us
 
 For the examples used in this (sub)chapter we will use a seperate file that you can download using the command below:
 ```bash
-student@linux-ess:~$ wget https://d-ries.github.io/linux-essentials/data/regexlist.txt
---2022-11-03 19:49:29--  https://d-ries.github.io/linux-essentials/data/regexlist.txt
-Resolving d-ries.github.io (d-ries.github.io)... 185.199.110.153, 185.199.111.153, 185.199.108.153, ...
-Connecting to d-ries.github.io (d-ries.github.io)|185.199.110.153|:443... connected.
+student@linux-ess:~$ wget https://vwgert.github.io/data/regexlist.txt
+--2024-10-31 15:00:43--  https://vwgert.github.io/data/regexlist.txt
+Resolving vwgert.github.io (vwgert.github.io)... 185.199.108.153, 185.199.111.153, 185.199.109.153, ...
+Connecting to vwgert.github.io (vwgert.github.io)|185.199.108.153|:443... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 317 [text/plain]
+Length: 318 [text/plain]
 Saving to: ‘regexlist.txt’
 
-regexlist.txt                              100%[=====================================================================================>]     317  --.-KB/s    in 0.001s
+regexlist.txt              100%[========================================>]     318  --.-KB/s    in 0s
 
-2022-11-03 19:49:29 (588 KB/s) - ‘regexlist.txt’ saved [317/317]
+2024-10-31 15:00:43 (14.7 MB/s) - ‘regexlist.txt’ saved [318/318]
 student@linux-ess:~$ cat regexlist.txt
 Charlotte
 Lawrence
@@ -494,7 +464,7 @@ pxe
 pxe boot
 This is a test.
 This has been tested
-``` 
+```
 
 If we want to filter the lines with a `p` and the following character might be an `x` this is done by using the following syntax:
 ```bash
@@ -672,23 +642,68 @@ Ian
 Ellen
 Robin
 Michael
-```  
-  
+```
+
 If we want to filter lines that comply with multiple patterns we could use the command grep multiple times:
 ```bash
 student@linux-ess:~$ cat regexlist.txt | grep "^E" | grep "a$" 
 Emma
-```  
+```
 Here we search for lines ending with an `a` and beginning with a `E`   
-  
-  
+
+
 If we want to filter lines that only have the searchstring as a whole word we use the option `-w`:
 ```bash
 student@ubuntu-server:~$ cat regexlist.txt | grep -w "test"
 This is a test.
-```  
+```
 Here we search for lines with `test` as a single word   
-  
+
+## 
+
+
+#### sed and Extended Regular Expressions
+
+Offcourse we can use our knowledge of regular expressions with sed, but if you want to use extended regular expressions you need to specify the option `-r`:
+
+```bash
+student@ubuntu-server:~$ grep -C2 www regexlist.txt
+32
+64
+htp://www.pxl.be
+http://www.pxl.be
+https://www.pxl.be
+192.168.1.19
+192.168.5.117
+student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed -r 's_https?://.*_url masked_'
+32
+64
+htp://www.pxl.be
+url masked
+url masked
+192.168.1.19
+192.168.5.117
+```
+
+?> Because we use slashes (`/`) in our regex we can opt to use underscores (`_`) as seperator
+
+
+?> Without the '-r'-option we'd have to escape the '?'-character
+
+```bash
+student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed 's_https\?://.*_url masked_'
+32
+64
+htp://www.pxl.be
+url masked
+url masked
+192.168.1.19
+192.168.5.117
+```
+
+
+## 
+
 
 #### Pattern examples
 Creating a regex that checks for a IPv4 address:
@@ -721,7 +736,7 @@ Note that this example does not check for valid domain names.
 
 ?> The questionmark (`?`) in a regex means the previous character is _optional_!
 
-  
+
 We can also make use of Grouping to work with strings instead of just one character.
 For example we could say that a complete string is optional instead of only the previous character:
 ```bash
@@ -729,7 +744,7 @@ student@linux-ess:~$ cat regexlist.txt | grep -E "pxe( boot)?"
 pxe
 pxe boot
 ```
-    
+
 We could also use grouping to specify a repetition of a certain expression. Beneath you see two commands that are the same:
 ```bash
 student@linux-ess:~$ grep -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" regexlist.txt
