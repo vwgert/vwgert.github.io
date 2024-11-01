@@ -155,7 +155,7 @@ Bezoekers per land: IP Address not found: 100 US: 10 BE: 7 HR: 3 NL: 2 CN: 2 RU:
 
 
 
-Om dit op te lossen plaatsen we een aantal line-breaks in de output (aanpassingen onderaan het script):
+Om dit op te lossen plaatsen we een aantal line-breaks (\<br /\>) in de output (aanpassingen onderaan het script):
 
 ```bash
 #!/bin/bash

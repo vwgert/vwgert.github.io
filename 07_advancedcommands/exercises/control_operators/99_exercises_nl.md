@@ -21,19 +21,19 @@ Maak een map bron en een map bestemming in je homefolder. Maak ook een tekstbest
 Wat is de uitvoer van: (Probeer te antwoorden zonder het eerst in de terminal te typen)  
 ```bash 
 echo Hello#world 
-``` 
+```
 
 ## Oefening 6 
 Wat is de uitvoer van: (Probeer te antwoorden zonder het eerst in de terminal te typen) 
 ```bash 
-echo Hallo #world 
-``` 
+echo Hello #world 
+```
 
 ## Oefening 7 
 Wat is de uitvoer van: (Probeer te antwoorden zonder het eerst in de terminal te typen) 
 ```bash 
 echo \\\\\??\#\"\ \\ #\\
-``` 
+```
 
 ## Oefening 8 
 Wijzig de foutuitvoer van de opdracht ls in: "Ik kan dit bestand of deze map niet vinden, sorry". De werking van het commando moet hetzelfde blijven. 
