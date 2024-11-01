@@ -6,9 +6,7 @@ Maak een nieuwe map met de naam FileGlobEx met de bestanden script.sh, scrupt.sh
 ## Oefening 2 
 Probeer het volgende commando: ls scr[a-z]pt.* 
 - Zorg ervoor dat dit commando hoofdlettergevoelig is en test 
-- Zorg ervoor dat dit commando niet hoofdlettergevoelig is en test  
-
-?> <i class="fa-solid fa-circle-info"></i> Momenteel is het ingesteld om automatisch niet hoofdlettergevoelig te gebruiken. 
+- Pas het commando aan zodat dit niet meer hoofdlettergevoelig is en test   
 
 ## Oefening 3 
 Maak de volgende bestanden met slechts één commando: script.sd, script.dh, script2.dh, script.ds, script2.ds, script2.dd, script3.ss en script3.ds 
@@ -42,7 +40,7 @@ Zoek in de map "/etc" naar een bestand met "os" in de naam gevolgd door "release
 Voer het volgende commando uit en leg het resultaat uit:  
 ```bash 
 ls -d /usr/share/bash-completion/completions/resolv*conf 
-``` 
+```
 
 ## Oefening 13 
 Zoek naar alle bestanden die beginnen met twee cijfers uit de map "/etc/grub.d" 

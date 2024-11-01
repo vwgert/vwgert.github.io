@@ -34,7 +34,7 @@ Count the number of lines that contain the word Unix in the file linux.txt. The 
 Show all lines from the file linux.txt that start with a capital. 
 
 ?> <i class="fa-solid fa-circle-info"></i> Capital letters can be matched using [A-Z]  
-  
+
 ?> <i class="fa-solid fa-circle-info"></i> The start of a line can be matched using ^
 
 
@@ -43,18 +43,14 @@ Print the password file, ordered by userid. Search for this option in the manpag
 
 
 ## Task 8
-Start with the ls command of the root-folder (/) and try to end with a list of files and folders separated by spaces. Use the tr command to translate all new line characters to spaces.
-
-
-## Task 9
 Go to your homefolder. Paste all shown files and folders (not the hidden ones) from the directory one after the other and count the number of words. The result is only a number 
 
-## Task 10
+## Task 9
 Show all installed packages with apt, but only show the name and version in alphabetical order.
 
 ?> <i class="fa-solid fa-circle-info"></i> Hint: You need to use tr to make it easier.   
-  
+
 ?> <i class="fa-solid fa-circle-info"></i> Hint: You only need to use tr and cut once. 
 
-## Task 11
+## Task 10
 How many installed packages are there on your system?

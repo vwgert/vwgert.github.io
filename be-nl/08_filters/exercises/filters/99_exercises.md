@@ -46,14 +46,10 @@ Druk het passwd bestand af, geordend op gebruikers-ID. Zoek naar deze optie in d
 
 
 ## Oefening 8
-Begin met het ls commando van de root-map (/) en probeer te eindigen met een lijst van bestanden en mappen gescheiden door spaties. Gebruik het commando tr om alle new lines naar spaties te vertalen. 
-
-
-## Oefening 9
 Ga naar je homefolder. Plak alle weergegeven bestanden en mappen (niet de verborgen) uit de map achter elkaar en tel het aantal woorden. Het resultaat is slechts een getal 
 
 
-## Oefening 10
+## Oefening 9
 Toon alle geïnstalleerde pakketten met apt, maar toon alleen de naam en versie in alfabetische volgorde. 
 
 ?> <i class="fa-solid fa-circle-info"></i> Tip: Je moet tr gebruiken om het gemakkelijker te maken.  
@@ -61,5 +57,5 @@ Toon alle geïnstalleerde pakketten met apt, maar toon alleen de naam en versie 
 ?> <i class="fa-solid fa-circle-info"></i> Tip: Je hoeft maar één keer tr en cut te gebruiken.
 
 
-## Oefening 11
+## Oefening 10
 Hoeveel geïnstalleerde pakketten zijn er op uw systeem? 
