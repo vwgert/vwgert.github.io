@@ -5,7 +5,6 @@ Maak een nieuwe map met de naam FileGlobEx met de bestanden script.sh, scrupt.sh
 
 ## Oefening 2 
 Probeer het volgende commando: ls scr[a-z]pt.* 
-- Zorg ervoor dat dit commando hoofdlettergevoelig is en test 
 - Pas het commando aan zodat dit niet meer hoofdlettergevoelig is en test  
 
 ## Oefening 3 
