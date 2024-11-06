@@ -145,7 +145,7 @@ ES: 1
 
 
 
-To check this, you can surf to the web page https://\<ip\>//monitor.html
+To check this, you can surf to the web page https://\<your-server-ip\>//monitor.html
 
 We then see that everything is shown on one line
 
