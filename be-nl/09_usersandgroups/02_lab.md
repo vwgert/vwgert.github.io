@@ -92,7 +92,7 @@ Powershell > ssh -i ".\id_ecdsa" dennis@ipvandeserver						   # om de key te tes
 
 
 ```
-ubuntu@aws-linux-ess:~$
+ubuntu@aws-linux-ess:~$ 
 ```
 
 
