@@ -34,13 +34,15 @@ sudo apt-get install geoip-bin
 
 
 
+To test if it works, he runs the following commandline.
+
 ```bash
 cut -d' ' -f1 fullaccess.log | sort -n | uniq -c | while read line; do IP=$(echo $line | cut -d' ' -f2); COUNT=$(echo $line | cut -d' ' -f1);echo "$IP --- $COUNT --- $(geoiplookup $IP)"; done
 ```
 
 
 
-To get a shortened overview of visits per country, he wrote the script below. Try to understand this. Copy it to the server and run.
+To get a brief overview of visits per country, he wrote the script below. Try to understand this. create a file, named *visitors_by_country.sh* with nano on the server and run.
 
 ```bash
 #!/bin/bash

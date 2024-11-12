@@ -39,7 +39,7 @@ Show all lines from the file linux.txt that start with a capital.
 
 
 ## Task 7
-Print the password file, ordered by userid. Search for this option in the manpage. Search section 5 of the manpage of passwd to find out which field holds the userid. Search the manpage of sort to find out how to sort numeric fields. In the result the user `nobody` must be the last one  
+Print the password file, ordered by userid. Search for this option in the manpage. Search section 5 of the manpage of passwd to find out which field holds the userid. Search the manpage of sort to find out how to sort numeric fields. In the result the user `sync` must be the last one  
 
 
 ## Task 8

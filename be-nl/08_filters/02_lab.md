@@ -40,7 +40,9 @@ cut -d' ' -f1 fullaccess.log | sort -n | uniq -c | while read line; do IP=$(echo
 
 
 
-Om een verkort overzicht te krijgen van bezoeken per land kan heeft hij onderstaand script geschreven. Probeer dit te begrijpen. Kopieer het naar de server en voer uit.
+To get a shortened overview of visits per country, he wrote the script below. Try to understand this. create a file, named *visitors_by_country.sh* with nano on the server and run.
+
+Om een verkort overzicht te krijgen van bezoeken per land heeft hij onderstaand script geschreven. Probeer dit te begrijpen. Maak met nano een nieuw bestand, ganaamd *visitors_by_country.sh* op de server en voer uit.
 
 ```bash
 #!/bin/bash
