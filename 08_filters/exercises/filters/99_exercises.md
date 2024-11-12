@@ -43,7 +43,12 @@ Print the password file, ordered by userid. Search for this option in the manpag
 
 
 ## Task 8
-Go to your homefolder. Paste all shown files and folders (not the hidden ones) from the directory one after the other and count the number of words. The result is only a number 
+Count the number of files/folder (not the hidden ones) from your homefolder.
+* Go to your homefolder
+* Show all files and folders (not the hidden ones) from your homedirectory 
+* Make sure these are shown one after the other 
+* Count the number of words
+* The result is only a number 
 
 ## Task 9
 Show all installed packages with apt, but only show the name and version in alphabetical order.

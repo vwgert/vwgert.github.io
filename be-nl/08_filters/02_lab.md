@@ -147,7 +147,7 @@ ES: 1
 
 
 
-Om dit te checken kan er gesurfd worden naar de webpagina  https://\<jouw-server-ip\>//monitor.html
+Om dit te checken kan er gesurfd worden naar de webpagina  http://\<jouw-server-ip\>//monitor.html
 
 We zien dan dat alles op één regel wordt getoond 
 

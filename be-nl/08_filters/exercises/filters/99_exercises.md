@@ -46,7 +46,12 @@ Druk het passwd bestand af, geordend op gebruikers-ID. Zoek naar deze optie in d
 
 
 ## Oefening 8
-Ga naar je homefolder. Plak alle weergegeven bestanden en mappen (niet de verborgen) uit de map achter elkaar en tel het aantal woorden. Het resultaat is slechts een getal 
+Tel het aantal bestanden/mappen (niet de verborgen) uit je homefolder.
+* Ga naar je homefolder
+* Toon alle bestanden en mappen (niet de verborgen) uit de map 
+* Zorg dat deze achter elkaar worden getoond 
+* Tel het aantal woorden
+* Het resultaat is een getal 
 
 
 ## Oefening 9
