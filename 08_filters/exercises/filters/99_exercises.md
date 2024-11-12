@@ -48,7 +48,7 @@ Count the number of files/folder (not the hidden ones) from your homefolder.
 * Show all files and folders (not the hidden ones) from your homedirectory 
 * Make sure these are shown one after the other 
 * Count the number of words
-* The result is only a number 
+* The result is only a number
 
 ## Task 9
 Show all installed packages with apt, but only show the name and version in alphabetical order.

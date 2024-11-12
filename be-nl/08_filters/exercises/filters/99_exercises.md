@@ -51,7 +51,7 @@ Tel het aantal bestanden/mappen (niet de verborgen) uit je homefolder.
 * Toon alle bestanden en mappen (niet de verborgen) uit de map 
 * Zorg dat deze achter elkaar worden getoond 
 * Tel het aantal woorden
-* Het resultaat is een getal 
+* Het resultaat is een getal
 
 
 ## Oefening 9
