@@ -1,11 +1,5 @@
 # Lab <!-- {docsify-ignore} -->
 
-Er is geen lab voor dit hoofdstuk. 
-
-TODO: User toevoegen die ook met sudo de webserver kan herstarten enz…
-
-
-
 Linus heeft een vriend, genaamd Dennis,  die ook wil meehelpen met het project. 
 
 
@@ -26,7 +20,7 @@ ubuntu@aws-linux-ess:~$ sudo passwd dennis
 
 
 
-Hij geeft Dennis ook sudo rechten om de nginx-server te herstarten zonder dat hij een paswoord dient op te geven
+Hij geeft Dennis ook sudo rechten om de nginx-server te herstarten zonder dat deze hiervoor een paswoord dient op te geven
 
 ```
 ubuntu@aws-linux-ess:~$ which systemctl                                   # om het volledig pad van het commando op te zoeken
@@ -53,7 +47,7 @@ dennis@aws-linux-ess:~$ exit
 
 
 
-Tevens maakt hij een nieuw ssh -keypair voor Dennis
+Tevens maakt Linus een nieuw ssh -keypair voor Dennis (want Dennis heeft nog geen keypair)
 
 ```
 ubuntu@aws-linux-ess:~$ su - dennis                                      # switchen naar de user dennis
@@ -63,43 +57,46 @@ dennis@aws-linux-ess:~$ ssh-keygen -t ecdsa -C "dennis@aws-linux-ess"    # driem
 
 
 
-Dit heeft een public en een private key aangemaakt in folder .ssh van de homefolder van de gebruiker. We kopiëren de inhoud van de public key naar een file genaamd *authorized_keys* en veranderen de rechten van deze file naar 600 (zie later voor meer uitleg)
+Dit proces heeft een public key en een private key aangemaakt in de folder .ssh van de homefolder van de gebruiker Linus. We kopiëren de inhoud van de public key naar een file genaamd *authorized_keys*.  Tracht te achterhalen wat de bedoeling is van de file *authorised_keys*.
 
 ```
 dennis@linux-ess:~$ cd .ssh
 dennis@linux-ess:~/.ssh$ ls
 id_ecdsa   id_ecdsa.pub
-dennis@linux-ess:~/.ssh$ cat id_ecdsa.pub >> authorized_keys    
-dennis@linux-ess:~/.ssh$ chmod 600 authorized_keys                      # dit eventueel terug weg
+dennis@linux-ess:~/.ssh$ cat id_ecdsa.pub >> authorized_keys
 dennis@linux-ess:~/.ssh$ exit
 
 ```
 
 
 
-Hij download de private key van Dennis naar zijn laptop zodanig dat hij deze kan doormailen. Eerst moet hij de private key wel even in zijn eigen homefolder zetten om deze te kunnen overbrengen via scp
+Linus download de private key van Dennis naar zijn laptop zodanig dat hij deze kan doormailen. Eerst moet hij de private key wel even in zijn eigen homefolder zetten om deze te kunnen overbrengen via scp
 
 ```
 ubuntu@aws-linux-ess:~$ sudo cp /home/dennis/.ssh/id_ecdsa .
 ubuntu@aws-linux-ess:~$ sudo chmod o+r id_ecdsa								   # om rechten te geven voor scp via user ubuntu
 ubuntu@aws-linux-ess:~$ exit
+```
+
+
+
+In een nieuw powershell venster download Linus de key
+
+```
 Powershell > scp -i ".ssh/privatekeyfile.pem" ubuntu@ipvandeserver:id_ecdsa .  # om de key te downloaden van de server
+```
+
+
+
+Tevens test hij of hij kan inloggen als dennis op de server met behulp van deze public key
+
+```
 Powershell > ssh -i ".\id_ecdsa" dennis@ipvandeserver						   # om de key te testen met het inloggen als dennis
+dennis@aws-linux-ess:~$ exit
+Powershell > 
 ```
 
 
 
-
-
-```
-ubuntu@aws-linux-ess:~$ 
-```
-
-
-
-```
-
-```
-
-
+Linus kan deze key nu doormailen naar Dennis
 
