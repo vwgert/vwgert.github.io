@@ -134,7 +134,7 @@ Use regular expressions to filter the lines that:
       orange
       atsiiiiiiiiiiiign
 ```
-12.	Contains one or more numbers, followed by one or more letters
+12.	Contains one or more numbers, followed by one or more letters (and possibly followed by other characters)
 ```
    Output:
       5isanumber

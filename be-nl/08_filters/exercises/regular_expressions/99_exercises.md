@@ -146,7 +146,7 @@ Gebruik reguliere expressies om de regels te filteren die:
       orange
       atsiiiiiiiiiiiign
 ```
-12. Een of meer cijfers bevatten, gevolgd door een of meer letters
+12. Een of meer cijfers bevatten, gevolgd door een of meer letters (en eventueel nog gevolgd door andere karakters)
 
 ```
    Output:
