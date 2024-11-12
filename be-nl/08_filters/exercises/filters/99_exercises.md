@@ -42,7 +42,7 @@ Toon alle regels uit het bestand linux.txt die beginnen met een hoofdletter.
 
 
 ## Oefening 7
-Druk het passwd bestand af, geordend op gebruikers-ID. Zoek naar deze optie in de manpage. Zoek in sectie 5 van de manpage van passwd om erachter te komen welk veld de userid bevat. Zoek in de manpage van sort om erachter te komen hoe je numerieke velden kunt sorteren. In het resultaat moet de gebruiker `sync` de laatste zijn 
+Druk het passwd bestand af, geordend op gebruikers-ID. Zoek naar deze optie in de manpage. Zoek in sectie 5 van de manpage van passwd om erachter te komen welk veld de userid bevat. Zoek in de manpage van sort om erachter te komen hoe je numerieke velden kunt sorteren. In het resultaat moet de gebruiker `nobody` de laatste zijn 
 
 
 ## Oefening 8
