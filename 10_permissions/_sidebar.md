@@ -13,4 +13,5 @@
 ** [Lab](./10_permissions/02_lab.md)
 ** [Assignments: standard file permissions](./10_permissions/exercises/standard_file_permissions/99_exercises.md)
 ** [Assignments: extra exercises](./10_permissions/exercises/users_groups_permissions_extra_exercises/99_exercises.md)
-* [11 Automation](./11_automation/01_course.md)* [12 Extra Ubuntu Pro](./12_UbuntuPro/01_course.md)
+* [11 Automation](./11_automation/01_course.md)
+* [12 Extra Ubuntu Pro](./12_UbuntuPro/01_course.md)

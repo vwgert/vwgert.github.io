@@ -13,4 +13,5 @@
 ** [Assignments: users](./09_usersandgroups/exercises/users/99_exercises.md)
 ** [Assignments: groups](./09_usersandgroups/exercises/groups/99_exercises.md)
 * [10 Permissions](./10_permissions/01_course.md)
-* [11 Automation](./11_automation/01_course.md)* [12 Extra Ubuntu Pro](./12_UbuntuPro/01_course.md)
+* [11 Automation](./11_automation/01_course.md)
+* [12 Extra Ubuntu Pro](./12_UbuntuPro/01_course.md)
