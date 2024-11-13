@@ -14,3 +14,4 @@
 ** [Oefeningen: Groups](./be-nl/09_usersandgroups/exercises/groups/99_exercises.md)
 * [10 Rechten](./be-nl/10_permissions/01_course.md)
 * [11 Automatisatie](./be-nl/11_automation/01_course.md)
+* [12 Extra Ubuntu Pro](./be-nl/12_UbuntuPro/01_course.md)

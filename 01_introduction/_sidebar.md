@@ -13,3 +13,4 @@
 * [9 Users & groups](./09_usersandgroups/01_course.md)
 * [10 Permissions](./10_permissions/01_course.md)
 * [11 Automation](./11_automation/01_course.md)
+* [12 Extra Ubuntu Pro](./12_UbuntuPro/01_course.md)

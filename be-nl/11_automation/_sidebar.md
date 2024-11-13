@@ -13,3 +13,4 @@
 * [11 Automatisatie](./be-nl/11_automation/01_course.md)
 ** [Lab](./be-nl/11_automation/02_lab.md)
 ** [Oefeningen](./be-nl/11_automation/99_assignments.md)
+* [12 Extra Ubuntu Pro](./be-nl/12_UbuntuPro/01_course.md)

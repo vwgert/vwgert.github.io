@@ -14,3 +14,4 @@
 * [9 Gebruikers & groepen](./be-nl/09_usersandgroups/01_course.md)
 * [10 Rechten](./be-nl/10_permissions/01_course.md)
 * [11 Automatisatie](./be-nl/11_automation/01_course.md)
+* [12 Extra Ubuntu Pro](./be-nl/12_UbuntuPro/01_course.md)

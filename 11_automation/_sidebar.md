@@ -13,3 +13,4 @@
 * [11 Automation](./11_automation/01_course.md)
 ** [Lab](./11_automation/02_lab.md)
 ** [Assignment](./11_automation/99_assignments.md)
+* [12 Extra Ubuntu Pro](./12_UbuntuPro/01_course.md)

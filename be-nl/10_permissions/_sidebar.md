@@ -14,3 +14,4 @@
 ** [Oefeningen: Standaard file permissions](./be-nl/10_permissions/exercises/standard_file_permissions/99_exercises.md)
 ** [Extra oefeningen](./be-nl/10_permissions/exercises/users_groups_permissions_extra_exercises/99_exercises.md)
 * [11 Automatisatie](./be-nl/11_automation/01_course.md)
+* [12 Extra Ubuntu Pro](./be-nl/12_UbuntuPro/01_course.md)
