@@ -118,9 +118,9 @@ chmod u+x visitors_by_country.sh
 Linus wilt dit overzicht ook via een webpagina ter beschikking hebben. Daarom redirect hij de output van het script naar een html pagina:
 
 ```bash
-ubuntu@linux-ess:~$ ./scriptomuittelezen fullaccess.log > /var/www/html/monitor.html
+ubuntu@linux-ess:~$ ./visitors_by_country.sh fullaccess.log > /var/www/html/monitor.html
 -bash: /var/www/html/monitor.html: Permission denied
-ubuntu@linux-ess:~$ ./scriptomuittelezen fullaccess.log | sudo tee  /var/www/html/monitor.html
+ubuntu@linux-ess:~$ ./visitors_by_country.sh fullaccess.log | sudo tee  /var/www/html/monitor.html
 Bezoekers per land:
 IP Address not found: 100
 US: 10
@@ -207,7 +207,7 @@ done | sort -t ':' -k 2 -nr
 We redirecten de uitvoer van het script opnieuw naar de HTML pagina:
 
 ```bash
-ubuntu@linux-ess:~$ ./scriptomuittelezen fullaccess.log | sudo tee  /var/www/html/monitor.html
+ubuntu@linux-ess:~$ ./visitors_by_country.sh fullaccess.log | sudo tee  /var/www/html/monitor.html
 Bezoekers per land:
 IP Address not found: 100
 US: 10
