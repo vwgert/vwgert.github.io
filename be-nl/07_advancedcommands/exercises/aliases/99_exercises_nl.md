@@ -24,4 +24,4 @@ Swap:             0B          0B          0B
 ```
 
 ## Oefening 6 
-Gebruik Oefening 8 van de oefeningen over besturingsoperators en maak er een alias _show_ mee. 
+Gebruik Oefening 8 van de oefeningen over control operators en maak er een alias _show_ mee. 
