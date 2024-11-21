@@ -33,7 +33,7 @@ Show all files and directories from the folder "/etc" that have "sh" somewhere i
 Show all files and directories from the folder "/etc"  which have exactly 10 characters in their name, do not show the contents of the found folders. 
 
 ## Task 11
-Search in the "/etc" folder for a file that has "os" in its name followed by "release" somewhere. Show the contents of this file. 
+Search in the "/etc" folder for a file that has "os" in its name followed by "release" somewhere. (If you've found the file you can take a look at it to find out what content it holds) 
 
 ## Task 12
 Execute the following command and explain its result: 
