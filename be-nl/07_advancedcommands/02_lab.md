@@ -14,8 +14,8 @@ ubuntu@linux-ess:~$ getip
 Tevens wil hij een ICE(In Case of Emergency) aanmaken die de webserver onmiddellijk down brengt.
 
 ```bash
-ubuntu@linux-ess:~$ alias ice="systemctl stop nginx; systemctl status nginx --no-pager"
-ubuntu@linux-ess:~$ sudo ice
+ubuntu@linux-ess:~$ alias ice="sudo systemctl stop nginx; systemctl status nginx --no-pager"
+ubuntu@linux-ess:~$ ice
 ○ nginx.service - A high performance web server and a reverse proxy server
      Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
      Active: inactive (dead) since Fri 2024-06-21 11:04:58 UTC; 10ms ago
