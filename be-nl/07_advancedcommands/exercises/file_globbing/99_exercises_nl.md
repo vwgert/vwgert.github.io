@@ -30,7 +30,7 @@ Toon alle bestanden en mappen die eindigen op ".d" gevonden in de map "/etc", to
 Toon alle bestanden en mappen uit de map "/etc" die "sh" ergens in hun naam hebben  
 
 ## Oefening 10 
-Toon alle bestanden en mappen uit de map "/etc" met slechts 10 tekens in hun naam, toon de inhoud van de gevonden mappen niet.  
+Toon alle bestanden en mappen uit de map "/etc" waarvan de naam uit precies 10 tekens bestaat. Toon de inhoud van de gevonden mappen niet.  
 
 ## Oefening 11 
 Zoek in de map "/etc" naar een bestand met "os" in de naam gevolgd door "release" ergens. Toon de inhoud van dit bestand. 
