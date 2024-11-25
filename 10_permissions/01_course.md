@@ -21,7 +21,7 @@ drwxrwxr-x 2 student student 4096 okt  2 19:36 folder
 -rw-rw-r-- 1 student student    0 okt  2 19:36 test.txt
 ```
 
-?> <i class="fa-solid fa-circle-info"></i> The first character is a _-_ (minus) for a regular file and a _d_ for a directory. 
+?> <i class="fa-solid fa-circle-info"></i> The first character is a _-_ (minus) for a regular file and a _d_ for a directory. There are also some special characters: _b_ for block files, _c_ for character device files, _p_ for pile files, _l_ for symbolic link files and _s_ for socket files.
 
 
 ?> <i class="fa-solid fa-circle-info"></i> Directories in Linux have the same set of permissions. But because you need execute to access files in the directory, there is little you can do without it. The common permissions are rwx for a directory where you can do everything, r-x for a read-only directory, and ofcourse --- when you want to block access completely. 

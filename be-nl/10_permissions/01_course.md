@@ -22,7 +22,7 @@ drwxrwxr-x 2 student student 4096 okt  2 19:36 folder
 -rw-rw-r-- 1 student student    0 okt  2 19:36 test.txt
 ```
 
-?> <i class="fa-solid fa-circle-info"></i> Het eerste teken is een _-_ (min) voor een regulier bestand en een _d_ voor een map.  
+?> <i class="fa-solid fa-circle-info"></i> Het eerste teken is een _-_ (min) voor een regulier bestand en een _d_ voor een map. Er zijn ook een aantal speciale karakters: _b_ voor block bestanden, _c_ voor character apparaat bestanden, _p_ voor pile bestanden, _l_ voor symbolisch gelinkte bestanden and _s_ voor socket bestanden.
 
 ?> <i class="fa-solid fa-circle-info"></i> Mappen in Linux hebben dezelfde set van permissies. Maar omdat je execute-rechten nodig hebt om toegang te krijgen tot bestanden in de map, kan je weinig zonder. De algemene permissies zijn rwx voor een map waar je alles kunt doen, r-x voor een alleen-lezen directory en natuurlijk --- wanneer je de toegang volledig wilt blokkeren.  
 
