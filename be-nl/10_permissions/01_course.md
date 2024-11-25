@@ -29,17 +29,30 @@ drwxrwxr-x 2 student student 4096 okt  2 19:36 folder
 Er zijn drie sets omdat er drie verschillende sets mensen zijn waarop permissies kunnen worden toegepast. De eerste set beschrijft de machtigingen voor de eigenaar van het bestand (de eerste naam achter de permissies), de tweede is van toepassing op iedereen die lid is van de groep die eigenaar is van het bestand (de tweede naam). De laatste set is voor iedereen die niet onder één van de eerste twee categorieën valt. Dus in het kort: De drie sets zijn van toepassing op **userowner**, **groupowner** en **others**, in die volgorde. 
 
 Wanneer een gebruiker een bestand maakt, wordt hij automatisch de eigenaar van dat bestand. De groep die eigenaar is van het bestand wordt bepaald door de **primaire groep** van de gebruiker. Standaard is de primary group van een gebruiker een groep met dezelfde naam als de gebruikersnaam, daarom zie je vaak dat owner en groupowner dezelfde naam hebben (zoals _student student_ in het bovenstaande voorbeeld). De map `/dev`, die de bestanden bevat die je hardware vertegenwoordigen, is een van de plaatsen waar je bestanden vindt die eigendom zijn van de root-gebruiker met een andere groep als eigenaar. 
-  
+
 
 ```bash
 student@linux-ess:~$ ls -l /dev/s[dr]?
 brw-rw---- 1 root disk   8, 0 Nov 11 10:44 /dev/sda
 brw-rw---- 1 root cdrom 11, 0 Nov 11 10:43 /dev/sr0
-```   
+```
 
 File permissions worden op schijf geschreven als een veld met bits in de eigenschappen van het bestand. Een bit is ingesteld op 1 wanneer een toestemming wordt verleend, 0 wanneer dat niet het geval is. Dus rwxrw-r-- wordt 111110100. Omdat mensen niet erg goed zijn in het ontleden van binaire sequenties, worden ze weergegeven als octale getallen, getallen van 0 tot 7 (000 tot 111 in binair). Om het octale getal te berekenen, onthoud dat lezen 4 waard is, bewerken 2 en uitvoeren 1. Voeg die toe die je nodig hebt en je krijgt de octale notatie. Het bovenstaande voorbeeld wordt 764 (rwx = 4+2+1=7,      rw- = 4+2+0=6,      r-- =  4+0+0=4). 
 
-![file permissions](../images/10/filepermissions.png)
+
+
+| **Binary** | **Octal** | **Permission (rwx)** | **Short Description**                           |
+| ---------- | --------- | -------------------- | ----------------------------------------------- |
+| `000`      | `0`       | `---`                | No permissions: cannot read, write, or execute. |
+| `001`      | `1`       | `--x`                | Execute only: can run as a program.             |
+| `010`      | `2`       | `-w-`                | Write only: can modify but not read.            |
+| `011`      | `3`       | `-wx`                | Write and execute: modify and run as a program. |
+| `100`      | `4`       | `r--`                | Read only: can view but not modify or execute.  |
+| `101`      | `5`       | `r-x`                | Read and execute: view and run as a program.    |
+| `110`      | `6`       | `rw-`                | Read and write: view and modify.                |
+| `111`      | `7`       | `rwx`                | Full permissions: view, modify, and execute.    |
+
+
 
 ## Rechten wijzigen (chmod) 
 
@@ -162,7 +175,7 @@ drwx------ 2 student student 4096 okt 15 16:25 newfolder1
 ?> <i class="fa-solid fa-circle-info"></i> Als je de umask instelt met het commando, wordt de umask voor uw huidige terminalsessie gewijzigd. Als je de terminal verlaat, wordt deze opnieuw ingesteld op de standaardwaarde. Om het permanent te maken, voeg je `umask <uw umask>` toe aan het `.profile`-bestand van je gebruiker in je homefolder. 
 
 Nog een laatste ding om op te letten: als je naar het volgende voorbeeld kijkt, zie je dat bestanden die door de rootgebruiker zijn gemaakt een andere umask-set hebben. 
-  
+
 ```bash
 student@linux-ess:~/course$ touch file
 student@linux-ess:~/course$ sudo touch file2
@@ -222,7 +235,7 @@ liam@linux-ess:~$ head -3 /home/jacob/.profile
 # exists.  
 liam@linux-ess:~$ exit
 ```
- 
+
 ?> Zoals je kan zien, kan de gebruiker Liam de bestanden bekijken van de homefolder van de gebruiker Jacob en dat kan de bedoeling niet zijn. 
 
 We geven eerst beide gebruikers hun eigen primaire groep: 
@@ -350,7 +363,7 @@ Dit principe wordt ook gebruikt in de map `/tmp` van het systeem, waardoor gebru
 ```bash
 student@linux-ess:~$ ls -ld /tmp/
 drwxrwxrwt 24 root root 4096 nov 27 13:50 /tmp/
-``` 
+```
 ?> Let op de t die de x in de 'andere' set machtigingen heeft vervangen wanneer de sticky bit is ingesteld. 
 
 Net als bij andere machtigingsbits gebruik je **chmod** om de sticky bit toe te voegen of te verwijderen. 
@@ -492,14 +505,14 @@ student@linux-ess:~$ sudo apt install acl
 Wanneer het is geïnstalleerd, moet het worden ingeschakeld wanneer het filesysteem wordt gemount. In onze Ubuntu installatie wordt de ACL-functionaliteit standaard geladen. Om ACL's toe te voegen aan een bestand of map, gebruik je het `setfacl` commando. Wanneer we ACL's hebben ingesteld, kunnen deze worden bekeken met het `getfacl` commando.  
 
 ?> Om ACL's toe te voegen moet je de __eigenaar__ zijn van het bestand of de map. Als je wordt toegevoegd aan een ACL wil dit dus niet zeggen dat je de ACL's ook zelf kunt wijzigen.  
-  
+
 ?> ACL-machtigingen hebben __voorrang__ op de reguliere bestandsmachtigingen. Enige uitzondering hierop zijn de rechten van de userowner. Indien de filepermissions van de userowner beknopter zijn dan de ACLs van deze gebruiker, dan zullen deze ACLs niet worden toegepast (dus _r--..._    en ACL    _u : student : rw_   zal resulteren in enkel read rechten)  
-  
+
 ?> Alle ACL-machtigingen zijn __cumulatief__. Dit betekent dat, als we in 2 groepen zitten die worden toegevoegd aan een bestand met ACL's, één met r-- rechten en één met rwx-rechten, we de rwx-rechten hebben.  
-  
+
 
 Met het commando `setfacl` kunnen we ACL's wijzigen (-m) of verwijderen (-x). 
- 
+
 ```bash
 student@linux-ess:~$ touch memo
 student@linux-ess:~$ ls -l memo
@@ -591,7 +604,7 @@ student@linux-ess:~$ ls -l memo
 ```
 
 We kunnen ook default ACL's toevoegen door de parameter d: toe te voegen of de optie -d toe te voegen. de _default_-instelling zorgt ervoor dat nieuwe subbestanden en submappen dezelfde ACL's krijgen als de opgegeven map. Houd er rekening mee dat dit enkel kan als de groep of gebruiker ook daadwerkelijk de machtigingen heeft om het respectievelijk bestand of de respectievelijke map aan te maken! 
-  
+
 ```bash
 student@linux-ess:~$ mkdir memos
 student@linux-ess:~$ ls -ld memos

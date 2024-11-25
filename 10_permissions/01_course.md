@@ -20,9 +20,9 @@ drwxrwxr-x 2 student student 4096 okt  2 19:36 folder
 -rw-rw-r-- 1 student student    0 okt  2 19:36 rights.jpg
 -rw-rw-r-- 1 student student    0 okt  2 19:36 test.txt
 ```
-   
+
 ?> <i class="fa-solid fa-circle-info"></i> The first character is a _-_ (minus) for a regular file and a _d_ for a directory. 
-  
+
 
 ?> <i class="fa-solid fa-circle-info"></i> Directories in Linux have the same set of permissions. But because you need execute to access files in the directory, there is little you can do without it. The common permissions are rwx for a directory where you can do everything, r-x for a read-only directory, and ofcourse --- when you want to block access completely. 
 
@@ -34,11 +34,24 @@ When a user creates a file he automatically becomes the owner of that file. The 
 student@linux-ess:~$ ls -l /dev/s[dr]?
 brw-rw---- 1 root disk   8, 0 Nov 11 10:44 /dev/sda
 brw-rw---- 1 root cdrom 11, 0 Nov 11 10:43 /dev/sr0
-```   
+```
 
 File permissions are written on disk as a field of bits in the file's properties. A bit is set to 1 when a permission is granted, 0 when it's not. So rwxrw-r-- becomes 111110100. Because humans are not very good at parsing binary sequences, they are represented as as octal numbers, numbers from 0 to 7 (000 to 111 in binary). To calculate the octal number remember that read is worth 4, write 2 and execute 1. Add those you need and you'll get the octal notation. The example above becomes 764 (rwx = 4+2+1=7,      rw- = 4+2+0=6,        r-- = 4+0+0=4).
 
-![file permissions](../images/10/filepermissions.png)
+
+
+| **Binary** | **Octal** | **Permission (rwx)** | **Short Description**                           |
+| ---------- | --------- | -------------------- | ----------------------------------------------- |
+| `000`      | `0`       | `---`                | No permissions: cannot read, write, or execute. |
+| `001`      | `1`       | `--x`                | Execute only: can run as a program.             |
+| `010`      | `2`       | `-w-`                | Write only: can modify but not read.            |
+| `011`      | `3`       | `-wx`                | Write and execute: modify and run as a program. |
+| `100`      | `4`       | `r--`                | Read only: can view but not modify or execute.  |
+| `101`      | `5`       | `r-x`                | Read and execute: view and run as a program.    |
+| `110`      | `6`       | `rw-`                | Read and write: view and modify.                |
+| `111`      | `7`       | `rwx`                | Full permissions: view, modify, and execute.    |
+
+
 
 ## Changing permissions (chmod)
 
@@ -161,10 +174,10 @@ student@linux-ess:~/course$ ls -ld newfolder1
 drwx------ 2 student student 4096 okt 15 16:25 newfolder1
 ```
 ?> <i class="fa-solid fa-circle-info"></i> Setting the umask using the command changes the umask for your current terminal session. Exiting the terminal will reset it to the default value. To make it permanent add `umask <your umask>` to your user's `.profile` file in your home directory.
-  
-  
+
+
 One last thing to be aware of: If you look at the following example, you'll see that files created by the root user have a different umask set.
-  
+
 ```bash
 student@linux-ess:~/course$ touch file
 student@linux-ess:~/course$ sudo touch file2
@@ -181,8 +194,8 @@ UMASK           022 #line 151
 USERGROUPS_ENAB yes #line 230
 ```
 To change the setting system-wide you can change the value for umask there. The default umask specified is the one the root user uses (no write for anybody but the owner). The reason files created by regular users get an extra w for the group, is the option on line 230. This option specifies that for any non-root user that has the same user-id as group-id (so the primary group is unchanged) the group umask-bits gets changed to the user umask-bits, explaining the 002 umask seen earlier.
-  
-  
+
+
 ?> <i class="fa-solid fa-circle-info"></i> You can also use the letter notation with umask:
 ```bash
 student@linux-ess:~$ umask
@@ -203,7 +216,7 @@ student@linux-ess:~$ ls -l file4
 ```
 
   
-  
+
 ## Working together in a team (setgid)
 
 If we want to be able to work together it is key that certain users are able to change each others files in a shared folder. The solution to give these users the same primary group is a security issue because this also changes the rights on their homefolders:
@@ -227,9 +240,9 @@ liam@linux-ess:~$ head -3 /home/jacob/.profile
 # exists.  
 liam@linux-ess:~$ exit
 ```
-  
+
 ?> As you can see the user Liam can view the files from the homefolder of the user Jacob and this isn't what we want.
-  
+
 First of all we will give both users their own primary group:
 ```bash
 student@linux-ess:~$ sudo groupadd liam
@@ -244,7 +257,7 @@ student@linux-ess:~$ sudo ls -l /home/jacob/.profile
 ```
 
 ?> Note that changing the primary group of a user also changes the groupowner of every file in his homefolder.
-  
+
 We will create a group for the two users to give them rights on a shared folder that we will create in the next step. We'll also add the users to this new group:
 ```bash
 student@linux-ess:~$ sudo groupadd ict
@@ -253,7 +266,7 @@ student@linux-ess:~$ sudo usermod -aG ict jacob
 student@linux-ess:~$ grep ict /etc/group
 ict:x:1005:liam,jacob
 ```
-    
+
 We will make the directory that will be shared between the two users, and we will give it the necessary permissions:
 ```bash
 student@linux-ess:~$ sudo mkdir -p /shares/ict
@@ -308,7 +321,7 @@ student@linux-ess:~$ sudo chmod g+s /shares/ict
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-x 3 root ict 4096 Nov 26 16:12 /shares/ict/
 ```
-  
+
 ?> As you can see in the permissions of the groupowner it now ends with a letter _s_. A lowercase _s_ means that there is an _x_ underneath, an uppercase _S_ means that there is no _x_ underneath.
 
 The special bit setgid means that files and folders that will be created in this folder will get the same groupowner as this folder itself:
@@ -353,7 +366,7 @@ This principle is also used in the system's `/tmp` folder, disallowing users to 
 ```bash
 student@linux-ess:~$ ls -ld /tmp/
 drwxrwxrwt 24 root root 4096 nov 27 13:50 /tmp/
-``` 
+```
 ?> Notice the t that replaced the x in the 'other' set of permissions when the sticky bit is set.
 
 Just like with other permission bits you use **chmod** to add or remove the sticky bit.
@@ -487,7 +500,7 @@ student@linux-ess:~$ stat -c '%a %n' /bin/passwd
 | u+s (etuid)  | The file will execute as the owner of the file, not as the user who ran it    | No effect          |
 | g+s (setgid) | The file will execute as the group that owns the file                         | Files that are created in the directory will get the same groupowner as the directory |
 | o+t (sticky) | No effect                                                                     | Users with write access to the directory can only remove file they own, they cannot remove or force save someone elses files |
-          
+
 ## Access control lists
 The ACL feature was created to give users the ability to selectively share files and folders with other users and groups. 
 Before ACL’s can be implemented we need to install the package:
@@ -495,15 +508,15 @@ Before ACL’s can be implemented we need to install the package:
 student@linux-ess:~$ sudo apt install acl
 ```
 When installed, it needs to be turned on when the filesystem is mounted. In our Ubuntu installation ACL’s are loaded by default. To add ACL’s to a file or folder, use the `setfacl` command. ACL’s can be viewed with the `getfacl` command.  
-  
+
 ?> To add ACL’s you need to be the owner of the file or folder, if you are added by an ACL you will not be able to modify the ACL’s yourself.   
-  
+
 ?> ACL permissions have precedence over the regular file permissions. The only exception is for the userowner. When the filepermissions of the userowner are less than the ACLs for this user, then these ACLs will not be effective  (so _r--..._    and ACL    _u : student : rw_   will result in only read rights) 
-  
+
 ?> All ACL permissions are cumulative, this means if we are in 2 groups that are added to a file with ACL’s. One with r-- rights and one with rwx rights, we will have rwx rights.   
-  
+
 With the `setfacl` command, we’ll be able to modify (-m) or delete (-x) ACL’s. 
- 
+
 ```bash
 student@linux-ess:~$ touch memo
 student@linux-ess:~$ ls -l memo
@@ -538,8 +551,8 @@ other::r--
 
 ```
 ?> <i class="fa-solid fa-circle-info"></i> For teacher to be able to access the student's file memo in it's homefolder we need to edit some permissions. A possible solution would be: `setfacl -m u:teacher:rx /home/student`. Now, teacher can enter and look in the homefolder of student.   
-  
-  
+
+
 ?> <i class="fa-solid fa-circle-info"></i> In the previous example, we also see a mask option, this option decides the maximum permission and also has precedence over the regular file permissions except for the user owner. We can also add this parameter as follows:
 ```bash
 student@linux-ess:~$ setfacl -m m:r memo 
@@ -558,7 +571,7 @@ student@linux-ess:~$ ls -l memo
 -rw-r--r--+ 1 student student 0 Nov 11 14:15 memo
 ```
 ?> <i class="fa-solid fa-circle-info"></i> The mask is reflected by the group permissions you'll see with the command _ls -l_. 
-   
+
 If we want to remove an ACL entry from the file we can use the -x option:
 ```bash
 student@linux-ess:~$ setfacl -x g:it memo
@@ -578,7 +591,7 @@ student@linux-ess:~$ ls -l memo
 
 ?> <i class="fa-solid fa-circle-info"></i> Note that the mask of the file _memo_ has automatically changed _rw-_. This is because we changed ACLs and the mask has to make sure that all user-ACLs and group-ACLs can be applied (user : teacher : rw-).
 
-  
+
 If we want to remove all ACL entries from the file we can use the -b option:
 ```bash
 student@linux-ess:~$ setfacl -b memo
@@ -595,7 +608,7 @@ student@linux-ess:~$ ls -l memo
 ```
 
 We can also add default ACL’s by adding the d: parameter or adding the -d option. The default part makes sure new subfiles and subfolders get the same ACL’s as the specified directory. Note that the user or group need to have the permissions to create the file or folder itself! 
-  
+
 ```bash
 student@linux-ess:~$ mkdir memos
 student@linux-ess:~$ ls -ld memos
