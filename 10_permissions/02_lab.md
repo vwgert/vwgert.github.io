@@ -260,16 +260,9 @@ Click on *Edit inbound rules*![img](../images/05/AD_4nXeCqyqSnnHrg4edeJnBXRW2lBD
 Add another rule of the type custom UDP, allow 'any-where IPv4' and give it a usefull comment. Save and now we can go on.
 ![img](../images/05/inboundrule_UDP.png)
 
-*Second* we need to get the IP adres of the server. We type `ip a` and look for the IP address of our network interface (ens33 or eth0)
+*Second* we need to get the IP adres of the server. This is the same IP adres you use to connect via SSH.
 
-```bash
-ip a
-```
-
-![CLI_LAB_ip_a](../images/10/CLI_LAB_ip_a.png)
-<br />
-
-*Second* we need make sure the server is actually running by using the `minetest` command we created above. We leave this process active:
+*Third* we need make sure the server is actually running by using the `minetest` command we created above. We leave this process active:
 
 ```bash
 student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
