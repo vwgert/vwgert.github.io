@@ -391,7 +391,7 @@ student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-t 3 root ict 4096 nov 27 15:05 /shares/ict/
 student@linux-ess:~$ su - liam
 Password: 
-liam@linux-ess:~$ cd /shares/ict
+liam@linux-ess:~$ cd /shares/ict              #Vergeet  sudo sysctl fs.protected_regular=1  niet -> zie lager
 liam@linux-ess:/shares/ict$ rm -rf testdir2/  #Liam kan Jacob's bestanden of mappen niet langer verwijderen
 rm: cannot remove 'testdir2/': Operation not permitted	
 liam@linux-ess:/shares/ict$ exit
