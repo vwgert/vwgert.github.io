@@ -27,7 +27,7 @@ Zo niet, los dit probleem dan op
 
 
 ## Oefening 6
-Verander je umask in 0037. 
+Verander je umask in 0037. Maak een nieuwe file en folder en check de rechten.
 
 
 ## Oefening 7
