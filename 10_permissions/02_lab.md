@@ -252,16 +252,17 @@ env_meta.txt  force_loaded.txt  ipban.txt  map_meta.txt  map.sqlite  world.mt
 
 ## Connecting to the server
 
-*First* we need to get the IP adres of the server. We type `ip a` and look for the IP address of our network interface (ens33 or eth0)
+*First* we need to give an inbound security rule so our server will see a connection request on UDP port 30000. To do this we need to go to our security group and add a new rule.
+Click on the *Security Group* to change te configuration![img](../images/05/AD_4nXfajb5p1DJuextkhIyQjVkPr6-pYjuf7zZXDMxqHQPMxkl86nyjMR-tWwXXazdvSH3gYjRRNkt03dI4fEKD32HABQ9L6lt6ifvJ0qlHhAwP6Wa6ULABqeOWjw_BB64a2xQxpSAQGQ3dxOwJM-PUNLsa4bg.png)
 
-```bash
-ip a
-```
+Click on *Edit inbound rules*![img](../images/05/AD_4nXeCqyqSnnHrg4edeJnBXRW2lBDOkbAs_k0wFcma3FVtI7kS0Gt-rTTIfVKbCKMR6rlgqyziFpn5OTXLN0GA4n_qGUyEGQunmIKPTlqWi8Jatdpk-46rs6Vo2HZYwCtSte--tgOCWnm0WW_PUu94Jym0D8vl.png)
 
-![CLI_LAB_ip_a](../images/10/CLI_LAB_ip_a.png)
-<br />
+Add another rule of the type custom UDP, allow 'any-where IPv4' and give it a usefull comment. Save and now we can go on.
+![img](../images/05/inboundrule_UDP.png)
 
-*Second* we need make sure the server is actually running by using the `minetest` command we created above. We leave this process active:
+*Second* we need to get the IP adres of the server. This is the same IP adres you use to connect via SSH.
+
+*Third* we need make sure the server is actually running by using the `minetest` command we created above. We leave this process active:
 
 ```bash
 student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
@@ -329,7 +330,7 @@ student@linux-ess:~$ cd ~/linuscraft/serverfiles
 After doing so we will download the zip file containing our new world by running the command below:
 
 ```bash
-student@linux-ess:~/linuscraft/serverfiles$ wget https://d-ries.github.io/linux-essentials/data/customworld.zip
+student@linux-ess:~/linuscraft/serverfiles$ wget https://vwgert.github.io/linux-essentials/data/customworld.zip
 ```
 
 If we want to take a look into the zip, we can use ```less customworld.zip```  
