@@ -251,8 +251,16 @@ env_meta.txt  force_loaded.txt  ipban.txt  map_meta.txt  map.sqlite  world.mt
 ```
 
 ## Verbinding maken met de server 
+*Eerst* moeten we een nieuwe ingaande veiligheidsregel toevoegen zodat de server onze request op UDP poort 30000 krijgt. Om dit te doen gaan je naar de security group en voeg je een nieuwe regel toe.
 
-*Eerst* moeten we het IP-adres van de server krijgen. We typen `ip a` en zoeken naar het IP-adres van onze netwerkinterface (ens33 of eth0) 
+Klik op de *Security Group* om deze aan te passen![img](../images/05/AD_4nXfajb5p1DJuextkhIyQjVkPr6-pYjuf7zZXDMxqHQPMxkl86nyjMR-tWwXXazdvSH3gYjRRNkt03dI4fEKD32HABQ9L6lt6ifvJ0qlHhAwP6Wa6ULABqeOWjw_BB64a2xQxpSAQGQ3dxOwJM-PUNLsa4bg.png)
+
+Klik op *Edit inbound rules*![img](../images/05/AD_4nXeCqyqSnnHrg4edeJnBXRW2lBDOkbAs_k0wFcma3FVtI7kS0Gt-rTTIfVKbCKMR6rlgqyziFpn5OTXLN0GA4n_qGUyEGQunmIKPTlqWi8Jatdpk-46rs6Vo2HZYwCtSte--tgOCWnm0WW_PUu94Jym0D8vl.png)
+
+Voeg nog een regel toe van het type custom UDP, laat 'any-where IPv4' toe en geeft het een bruikbaar commentaar. Sla op en dan kunnen we verder.
+[img](../images/05/inbouwrule_UDP.png)
+
+*Ten tweede* moeten we het IP-adres van de server krijgen. We typen `ip a` en zoeken naar het IP-adres van onze netwerkinterface (ens33 of eth0) 
 
 ```bash
 ip a

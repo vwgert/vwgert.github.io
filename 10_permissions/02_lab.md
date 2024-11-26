@@ -252,7 +252,15 @@ env_meta.txt  force_loaded.txt  ipban.txt  map_meta.txt  map.sqlite  world.mt
 
 ## Connecting to the server
 
-*First* we need to get the IP adres of the server. We type `ip a` and look for the IP address of our network interface (ens33 or eth0)
+*First* we need to give an inbound security rule so our server will see a connection request on UDP port 30000. To do this we need to go to our security group and add a new rule.
+Click on the *Security Group* to change te configuration![img](../images/05/AD_4nXfajb5p1DJuextkhIyQjVkPr6-pYjuf7zZXDMxqHQPMxkl86nyjMR-tWwXXazdvSH3gYjRRNkt03dI4fEKD32HABQ9L6lt6ifvJ0qlHhAwP6Wa6ULABqeOWjw_BB64a2xQxpSAQGQ3dxOwJM-PUNLsa4bg.png)
+
+Click on *Edit inbound rules*![img](../images/05/AD_4nXeCqyqSnnHrg4edeJnBXRW2lBDOkbAs_k0wFcma3FVtI7kS0Gt-rTTIfVKbCKMR6rlgqyziFpn5OTXLN0GA4n_qGUyEGQunmIKPTlqWi8Jatdpk-46rs6Vo2HZYwCtSte--tgOCWnm0WW_PUu94Jym0D8vl.png)
+
+Add another rule of the type custom UDP, allow 'any-where IPv4' and give it a usefull comment. Save and now we can go on.
+[img](../images/05/inbouwrule_UDP.png)
+
+*Second* we need to get the IP adres of the server. We type `ip a` and look for the IP address of our network interface (ens33 or eth0)
 
 ```bash
 ip a
