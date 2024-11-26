@@ -127,7 +127,7 @@ Processing triggers for man-db (2.9.1-1) ...
 student@linux-ess:~$
 ```
 
-?> <i class="fa-solid fa-circle-info"></i> If you get an error running the command above, try running `sudo apt-get update` and run the `sudo apt-get install minetest` command again. We will learn about updating `apt` repositories in a later lesson.
+?> <i class="fa-solid fa-circle-info"></i> If you get an error running the command above, try running `sudo apt-get update` and run the `sudo apt-get install minetest` command again.
 
 The command above will prompt you for your password and might also prompt to ask you if you are sure you want to install a bunch of packages. 
 

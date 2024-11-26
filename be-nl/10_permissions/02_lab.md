@@ -127,7 +127,7 @@ Processing triggers for man-db (2.9.1-1) ...
 student@linux-ess:~$
 ```
 
-?> <i class="fa-solid fa-circle-info"></i> Als je een fout krijgt bij het uitvoeren van de bovenstaande opdracht, probeert `sudo apt-get update` uit te voeren en voert de opdracht `sudo apt-get install minetest` opnieuw uit. We zullen in een latere les meer te weten komen over het bijwerken van `apt`-repositories. 
+?> <i class="fa-solid fa-circle-info"></i> Als je een fout krijgt bij het uitvoeren van de bovenstaande opdracht, probeert `sudo apt-get update` uit te voeren en voert de opdracht `sudo apt-get install minetest` opnieuw uit. 
 
 De bovenstaande opdracht vraagt je om je wachtwoord en kan je ook vragen of je zeker weet dat je een heleboel pakketten wilt installeren.  
 
