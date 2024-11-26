@@ -258,7 +258,7 @@ Klik op de *Security Group* om deze aan te passen![img](../images/05/AD_4nXfajb5
 Klik op *Edit inbound rules*![img](../images/05/AD_4nXeCqyqSnnHrg4edeJnBXRW2lBDOkbAs_k0wFcma3FVtI7kS0Gt-rTTIfVKbCKMR6rlgqyziFpn5OTXLN0GA4n_qGUyEGQunmIKPTlqWi8Jatdpk-46rs6Vo2HZYwCtSte--tgOCWnm0WW_PUu94Jym0D8vl.png)
 
 Voeg nog een regel toe van het type custom UDP, laat 'any-where IPv4' toe en geeft het een bruikbaar commentaar. Sla op en dan kunnen we verder.
-[img](../images/05/inboundrule_UDP.png)
+![img](../images/05/inboundrule_UDP.png)
 
 *Ten tweede* moeten we het IP-adres van de server krijgen. We typen `ip a` en zoeken naar het IP-adres van onze netwerkinterface (ens33 of eth0) 
 

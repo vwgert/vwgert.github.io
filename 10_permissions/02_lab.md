@@ -258,7 +258,7 @@ Click on the *Security Group* to change te configuration![img](../images/05/AD_4
 Click on *Edit inbound rules*![img](../images/05/AD_4nXeCqyqSnnHrg4edeJnBXRW2lBDOkbAs_k0wFcma3FVtI7kS0Gt-rTTIfVKbCKMR6rlgqyziFpn5OTXLN0GA4n_qGUyEGQunmIKPTlqWi8Jatdpk-46rs6Vo2HZYwCtSte--tgOCWnm0WW_PUu94Jym0D8vl.png)
 
 Add another rule of the type custom UDP, allow 'any-where IPv4' and give it a usefull comment. Save and now we can go on.
-[img](../images/05/inboundrule_UDP.png)
+![img](../images/05/inboundrule_UDP.png)
 
 *Second* we need to get the IP adres of the server. We type `ip a` and look for the IP address of our network interface (ens33 or eth0)
 
