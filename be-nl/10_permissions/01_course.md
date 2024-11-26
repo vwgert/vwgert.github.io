@@ -442,7 +442,7 @@ student@linux-ess:/shares$ ls -ld ict3/
 drwxrwxr-x 2 root ict 4096 nov 27 15:20 ict3/
 ```
 
-Als je wilt dat de gebruikers van de groep ict samenwerken aan elkaars bestanden en je tegelijkertijd wilt dat ze elkaars bestanden niet kunnen verwijderen, moet je de kernelparameter fs.protected_regular=1 instellen. 
+Als je wilt dat de gebruikers van de groep ict samenwerken aan elkaars bestanden en je tegelijkertijd wilt dat ze elkaars bestanden niet kunnen verwijderen, moet je echter de kernelparameter fs.protected_regular=1 instellen. 
 ```bash
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-t 3 root ict 4096 nov 27 15:05 /shares/ict/
