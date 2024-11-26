@@ -27,7 +27,7 @@ If not, resolve this problem
 
 
 ## Task 6
-Change your umask to 0037.
+Change your umask to 0037. Touch a file and check if the rights are different.
 
 
 ## Task 7
