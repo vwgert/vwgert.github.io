@@ -337,7 +337,7 @@ student@linux-ess:~$ cd ~/linuscraft/serverfiles
 After doing so we will download the zip file containing our new world by running the command below:
 
 ```bash
-student@linux-ess:~/linuscraft/serverfiles$ wget https://d-ries.github.io/linux-essentials/data/customworld.zip
+student@linux-ess:~/linuscraft/serverfiles$ wget https://vwgert.github.io/linux-essentials/data/customworld.zip
 ```
 
 If we want to take a look into the zip, we can use ```less customworld.zip```  
