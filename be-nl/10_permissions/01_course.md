@@ -364,7 +364,7 @@ Dit principe wordt ook gebruikt in de map `/tmp` van het systeem, waardoor gebru
 student@linux-ess:~$ ls -ld /tmp/
 drwxrwxrwt 24 root root 4096 nov 27 13:50 /tmp/
 ```
-?> Let op de t die de x in de 'andere' set machtigingen heeft vervangen wanneer de sticky bit is ingesteld. 
+?> Let op de t die de x in de 'others' set machtigingen heeft vervangen wanneer de sticky bit is ingesteld. 
 
 Net als bij andere machtigingsbits gebruik je **chmod** om de sticky bit toe te voegen of te verwijderen. 
 
@@ -426,7 +426,7 @@ student@linux-ess:/shares$ ls -ld ict3
 drwxr-x--- 5 root ict 4096 nov 27 15:20 ict3
 student@linux-ess:/shares$ sudo chmod 3770 ict3
 student@linux-ess:/shares$ ls -ld ict3
-drwxrws--T 2 root ict 4096 nov 27 15:20 ict3 #zowel setgid en sticky bit staan aan, wanneer de x voor andere niet aan staat, wordt er een hoofdletter T getoont
+drwxrws--T 2 root ict 4096 nov 27 15:20 ict3 #zowel setgid en sticky bit staan aan, wanneer de x voor others niet aan staat, wordt er een hoofdletter T getoont
 ```
 
 Om de sticky bit uit te zetten, gebruik je een nul. Een driecijferige modus verwijdert ook de sticky bit. Merk op dat de setgid bit behouden blijft. Om alle speciale machtigingen te verwijderen, voeg je nog een nul toe aan de voorkant (00xxx)!
@@ -490,9 +490,9 @@ student@linux-ess:~$ stat -c '%a %n' /bin/passwd
 
 ## Overzicht van speciale bits
 
-| Toestemming | Effect op bestanden                                                            | Effect op directories                                      | 
+| Toestemming | Effect op bestanden                                                            | Effect op directories                                      |
 | ------------ | ----------------------------------------------------------------------------- | ------------------ |
-| u+s (etuid)  | Het bestand wordt uitgevoerd als de eigenaar van het bestand, niet als de gebruiker die het uitvoerde | Geen effect         |
+| u+s (setuid) | Het bestand wordt uitgevoerd als de eigenaar van het bestand, niet als de gebruiker die het uitvoerde | Geen effect         |
 | g+s (setgid) | Het bestand wordt uitgevoerd als de groep die het bestand bezit                | Bestanden die in de directory worden aangemaakt, krijgen dezelfde groepseigenaar als de directory |
 | o+t (sticky) | Geen effect                                                                    | Gebruikers met schrijfrechten voor de directory kunnen alleen bestanden verwijderen die ze zelf bezitten; ze kunnen geen bestanden van anderen verwijderen of geforceerd opslaan |
 
