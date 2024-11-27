@@ -80,7 +80,7 @@ Set all the permissions and ACL's for the scenario mentioned above. Do not use t
     
 ## Task 8
 Create the directory structure with the necessary users, groups and ACLs as shown in the image below.
-![foldersecurity](../../../images/09/folderSecurity.PNG)
+![foldersecurity](../images/10/fcolderSecurity.png)
 
 Test where the users Ava and Oliver have read and write permissions.
 
