@@ -83,7 +83,7 @@ Stel alle machtigingen en ACL's in voor het hierboven genoemde scenario. Gebruik
 ## Oefening 8
 Maak de directorystructuur met de benodigde gebruikers, groepen en ACL's zoals weergegeven in de onderstaande afbeelding. 
 
-![mapbeveiliging](../images/09/folderSecurity.png) 
+![mapbeveiliging](../../../images/10/folderSecurity.png) 
 
 Test waar de gebruikers Ava en Oliver lees- en bewerkingsrechten hebben. 
 
