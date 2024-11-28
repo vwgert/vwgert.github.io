@@ -16,7 +16,7 @@ man -k package                    or                    apropos package
 ```
 De opdracht geeft de volgende uitvoer: 
 ```
-student@linux-ess:~$ man -k package
+ubuntu@aws-linux-ess:~$ man -k package
 apt-extracttemplates (1) - Utility to extract debconf config and templates from Debian packages
 apt-get (8)          - APT package handling utility -- command-line interface
 apt-mark (8)         - show, set and unset various settings for a package
@@ -99,7 +99,7 @@ Hij kan door de manpage navigeren met behulp van de pijltjestoetsen op het toets
 Met de kennis die hij zojuist heeft verzameld, probeert hij Minetest te installeren: 
 
 ```bash
-student@linux-ess:~$ apt-get install minetest
+ubuntu@aws-linux-ess:~$ apt-get install minetest
 E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
 ```
@@ -109,7 +109,7 @@ Hij ziet een fout (`permission denied`). Het is belangrijk om foutmeldingen te l
 ?> <i class="fa-solid fa-circle-info"></i> Gebruik de `pijl-omhoog` om de _history_ te gebruiken en gebruik de `linkerpijl` of `home-toets` om naar het _begin van de lijn_ te gaan om sudo te typen. 
 
 ```bash
-student@linux-ess:~$ sudo apt-get install minetest
+ubuntu@aws-linux-ess:~$ sudo apt-get install minetest
 [sudo] password for student:
 Reading package lists... Done
 Building dependency tree
@@ -124,16 +124,14 @@ Processing triggers for mime-support (3.64ubuntu1) ...
 Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
 Processing triggers for man-db (2.9.1-1) ...
 ...
-student@linux-ess:~$
+ubuntu@aws-linux-ess:~$
 ```
 
 ?> <i class="fa-solid fa-circle-info"></i> Als je een fout krijgt bij het uitvoeren van de bovenstaande opdracht, probeert `sudo apt-get update` uit te voeren en voert de opdracht `sudo apt-get install minetest` opnieuw uit. 
 
 De bovenstaande opdracht vraagt je om je wachtwoord en kan je ook vragen of je zeker weet dat je een heleboel pakketten wilt installeren.  
 
-De installatie is geslaagd (denkt hij, want we krijgen niet echt een succesboodschap ofzo). Linus ziet een hele hoop uitvoer, maar hij heeft geen idee waar minetest zich bevindt of hoe hij zelfs de serverbestanden kan uitvoeren. In het volgende hoofdstuk zullen we onderzoeken hoe bestanden en mappen in Linux werken. 
-
-Soms is het nuttig dat we tekst kunnen kopiëren en plakken in onze CLI-omgeving. Bij het gebruik van de CLI in de virtuele machine kunnen we dit niet doen. We zouden verbinding kunnen maken met de virtuele machine met behulp van SSH. Dit is een protocol dat externe verbindingen mogelijk maakt met machines waartoe we fysiek geen toegang hebben. Bijvoorbeeld als je sever in de cloud staat. Een van de voordelen van het gebruik van SSH is dat we ook tekst in onze CLI kunnen kopiëren en plakken. 
+De installatie is geslaagd (denkt hij, want we krijgen niet echt een succesboodschap ofzo). Linus ziet een hele hoop uitvoer, maar hij heeft geen idee waar minetest zich bevindt of hoe hij zelfs de serverbestanden kan uitvoeren.
 
 We hebben geleerd dat dit commando eigenlijk de pakketbeheerder gebruikt om een pakket met de naam `minetest` in zijn repositories te zoeken (en te installeren). Het installeert ook alle benodigde dependencies en stelt het besturingssysteem in, zodat we het commando `minetest` daadwerkelijk kunnen gebruiken. 
 
@@ -179,7 +177,7 @@ We merken dat er een optie is: `--server`. Het pakket dat we hebben geïnstallee
 We controleren ook waar het uitvoerbare bestand zich bevindt met behulp van het commando `which minetest`: 
 
  ```bash
-student@linux-ess:~$ which minetest
+ubuntu@aws-linux-ess:~$ which minetest
 /usr/games/minetest
  ```
 
@@ -212,7 +210,7 @@ We krijgen deze fout omdat we een Ubuntu-server uitvoeren met behulp van een com
 Dus om onze server aan de praat te krijgen, zullen we ons moeten concentreren op het gebruik van het commando `minetest --server`: 
 
 ```bash
-student@linux-ess:~$ minetest --server
+ubuntu@aws-linux-ess:~$ minetest --server
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -232,7 +230,8 @@ Bij het uitvoeren van het commando met behulp van de optie `--server`, kunnen we
 Linus wil echter niet de standaardconfiguratie gebruiken. Hij maakte een map `~/linuscraft/serverfiles` met als doel de wereldbestanden te beheren. Met behulp van de manpage zien we dat we de server kunnen vertellen om dit pad te gebruiken over waar de wereldbestanden moeten worden opgeslagen: 
 
 ```bash
-student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
+ubuntu@aws-linux-ess:~$  mkdir -p ~/linuscraft/serverfiles/
+ubuntu@aws-linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -246,8 +245,20 @@ student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld
 We hebben ook de optie `--logfile` gebruikt om alle serverlogboeken op te slaan in een specifiek bestand. We zien nu dat de wereld is gemaakt in `~/linuscraft/serverfiles/myworld`. We kunnen dit controleren door op `ctrl+c` te drukken (dit zal de minetest-server afsluiten) en een `ls`-commando uit te voeren: 
 
 ```bash
-student@linux-ess:~$ ls linuscraft/serverfiles/myworld/
-env_meta.txt  force_loaded.txt  ipban.txt  map_meta.txt  map.sqlite  world.mt
+ubuntu@aws-linux-ess:~$ tree linuscraft
+linuscraft
+└── serverfiles
+    ├── logfile.txt
+    └── myworld
+        ├── env_meta.txt
+        ├── force_loaded.txt
+        ├── ipban.txt
+        ├── map.sqlite
+        ├── map_meta.txt
+        ├── mod_storage.sqlite
+        └── world.mt
+
+3 directories, 8 files
 ```
 
 ## Verbinding maken met de server 
@@ -265,7 +276,7 @@ Voeg nog een regel toe van het type custom UDP, laat 'any-where IPv4' toe en gee
 *Ten derde* moeten we ervoor zorgen dat de server daadwerkelijk draait met behulp van het `minetest`-commando dat we hierboven hebben gemaakt. We laten dit proces actief: 
 
 ```bash
-student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
+ubuntu@aws-linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -305,7 +316,7 @@ Na dit proces moet de client je verbinden met de server en kan je rondrennen en 
 Wanneer we teruggaan naar de CLI van onze server, zal je merken dat de uitvoer van ons commando is gewijzigd. Het laat nu zien dat een speler verbinding heeft gemaakt (en de verbinding heeft verbroken) met de server: 
 
 ```bash
-student@linux-ess:~$ minetest --server --world ~/linuscraft/serverfiles/myworld
+ubuntu@aws-linux-ess:~$ minetest --server --world ~/linuscraft/serverfiles/myworld
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -324,7 +335,7 @@ student@linux-ess:~$ minetest --server --world ~/linuscraft/serverfiles/myworld
 De standaard wereld is vrij leeg, dus Linus wil indruk maken op zijn vrienden door een vooraf gebouwde wereld te downloaden die hij op Google heeft gevonden. Om dit te doen gaan we naar je `serverfiles` directory: 
 
 ```bash
-student@linux-ess:~$ cd ~/linuscraft/serverfiles
+ubuntu@aws-linux-ess:~$ cd ~/linuscraft/serverfiles
 ```
 
 Nadat we dit hebben gedaan, downloaden we het zip-bestand met onze nieuwe wereld door de onderstaande opdracht uit te voeren: 

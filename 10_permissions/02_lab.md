@@ -16,7 +16,7 @@ man -k package                    or                    apropos package
 ```
 The command will give the following output:
 ```
-student@linux-ess:~$ man -k package
+ubuntu@aws-linux-ess:~$ man -k package
 apt-extracttemplates (1) - Utility to extract debconf config and templates from Debian packages
 apt-get (8)          - APT package handling utility -- command-line interface
 apt-mark (8)         - show, set and unset various settings for a package
@@ -99,7 +99,7 @@ He can navigate the manpage using the arrow keys on the keyboard. After reading 
 With the knowledge he just gathered he tries to install Minetest:
 
 ```bash
-student@linux-ess:~$ apt-get install minetest
+ubuntu@aws-linux-ess:~$ apt-get install minetest
 E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
 ```
@@ -109,7 +109,7 @@ He sees an error (`permission denied`). It is important to learn to analyse erro
 ?> <i class="fa-solid fa-circle-info"></i> Use the `up arrow` to use the _history_ and use the `left arrow` or `home key` to go to the _beginning of the line_ to type sudo.
 
 ```bash
-student@linux-ess:~$ sudo apt-get install minetest
+ubuntu@aws-linux-ess:~$ sudo apt-get install minetest
 [sudo] password for student:
 Reading package lists... Done
 Building dependency tree
@@ -124,16 +124,14 @@ Processing triggers for mime-support (3.64ubuntu1) ...
 Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
 Processing triggers for man-db (2.9.1-1) ...
 ...
-student@linux-ess:~$
+ubuntu@aws-linux-ess:~$
 ```
 
 ?> <i class="fa-solid fa-circle-info"></i> If you get an error running the command above, try running `sudo apt-get update` and run the `sudo apt-get install minetest` command again.
 
 The command above will prompt you for your password and might also prompt to ask you if you are sure you want to install a bunch of packages. 
 
-The installation is successful (he thinks, because we don't really get a success message or anything). Linus sees a whole bunch of output, but he has no clue where minetest is located or how he can even run the server files. In the next chapter we will explore how files & folders in Linux work.
-
-Sometimes its beneficial if we can copy & paste text into our CLI environment. When using the CLI in the virtual machine we cannot do this. We could connect to the virtual machine using SSH. This is a protocol that allows remote connections to machines that we can't physically access. For example if your sever is in the cloud. One of the benefits of using SSH is that we can also copy and paste text into our CLI.
+The installation is successful (he thinks, because we don't really get a success message or anything).
 
 We've learnt that this command actually uses the package manager to go look for (and install) a package called `minetest` in its repositories. It also installs all the needed dependencies and sets up the operating system so we can actually use the `minetest` command.
 
@@ -179,7 +177,7 @@ COMMON OPTIONS
  We also check where the executable file is located using the `which minetest` command:
 
  ```bash
-student@linux-ess:~$ which minetest
+ubuntu@aws-linux-ess:~$ which minetest
 /usr/games/minetest
  ```
 
@@ -212,7 +210,7 @@ We get this error because we are running an Ubuntu server using a command line i
 So to get our server up and running we will have to focus on using the `minetest --server` command:
 
 ```bash
-student@linux-ess:~$ minetest --server
+ubuntu@aws-linux-ess:~$ minetest --server
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -232,7 +230,8 @@ When running the command using the `--server` option, we can see that it created
 Linus does not want to use the default configuration though. He made a folder `~/linuscraft/serverfiles` for exactly the purpose of managing the world files. Using the manpage we see that we can tell the server to use this path as to where the world files have to be saved:
 
 ```bash
-student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
+ubuntu@aws-linux-ess:~$  mkdir -p ~/linuscraft/serverfiles/
+ubuntu@aws-linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -246,8 +245,20 @@ student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld
 We also used the `--logfile` option to save all the server logs to a specific file. We now see that the world has been created in `~/linuscraft/serverfiles/myworld`. We can check this by pushing 'ctrl+c' (this will shutdown the minetest server) and running an `ls` command:
 
 ```bash
-student@linux-ess:~$ ls linuscraft/serverfiles/myworld/
-env_meta.txt  force_loaded.txt  ipban.txt  map_meta.txt  map.sqlite  world.mt
+ubuntu@aws-linux-ess:~$ tree linuscraft
+linuscraft
+└── serverfiles
+    ├── logfile.txt
+    └── myworld
+        ├── env_meta.txt
+        ├── force_loaded.txt
+        ├── ipban.txt
+        ├── map.sqlite
+        ├── map_meta.txt
+        ├── mod_storage.sqlite
+        └── world.mt
+
+3 directories, 8 files
 ```
 
 ## Connecting to the server
@@ -265,7 +276,7 @@ Add another rule of the type custom UDP, allow 'any-where IPv4' and give it a us
 *Third* we need make sure the server is actually running by using the `minetest` command we created above. We leave this process active:
 
 ```bash
-student@linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
+ubuntu@aws-linux-ess:~$  minetest --server --world ~/linuscraft/serverfiles/myworld --logfile ~/linuscraft/serverfiles/logfile.txt
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -305,7 +316,7 @@ After this process, the client should connect you to the server and you will be 
 When we hop back to the CLI of our server, you will also notice that output of our command has changed. It now shows that a player has connected (and disconnected) from the server:
 
 ```bash
-student@linux-ess:~$ minetest --server --world ~/linuscraft/serverfiles/myworld
+ubuntu@aws-linux-ess:~$ minetest --server --world ~/linuscraft/serverfiles/myworld
         .__               __                   __
   _____ |__| ____   _____/  |_  ____   _______/  |_
  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
@@ -324,7 +335,7 @@ student@linux-ess:~$ minetest --server --world ~/linuscraft/serverfiles/myworld
 The default map is quite empty so Linus wants to impress his friends by downloading a prebuild map he found on Google. To do this we go into your `serverfiles` directory:
 
 ```bash
-student@linux-ess:~$ cd ~/linuscraft/serverfiles
+ubuntu@aws-linux-ess:~$ cd ~/linuscraft/serverfiles
 ```
 
 After doing so we will download the zip file containing our new world by running the command below:
