@@ -312,7 +312,7 @@ We kunnen het aan de gedeelde map ict geven met het commando chmod g+s (om te ve
 ```bash
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwxr-x 3 root ict 4096 Nov 26 16:12 /shares/ict/
-student@linux-ess:~$ sudo chmod g+s /shares/ict
+student@linux-ess:~$ sudo chmod g+s /shares/ict            # or sudo chmod 2775 /shares/ict
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-x 3 root ict 4096 Nov 26 16:12 /shares/ict/
 ```
@@ -386,7 +386,7 @@ drwxrwsr-x 2 jacob ict   4096 nov 27 15:03 testdir2
 -rw-rw-r-- 1 jacob jacob    0 nov 27 14:59 testfile
 liam@linux-ess:/shares/ict$ exit
 logout
-student@linux-ess:~$ sudo chmod o+t /shares/ict/         # or sudo chmod +t /shares/ict/
+student@linux-ess:~$ sudo chmod o+t /shares/ict/         # or sudo chmod 3775 /shares/ict/
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-t 3 root ict 4096 nov 27 15:05 /shares/ict/
 student@linux-ess:~$ su - liam
@@ -396,7 +396,7 @@ liam@linux-ess:/shares/ict$ rm -rf testdir2/  #Liam kan Jacob's bestanden of map
 rm: cannot remove 'testdir2/': Operation not permitted	
 liam@linux-ess:/shares/ict$ exit
 logout
-student@linux-ess:~$ sudo chmod o-t /shares/ict/         # or sudo chmod -t /shares/ict/
+student@linux-ess:~$ sudo chmod o-t /shares/ict/         # or sudo chmod 2775 /shares/ict/
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-x 3 root ict 4096 nov 27 15:05 /shares/ict/
 ```

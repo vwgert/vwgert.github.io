@@ -317,7 +317,7 @@ We can give it to the shared folder ict with the command chmod g+s (to remove we
 ```bash
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwxr-x 3 root ict 4096 Nov 26 16:12 /shares/ict/
-student@linux-ess:~$ sudo chmod g+s /shares/ict
+student@linux-ess:~$ sudo chmod g+s /shares/ict                # or sudo chmod 2775 /shares/ict
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-x 3 root ict 4096 Nov 26 16:12 /shares/ict/
 ```
@@ -389,7 +389,7 @@ drwxrwsr-x 2 jacob ict   4096 nov 27 15:03 testdir2
 -rw-rw-r-- 1 jacob jacob    0 nov 27 14:59 testfile
 liam@linux-ess:/shares/ict$ exit
 logout
-student@linux-ess:~$ sudo chmod o+t /shares/ict/         # or sudo chmod +t /shares/ict/
+student@linux-ess:~$ sudo chmod o+t /shares/ict/          # or sudo chmod 3775 /shares/ict/
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-t 3 root ict 4096 nov 27 15:05 /shares/ict/
 student@linux-ess:~$ su - liam
@@ -399,7 +399,7 @@ liam@linux-ess:/shares/ict$ rm -rf testdir2/  #Liam can no longer delete Jacob's
 rm: cannot remove 'testdir2/': Operation not permitted	
 liam@linux-ess:/shares/ict$ exit
 logout
-student@linux-ess:~$ sudo chmod o-t /shares/ict/         # or sudo chmod -t /shares/ict/
+student@linux-ess:~$ sudo chmod o-t /shares/ict/          # or sudo chmod 2775 /shares/ict/
 student@linux-ess:~$ ls -ld /shares/ict/
 drwxrwsr-x 3 root ict 4096 nov 27 15:05 /shares/ict/
 ```
