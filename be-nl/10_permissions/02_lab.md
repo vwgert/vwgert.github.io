@@ -227,7 +227,7 @@ We krijgen onze prompt niet terug. Dit komt omdat de servertoepassing een actief
 
 ?> Merk op dat we het `minetest` uitvoerbare bestand actief moeten hebben als we later daadwerkelijk verbinding willen maken met de server! 
 
-Bij het uitvoeren van het commando met behulp van de optie `--server`, kunnen we zien dat het een map `worlds/world` heeft gemaakt in `/home/student/.minetest`. Dit is interessant omdat hier `minetest` standaard alle configuratiebestanden van onze eigenlijke server opslaat. We merken ook dat de server _luisterd_ voor verbindingen op poort `30000`.  
+Bij het uitvoeren van het commando met behulp van de optie `--server`, kunnen we zien dat het een map `worlds/world` heeft gemaakt in `/home/student/.minetest`. Dit is interessant omdat hier `minetest` standaard alle configuratiebestanden van onze eigenlijke server opslaat. We merken ook dat de server _luistert_ voor verbindingen op poort `30000`.  
 
 Linus wil echter niet de standaardconfiguratie gebruiken. Hij maakte een map `~/linuscraft/serverfiles` met als doel de wereldbestanden te beheren. Met behulp van de manpage zien we dat we de server kunnen vertellen om dit pad te gebruiken over waar de wereldbestanden moeten worden opgeslagen: 
 
