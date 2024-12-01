@@ -54,7 +54,7 @@ this is our first bash script
 
 ?> Alleen scripts die uitvoerbaar zijn en zijn opgeslagen in een map die is opgegeven in de variabele $PATH, kunnen worden uitgevoerd zonder het volledige pad op te geven. 
 
-## De variabele PATH 
+### De variabele PATH 
 
 Linux heeft meerdere plaatsen waar binaire bestanden worden opgeslagen. Deze worden vaak gebundeld in de PATH-variabele.  
 Als we een opdracht uitvoeren zonder het pad op te geven waar de opdracht is opgeslagen, wordt er binnen elk pad van de variabele PATH gezocht naar deze opdracht. 

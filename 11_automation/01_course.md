@@ -55,7 +55,7 @@ this is our first bash script
 
 ?> Only scripts that are executable and saved in a directory which is specified in the $PATH variable can be executed without specifying the full path.
 
-## The PATH variable
+### The PATH variable
 
 Linux has multiple places where binaries are stored. These are often bundled in the PATH variable.  
 If we run a command without specifying the path where the command is saved, there will be searched for within every path of the PATH variable for the command.
