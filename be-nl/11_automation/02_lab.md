@@ -1,9 +1,5 @@
 # Lab <!-- {docsify-ignore} -->
 
-Er is geen lab voor dit hoofdstuk. 
-
-
-
 Linus wil het script dat toont uit welke landen er gesurfd wordt naar de website om de 5 minuten automatisch laten updated
 
 ```bash
