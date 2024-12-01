@@ -27,9 +27,9 @@ _/home/planning_: contains the planning, customizable for all members of plannin
 _/home/sales_: contains information about sales, customizable for all members of sales<br />
 _/home/general_: contains general information for everyone? James is responsible for this folder and therefore only James has writing permissions on this directory and its content.   
 
-Make sure that the users who need to work together can also change eachoter's files. Make use of setgid and do not use ACLs.
+Make sure that the users who need to work together can also change eachother's files. Make use of setgid and do not use ACLs.
 
-All users (members of the group users) have reading permissions for these directories.   
+All users have reading permissions for these directories.   
 Test the scenario!
 
 

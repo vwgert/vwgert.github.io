@@ -32,7 +32,7 @@ _/home/general_: bevat algemene informatie voor iedereen? James is verantwoordel
 
 Zorg ervoor dat de gebruikers die moeten samenwerken ook de bestanden van elk van hen kunnen wijzigen. Maak gebruik van setgid en gebruik geen ACL's. 
 
-Alle gebruikers (leden van de groep users) hebben leesrechten voor deze mappen.  
+Alle gebruikers hebben leesrechten voor deze mappen.  
 Test het scenario! 
 
 Extra Challenge!
