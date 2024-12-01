@@ -94,13 +94,22 @@ Maar als we de PATH-variabele voor één gebruiker willen wijzigen, kunnen we di
 
 ```bash
 student@linux-ess:~$ grep -C1 "HOME/bin" .profile
-# Verander PATH zodat hij de privé bin folder toevoegd, als deze bestaat
+# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 ```
 
-?> Let op dat dit al bestaat, dus het is het beste om je scripts op te slaan in een (nieuwe) map met de naam _bin_ in je homefolder. Houd er ook rekening mee dat je na het maken van de map _bin_ opnieuw moet inloggen, zodat de map _bin_ wordt toegevoegd aan de variabele PATH. 
+?> Merk op dat dit dus reeds aanwezig is en het dus het beste is om je scripts op te slaan in een (nieuwe) map met de naam _bin_ in je homefolder. Houd er ook rekening mee dat je na het maken van de map _bin_ opnieuw moet inloggen, zodat de map _bin_ wordt toegevoegd aan de variabele PATH. 
+
+```bash
+student@linux-ess:~$ mkdir bin
+### logout & login ###
+student@linux-ess:~$ echo $PATH
+/home/student/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+
 
 Zoals we al hebben gezien kun je het commando `which` gebruiken om erachter te komen of het commando gevonden wordt en waar precies. 
 

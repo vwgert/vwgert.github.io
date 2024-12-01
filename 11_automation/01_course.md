@@ -103,6 +103,15 @@ fi
 
 ?> Mind that this already exists, so it is best to save your scripts in a (new) folder named _bin_ in your homefolder. Also mind that after creating the _bin_ directory you have to login again so the _bin_ folder gets added to the PATH variable.
 
+```bash
+student@linux-ess:~$ mkdir bin
+### logout & login ###
+student@linux-ess:~$ echo $PATH
+/home/student/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+
+
 
 As we have seen already you can use the command `which` to find out if the command gets found and where precisely.
 
