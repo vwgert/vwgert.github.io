@@ -123,20 +123,21 @@ student@linux-ess:~$ which reboot
 
 ### date with shell embedding
 Lets extend our script with some nifty logic to use to output of a certain command in another command. We edit the script contents as follows:  
-_nano showdate.sh_  
+_nano helloworld.sh_  
+
 ```bash
 #!/bin/bash
-echo "hello world"
+# Author: Linus Torvalds
+echo "hello world"  # Print text to the screen
 echo "this is our first bash script"
 echo "the date of today is $(date)"
 ```
 When we run this script, we get the following output:
 ```bash
-student@linux-ess:~$ chmod u+x showdate.sh
-student@linux-ess:~$ ./showdate.sh
+student@linux-ess:~$ ./helloworld.sh
 hello world
 this is our first bash script
-the date of today is Tue Jun 28 22:04:09 CEST 2022
+the date of today is Tue Jun 28 22:04:09 CEST 2024
 ```
 The concept we've used here is called _shell embedding_. The `$(...)` syntax opens up a new (sub)shell and runs a command. The output of the `date` command is then directly used in the echo command.
 

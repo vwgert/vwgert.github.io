@@ -120,20 +120,21 @@ student@linux-ess:~$ which reboot
 
 ### datum met shell embedding 
 Laten we ons script uitbreiden met wat handige logica om te gebruiken om een bepaald commando in een ander commando uit te voeren. We bewerken de inhoud van het script als volgt:  
-_nano showdate.sh_ 
+_nano helloworld.sh_ 
+
 ```bash
 #!/bin/bash
-echo "hello world"
+# Author: Linus Torvalds
+echo "hello world"  # Print text to the screen
 echo "this is our first bash script"
 echo "the date of today is $(date)"
 ```
 Wanneer we dit script uitvoeren, krijgen we de volgende uitvoer: 
 ```bash
-student@linux-ess:~$ chmod u+x showdate.sh
-student@linux-ess:~$ ./showdate.sh
+student@linux-ess:~$ ./helloworld.sh
 hello world
 this is our first bash script
-the date of today is Tue Jun 28 22:04:09 CEST 2022
+the date of today is Tue Jun 28 22:04:09 CEST 2024
 ```
 Het concept dat we hier hebben gebruikt, heet _shell embedding_. De `$(...)` syntaxis opent een nieuwe (sub)shell en voert een commando uit. De uitvoer van het `date`-commando wordt dan direct gebruikt in het echo commando. 
 
