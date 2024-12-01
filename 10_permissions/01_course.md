@@ -507,7 +507,27 @@ Before ACL’s can be implemented we need to install the package:
 ```bash
 student@linux-ess:~$ sudo apt install acl
 ```
-When installed, it needs to be turned on when the filesystem is mounted. In our Ubuntu installation ACL’s are loaded by default. To add ACL’s to a file or folder, use the `setfacl` command. ACL’s can be viewed with the `getfacl` command.  
+When installed, it needs to be turned on when the filesystem is mounted. In our Ubuntu installation ACL’s are loaded by default. 
+
+```
+student@linux-ess:~$ sudo tune2fs -l /dev/mapper/ubuntu--vg-ubuntu--lv | grep --color=never "Filesystem\|mount"
+Filesystem volume name:   <none>
+Last mounted on:          /
+Filesystem UUID:          a2d7c681-3183-4d3b-bc5a-3e9cb8411246
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Filesystem flags:         signed_directory_hash
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Filesystem OS type:       Linux
+Filesystem created:       Fri May 31 15:43:52 2024
+Last mount time:          Sun Dec  1 10:21:35 2024
+Maximum mount count:      -1
+
+```
+
+To add ACL’s to a file or folder, use the `setfacl` command. ACL’s can be viewed with the `getfacl` command.  
 
 ?> To add ACL’s you need to be the owner of the file or folder, if you are added by an ACL you will not be able to modify the ACL’s yourself.   
 

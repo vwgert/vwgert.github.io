@@ -502,7 +502,27 @@ Voordat ACL's kunnen worden geïmplementeerd, moeten we het pakket installeren:
 ```bash
 student@linux-ess:~$ sudo apt install acl
 ```
-Wanneer het is geïnstalleerd, moet het worden ingeschakeld wanneer het filesysteem wordt gemount. In onze Ubuntu installatie wordt de ACL-functionaliteit standaard geladen. Om ACL's toe te voegen aan een bestand of map, gebruik je het `setfacl` commando. Wanneer we ACL's hebben ingesteld, kunnen deze worden bekeken met het `getfacl` commando.  
+Wanneer het is geïnstalleerd, moet het worden ingeschakeld wanneer het filesysteem wordt gemount. In onze Ubuntu installatie wordt de ACL-functionaliteit standaard geladen. 
+
+```
+student@linux-ess:~$ sudo tune2fs -l /dev/mapper/ubuntu--vg-ubuntu--lv | grep --color=never "Filesystem\|mount"
+Filesystem volume name:   <none>
+Last mounted on:          /
+Filesystem UUID:          a2d7c681-3183-4d3b-bc5a-3e9cb8411246
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Filesystem flags:         signed_directory_hash
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Filesystem OS type:       Linux
+Filesystem created:       Fri May 31 15:43:52 2024
+Last mount time:          Sun Dec  1 10:21:35 2024
+Maximum mount count:      -1
+
+```
+
+Om ACL's toe te voegen aan een bestand of map, gebruik je het `setfacl` commando. Wanneer we ACL's hebben ingesteld, kunnen deze worden bekeken met het `getfacl` commando.  
 
 ?> Om ACL's toe te voegen moet je de __eigenaar__ zijn van het bestand of de map. Als je wordt toegevoegd aan een ACL wil dit dus niet zeggen dat je de ACL's ook zelf kunt wijzigen.  
 
