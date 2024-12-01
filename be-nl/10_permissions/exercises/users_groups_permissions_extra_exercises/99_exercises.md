@@ -39,7 +39,7 @@ Extra Challenge!
 Zorg er voor dat de personen binnen de sales-share elkaars bestanden niet kunnen verwijderen!
 
 ## Oefening 5
-Zoek hoe je de ACL-configuraties van de ene map naar de andere kopieert. 
+Zoek hoe je, met het gebruik van getfacl en setfacl, de ACL-configuraties van de ene map naar de andere kopieert. 
 
 
 ## Oefening 6

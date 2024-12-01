@@ -32,9 +32,12 @@ Make sure that the users who need to work together can also change eachother's f
 All users have reading permissions for these directories.   
 Test the scenario!
 
+Extra Challenge!
+Make sure that persons cannot delete eachothers files within the de sales-share!
+
 
 ## Task 5
-Find out how to copy the ACL-configurations of one folder to another one. 
+Find out how to copy the ACL-configurations of one folder to another one, with the use of getfacl and setfacl. 
 
 ## Task 6
 Find out how to create a backup of the ACL-configurations set on a directory.

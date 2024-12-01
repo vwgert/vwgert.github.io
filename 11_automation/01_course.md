@@ -26,7 +26,7 @@ The first line in this script is named in the u_shebang_ and is a special line t
 ?> using `#` signs are interpreted as comments. Any code after that sign will not be executed.
 
 In the example above we will run 2 `echo` commands. 
-  
+
 To run this bash script (without specifying an interpreter), we will have to add _execute_ rights:
 
 ```bash
@@ -41,21 +41,77 @@ After doing this we can execute the script (without specifying an interpreter):
 student@linux-ess:~$ ./helloworld.sh
 hello world
 this is our first bash script
-```  
-  
+```
+
 When we do not set the _execute_ permission, but read rights are in place, we could always run the script by specifying the interpreter:   
 ```bash
 student@linux-ess:~$ bash helloworld.sh
 hello world
 this is our first bash script
-``` 
-  
+```
+
 ?> Although the script is in the working directory, we have to specify it with: ./helloworld.sh  Another way to run it, is to specify the full path: /home/student/helloworld.sh
-  
-  
+
+
 ?> Only scripts that are executable and saved in a directory which is specified in the $PATH variable can be executed without specifying the full path.
-  
-  
+
+## The PATH variable
+
+Linux has multiple places where binaries are stored. These are often bundled in the PATH variable.  
+If we run a command without specifying the path where the command is saved, there will be searched for within every path of the PATH variable for the command.
+
+```bash
+student@linux-ess:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+?> Mind that every path is seperated with a colon
+
+```bash
+student@linux-ess:~$ echo $PATH | tr ':' '\n'
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/bin
+/usr/games
+/usr/local/games
+/snap/bin
+```
+
+The PATH variable gets set and altered in multiple scripts. It starts with a system wide setting in /etc/environment :  
+
+```bash
+student@linux-ess:~$ cat /etc/environment
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"  
+student@linux-ess:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+So we can alter this file if we want to change the PATH variable for every user on the system. The change will be visible for a user when he logs in.
+
+But if we want to alter the PATH variable for one user, we can do this from within the file ~/.profile. The change will be visible for a user when he logs in: 
+
+```bash
+student@linux-ess:~$ grep -C1 "HOME/bin" .profile
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+```
+
+?> Mind that this already exists, so it is best to save your scripts in a (new) folder named _bin_ in your homefolder. Also mind that after creating the _bin_ directory you have to login again so the _bin_ folder gets added to the PATH variable.
+
+
+As we have seen already you can use the command `which` to find out if the command gets found and where precisely.
+
+```bash
+student@linux-ess:~$ which reboot
+/usr/sbin/reboot
+```
+
+
 ### date with shell embedding
 Lets extend our script with some nifty logic to use to output of a certain command in another command. We edit the script contents as follows:  
 _nano showdate.sh_  
@@ -74,8 +130,8 @@ this is our first bash script
 the date of today is Tue Jun 28 22:04:09 CEST 2022
 ```
 The concept we've used here is called _shell embedding_. The `$(...)` syntax opens up a new (sub)shell and runs a command. The output of the `date` command is then directly used in the echo command.
-  
-  
+
+
 ### Variables
 We can also make use of variables to reuse data:  
 _nano vars.sh_  
@@ -104,35 +160,35 @@ _nano sysvars.sh_
 echo "hello $USER"
 echo "your homefolder is $HOME"
 ```
-  
+
 _chmod u+x sysvars.sh_    
-  
+
 ```bash
 student@linux-ess:~$ ./sysvars.sh
 hello student
 your homefolder is /home/student
 ```
-  
+
 Lets combine some of the stuff we learned so far.   
-  
+
 Lets create a new script called `countfiles.sh`:
-  
+
 _nano countfiles.sh_  
 ```bash
 #!/bin/bash
 echo "hello $USER"
 echo "your homefolder has $(ls -A1 ~ | wc -l) files/folders."
 ```
-  
+
 When we execute it, we get the following result:
 ```bash
 student@linux-ess:~$ bash countfiles.sh
 hello student
 your homefolder has 12 files/folders.
 ```
-  
+
 Another example creates a file with the current date in the filename:
-  
+
 _nano datefile.sh_  
 ```bash
 #!/bin/bash
@@ -149,7 +205,7 @@ File 2022-11-11-superfile created/touched in homedir.
     
 #### Reading user input
 Sometimes it can be helpful to ask for user input. We place the answer of the user in a variable, so that we can reuse it later on in the script:
-  
+
 _nano list5.sh_
 ```bash
 #!/bin/bash
@@ -183,7 +239,7 @@ auth.log
 ```
 
 ### Using a parameter
-  
+
 We are going to keep it simple, so we will not use more than nine parameters. In our example we will only use two ($1 and $2), but know that method stays the same for all nine ($1-$9). As a sidenote I can tell you that $0 also exists and holds the command with which the script was run.
 
 ```bash
@@ -197,62 +253,8 @@ Param one was: first
 Param two was: 2nd
 ```
 
-## The PATH variable
-  
-Linux has multiple places where binaries are stored. These are often bundled in the PATH variable.  
-If we run a command without specifying the path where the command is saved, there will be searched for within every path of the PATH variable for the command.
-
-```bash
-student@linux-ess:~$ echo $PATH
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-```
-  
-?> Mind that every path is seperated with a colon
-  
-```bash
-student@linux-ess:~$ echo $PATH | tr ':' '\n'
-/usr/local/sbin
-/usr/local/bin
-/usr/sbin
-/usr/bin
-/sbin
-/bin
-/usr/games
-/usr/local/games
-/snap/bin
-```
-
-The PATH variable gets set and altered in multiple scripts. It starts with a system wide setting in /etc/environment :  
-  
-```bash
-student@linux-ess:~$ cat /etc/environment
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"  
-student@linux-ess:~$ echo $PATH
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-```
-So we can alter this file if we want to change the PATH variable for every user on the system. The change will be visible for a user when he logs in.
-
-But if we want to alter the PATH variable for one user, we can do this from within the file ~/.profile. The change will be visible for a user when he logs in: 
-  
-```bash
-student@linux-ess:~$ grep -C1 "HOME/bin" .profile
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-```
-  
-?> Mind that this already exists, so it is best to save your scripts in a (new) folder named _bin_ in your homefolder. Also mind that after creating the _bin_ directory you have to login again so the _bin_ folder gets added to the PATH variable.
-  
-  
-As we have seen already you can use the command `which` to find out if the command gets found and where precisely.
-```bash
-student@linux-ess:~$ which reboot
-/usr/sbin/reboot
-```
-    
 ## At
-  
+
 You can use the at command to run a script/command at a specific time.  
 For the at command we echo an output into the at command as shown by an example below:  
 ```bash
@@ -265,10 +267,10 @@ job 2 at Mon Nov 14 10:36:00 2022
 student@linux-ess:~$ at -l
 2       Mon Nov 14 10:36:00 2022 a student
 1       Sat Nov 12 14:00:00 2022 a student
-```  
-  
+```
+
 you can check what is scheduled with the `atq` or `at -l` commands and remove when necesarry with the `atrm`, `at -d` or `at -r` commands:  
-  
+
 ```bash
 student@linux-ess:~$ at -l
 2       Mon Nov 14 10:36:00 2022 a student
@@ -276,15 +278,15 @@ student@linux-ess:~$ at -l
 student@linux-ess:~$ at -d 2
 student@linux-ess:~$ at -l
 1       Sat Nov 12 14:00:00 2022 a student
-```  
-  
+```
+
 For more info check the manpage of `at`.
-  
-    
+
+
 ## Crontab
-  
+
 With the cron command it is possible to plan your scripts/commands to run on a regular basis. Cron works different, it uses a file where we put the commands/scripts we want to run and specify when the runs have to happen. To open your crontab-file you give the command `crontab -e`.   
-  
+
 In the example below we are going to echo some text to a file every minute.  
 ```bash  
 .---------------- minute (0 - 59)  
@@ -294,12 +296,12 @@ In the example below we are going to echo some text to a file every minute.
 |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat  
 |  |  |  |  |  
 *  *  *  *  *   echo Command run at $(date) >> /tmp/crontest  
-```  
-  
+```
+
 Simply remove the line from the crontab to stop this from happening. For more info check the manpage of `cron`.  
-  
+
 ?> Mind that the first time we open cron we have to specify which editor we want to use. If you choose `1` you will have the editor `nano`.  
-  
+
 
 ```bash
 @linux-ess:~$ crontab -e
@@ -325,9 +327,9 @@ student@linux-ess:~$ cat /tmp/crontest
 Command run at Sat Nov 12 11:02:01 AM UTC 2022
 Command run at Sat Nov 12 11:03:01 AM UTC 2022
 Command run at Sat Nov 12 11:04:01 AM UTC 2022
-```  
-  
-  
+```
+
+
 If we have to run a script as another user or with elevated privileges (as root), we can make use of the general _crontab_ file in _/etc_. In this file there is an additional column to specify the user under which the script has to run.  
 You will need elevated privileges to edit this file (sudo).  
 In the following example we will run a backup script every friday at 23\:30 :  
@@ -361,8 +363,8 @@ SHELL=/bin/sh
 ```
 
 ?> Notice that there are some folders (cron.daily, cron.weekly, cron.monthly) that can hold scripts that will be executed by cron regularly.
- 
-  
+
+
 ```bash
 student@linux-ess:~$ ls /etc/cron.daily/
 apport  apt-compat  dpkg  logrotate  man-db

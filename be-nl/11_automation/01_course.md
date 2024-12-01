@@ -41,19 +41,74 @@ Hierna kunnen we het script uitvoeren (zonder een interpreter op te geven):
 student@linux-ess:~$ ./helloworld.sh
 hello world
 this is our first bash script
-``` 
-  
+```
+
 Indien we het _execute_ recht niet geven, maar wel leesrechten, dan kunnen we het script toch nog uitvoeren door de interpreter mee te geven:   
 ```bash
 student@linux-ess:~$ bash helloworld.sh
 hello world
 this is our first bash script
-``` 
-  
+```
+
 ?> Hoewel het script zich in de huidige werkmap bevindt, moeten we het specificeren met: ./helloworld.sh Een andere manier om het uit te voeren, is door het volledige pad op te geven: /home/student/helloworld.sh 
 
 ?> Alleen scripts die uitvoerbaar zijn en zijn opgeslagen in een map die is opgegeven in de variabele $PATH, kunnen worden uitgevoerd zonder het volledige pad op te geven. 
-  
+
+## De variabele PATH 
+
+Linux heeft meerdere plaatsen waar binaire bestanden worden opgeslagen. Deze worden vaak gebundeld in de PATH-variabele.  
+Als we een opdracht uitvoeren zonder het pad op te geven waar de opdracht is opgeslagen, wordt er binnen elk pad van de variabele PATH gezocht naar deze opdracht. 
+
+```bash
+student@linux-ess:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+?> Merk op dat elk pad gescheiden is met een dubbele punt 
+
+```bash
+student@linux-ess:~$ echo $PATH | tr ':' '\n'
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/bin
+/usr/games
+/usr/local/games
+/snap/bin
+```
+
+De variabele PATH wordt ingesteld en gewijzigd in meerdere scripts. Het begint met een systeembrede instelling in /etc/environment: 
+
+```bash
+student@linux-ess:~$ cat /etc/environment
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"  
+student@linux-ess:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+We kunnen dit bestand dus wijzigen als we de PATH-variabele voor elke gebruiker op het systeem willen wijzigen. De wijziging is zichtbaar voor een gebruiker wanneer hij zich aanmeldt. 
+
+Maar als we de PATH-variabele voor één gebruiker willen wijzigen, kunnen we dit doen vanuit het bestand ~/.profile. De wijziging is zichtbaar voor een gebruiker wanneer hij zich aanmeldt: 
+
+```bash
+student@linux-ess:~$ grep -C1 "HOME/bin" .profile
+# Verander PATH zodat hij de privé bin folder toevoegd, als deze bestaat
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+```
+
+?> Let op dat dit al bestaat, dus het is het beste om je scripts op te slaan in een (nieuwe) map met de naam _bin_ in je homefolder. Houd er ook rekening mee dat je na het maken van de map _bin_ opnieuw moet inloggen, zodat de map _bin_ wordt toegevoegd aan de variabele PATH. 
+
+Zoals we al hebben gezien kun je het commando `which` gebruiken om erachter te komen of het commando gevonden wordt en waar precies. 
+
+```bash
+student@linux-ess:~$ which reboot
+/usr/sbin/reboot
+```
+
 ### datum met shell embedding 
 Laten we ons script uitbreiden met wat handige logica om te gebruiken om een bepaald commando in een ander commando uit te voeren. We bewerken de inhoud van het script als volgt:  
 _nano showdate.sh_ 
@@ -72,7 +127,7 @@ this is our first bash script
 the date of today is Tue Jun 28 22:04:09 CEST 2022
 ```
 Het concept dat we hier hebben gebruikt, heet _shell embedding_. De `$(...)` syntaxis opent een nieuwe (sub)shell en voert een commando uit. De uitvoer van het `date`-commando wordt dan direct gebruikt in het echo commando. 
-  
+
 ### Variabelen 
 We kunnen ook gebruik maken van variabelen om data te hergebruiken:  
 _nano vars.sh_ 
@@ -100,9 +155,9 @@ _nano sysvars.sh_
 echo "hello $USER"
 echo "your homefolder is $HOME"
 ```
-  
+
 _chmod u+x sysvars.sh_    
-  
+
 ```bash
 student@linux-ess:~$ ./sysvars.sh
 hello student
@@ -118,7 +173,7 @@ _nano countfiles.sh_
 echo "hello $USER"
 echo "your homefolder has $(ls -A1 ~ | wc -l) files/folders."
 ```
-  
+
 Wanneer we het uitvoeren, krijgen we het volgende resultaat: 
 ```bash
 student@linux-ess:~$ bash countfiles.sh
@@ -188,56 +243,6 @@ Param one was: first
 Param two was: 2nd
 ```
 
-## De variabele PATH 
-Linux heeft meerdere plaatsen waar binaire bestanden worden opgeslagen. Deze worden vaak gebundeld in de PATH-variabele.  
-Als we een opdracht uitvoeren zonder het pad op te geven waar de opdracht is opgeslagen, wordt er binnen elk pad van de variabele PATH gezocht naar deze opdracht. 
-
-```bash
-student@linux-ess:~$ echo $PATH
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-```
-
-?> Merk op dat elk pad gescheiden is met een dubbele punt 
-  
-```bash
-student@linux-ess:~$ echo $PATH | tr ':' '\n'
-/usr/local/sbin
-/usr/local/bin
-/usr/sbin
-/usr/bin
-/sbin
-/bin
-/usr/games
-/usr/local/games
-/snap/bin
-```
-
-De variabele PATH wordt ingesteld en gewijzigd in meerdere scripts. Het begint met een systeembrede instelling in /etc/environment: 
-```bash
-student@linux-ess:~$ cat /etc/environment
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"  
-student@linux-ess:~$ echo $PATH
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-```
-We kunnen dit bestand dus wijzigen als we de PATH-variabele voor elke gebruiker op het systeem willen wijzigen. De wijziging is zichtbaar voor een gebruiker wanneer hij zich aanmeldt. 
-
-Maar als we de PATH-variabele voor één gebruiker willen wijzigen, kunnen we dit doen vanuit het bestand ~/.profile. De wijziging is zichtbaar voor een gebruiker wanneer hij zich aanmeldt: 
-```bash
-student@linux-ess:~$ grep -C1 "HOME/bin" .profile
-# Verander PATH zodat hij de privé bin folder toevoegd, als deze bestaat
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-```
-
-?> Let op dat dit al bestaat, dus het is het beste om je scripts op te slaan in een (nieuwe) map met de naam _bin_ in je homefolder. Houd er ook rekening mee dat je na het maken van de map _bin_ opnieuw moet inloggen, zodat de map _bin_ wordt toegevoegd aan de variabele PATH. 
-  
-Zoals we al hebben gezien kun je het commando `which` gebruiken om erachter te komen of het commando gevonden wordt en waar precies. 
-```bash
-student@linux-ess:~$ which reboot
-/usr/sbin/reboot
-```
-
 ## At 
 Je kan het commando at gebruiken om een script/commando op een bepaald tijdstip uit te voeren.  
 Voor het at-commando echoën we een uitvoer in het at-commando zoals getoond in onderstaand voorbeeld:
@@ -251,7 +256,7 @@ job 2 at Mon Nov 14 10:36:00 2022
 student@linux-ess:~$ at -l
 2       Mon Nov 14 10:36:00 2022 a student
 1       Sat Nov 12 14:00:00 2022 a student
-```  
+```
 
 Je kan controleren wat er is gepland met de commando's `atq` of `at -l` en verwijderen wanneer dat nodig is met de commando's `atrm`, `at -d` of `at -r`: 
 ```bash
@@ -261,8 +266,8 @@ student@linux-ess:~$ at -l
 student@linux-ess:~$ at -d 2
 student@linux-ess:~$ at -l
 1       Sat Nov 12 14:00:00 2022 a student
-```  
-  
+```
+
 Kijk voor meer info in de manpage van 'at'.   
     
 ## Crontab
@@ -277,7 +282,7 @@ In het onderstaande voorbeeld gaan we elke minuut wat tekst naar een bestand ech
 |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OF sun,mon,tue,wed,thu,fri,sat  
 |  |  |  |  |  
 *  *  *  *  *   echo Command run at $(date) >> /tmp/crontest  
-```  
+```
 
 Verwijder gewoon de lijn van de crontab-file om dit te stoppen. Kijk voor meer info in de manpage van `cron`.  
 
@@ -307,7 +312,7 @@ student@linux-ess:~$ cat /tmp/crontest
 Command run at Sat Nov 12 11:02:01 AM UTC 2022
 Command run at Sat Nov 12 11:03:01 AM UTC 2022
 Command run at Sat Nov 12 11:04:01 AM UTC 2022
-```  
+```
 
 Als we een script moeten uitvoeren als een andere gebruiker of met verhoogde rechten (als root), kunnen we gebruik maken van het algemene _crontab_ bestand in _/etc_. In dit bestand is er een extra kolom om de gebruiker aan te geven waaronder het script moet worden uitgevoerd.  
 Je hebt verhoogde rechten nodig om dit bestand te bewerken (sudo).  
@@ -340,7 +345,7 @@ SHELL=/bin/sh
 ```
 
 ?> Merk op dat er enkele mappen zijn (cron.daily, cron.weekly, cron.monthly) die scripts kunnen bevatten die regelmatig door cron worden uitgevoerd. 
-  
+
 ```bash
 student@linux-ess:~$ ls /etc/cron.daily/
 apport  apt-compat  dpkg  logrotate  man-db
