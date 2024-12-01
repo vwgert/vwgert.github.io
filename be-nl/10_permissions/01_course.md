@@ -586,7 +586,7 @@ student@linux-ess:~$ ls -l memo
 -rw-r--r--+ 1 student student 0 Nov 11 14:15 memo
 ```
 
-?> <i class="fa-solid fa-circle-info"></i> De mask is te zien als groepsrechten bij een _ls -l_. 
+?> <i class="fa-solid fa-circle-info"></i> De mask is te zien als groepsrechten bij een _ls -l_.  Merk ook op dat iedereen die in de groep student zit ook geen write-rechten meer heeft!
 
 Als we een ACL-instelling uit het bestand willen verwijderen, kunnen we de optie -x gebruiken: 
 ```bash

@@ -590,7 +590,7 @@ other::r--
 student@linux-ess:~$ ls -l memo
 -rw-r--r--+ 1 student student 0 Nov 11 14:15 memo
 ```
-?> <i class="fa-solid fa-circle-info"></i> The mask is reflected by the group permissions you'll see with the command _ls -l_. 
+?> <i class="fa-solid fa-circle-info"></i> The mask is reflected by the group permissions you'll see with the command _ls -l_.  Also notice that everyone in the group student don't have the write privilege anymore!
 
 If we want to remove an ACL entry from the file we can use the -x option:
 ```bash
