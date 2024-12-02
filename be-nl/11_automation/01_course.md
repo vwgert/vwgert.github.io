@@ -202,7 +202,7 @@ touch ~/${createdate}-superfile && echo "File ${createdate}-superfile created/to
 Wanneer we het uitvoeren, krijgen we het volgende resultaat: 
 ```bash
 student@linux-ess:~$ bash datefile.sh
-File 2022-11-11-superfile created/touched in homedir.
+File 2024-11-11-superfile created/touched in homedir.
 ```
 ?> Let op dat als we naar de waarde van een variabele vragen we een dollarteken voor de naam zetten (bijv. `echo $createdate`). Wanneer we tekst direct achter de variabele plaatsen zonder een spatie ertussen, moeten we de variabele bijna altijd binnen grenzen plaatsen met de gekrulde haakjes (bijv. `echo ${createdate}superfile` ) 
     
@@ -233,7 +233,7 @@ Enter Geef het absolute pad van de map die je wil controleren:
 /home/student
 De geselecteerde map is /home/student. De map bevat 23 bestanden/mappen.
 De eerste 5 worden getoond:
-2022-11-11-superfile
+2024-11-11-superfile
 auth.log
 .bash_history
 .bash_logout
@@ -259,23 +259,23 @@ Voor het at-commando echoën we een uitvoer in het at-commando zoals getoond in 
 ```bash
 student@linux-ess:~$ echo ./datefile.sh | at 14:00
 warning: commands will be executed using /bin/sh
-job 1 at Sat Nov 12 14:00:00 2022
+job 1 at Sat Nov 12 14:00:00 2024
 student@linux-ess:~$ echo 'echo "hello world" > /tmp/hello.txt' | at now + 1 minutes
 warning: commands will be executed using /bin/sh
-job 2 at Mon Nov 14 10:36:00 2022
+job 2 at Mon Nov 14 10:36:00 2024
 student@linux-ess:~$ at -l
-2       Mon Nov 14 10:36:00 2022 a student
-1       Sat Nov 12 14:00:00 2022 a student
+2       Mon Nov 14 10:36:00 2024 a student
+1       Sat Nov 12 14:00:00 2024 a student
 ```
 
 Je kan controleren wat er is gepland met de commando's `atq` of `at -l` en verwijderen wanneer dat nodig is met de commando's `atrm`, `at -d` of `at -r`: 
 ```bash
 student@linux-ess:~$ at -l
-2       Mon Nov 14 10:36:00 2022 a student
-1       Sat Nov 12 14:00:00 2022 a student
+2       Mon Nov 14 10:36:00 2024 a student
+1       Sat Nov 12 14:00:00 2024 a student
 student@linux-ess:~$ at -d 2
 student@linux-ess:~$ at -l
-1       Sat Nov 12 14:00:00 2022 a student
+1       Sat Nov 12 14:00:00 2024 a student
 ```
 
 Kijk voor meer info in de manpage van 'at'.   
@@ -319,9 +319,9 @@ crontab: installing new crontab
 * * * * * echo Command run at $(date) >> /tmp/crontest
 
 student@linux-ess:~$ cat /tmp/crontest
-Command run at Sat Nov 12 11:02:01 AM UTC 2022
-Command run at Sat Nov 12 11:03:01 AM UTC 2022
-Command run at Sat Nov 12 11:04:01 AM UTC 2022
+Command run at Sat Nov 12 11:02:01 AM UTC 2024
+Command run at Sat Nov 12 11:03:01 AM UTC 2024
+Command run at Sat Nov 12 11:04:01 AM UTC 2024
 ```
 
 Als we een script moeten uitvoeren als een andere gebruiker of met verhoogde rechten (als root), kunnen we gebruik maken van het algemene _crontab_ bestand in _/etc_. In dit bestand is er een extra kolom om de gebruiker aan te geven waaronder het script moet worden uitgevoerd.  

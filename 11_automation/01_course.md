@@ -209,7 +209,7 @@ touch ~/${createdate}-superfile && echo "File ${createdate}-superfile created/to
 When we execute it, we get the following result:
 ```bash
 student@linux-ess:~$ bash datefile.sh
-File 2022-11-11-superfile created/touched in homedir.
+File 2024-11-11-superfile created/touched in homedir.
 ```
 ?> Mind that if we ask for the value of a variable we put a dollar sign in front of its name (eg. `echo $createdate`). When we put text right after the variable without a space in between, we almost always have to put the variable within boundaries with the curly brackets (eg. `echo ${createdate}superfile` )  
     
@@ -241,7 +241,7 @@ Enter the absolute path of a folder you want to check:
 /home/student
 the selected folder is /home/student. This folder contains 23 files/folders.
 Showing the first 5:
-2022-11-11-superfile
+2024-11-11-superfile
 auth.log
 .bash_history
 .bash_logout
@@ -270,24 +270,24 @@ For the at command we echo an output into the at command as shown by an example 
 ```bash
 student@linux-ess:~$ echo ./datefile.sh | at 14:00
 warning: commands will be executed using /bin/sh
-job 1 at Sat Nov 12 14:00:00 2022
+job 1 at Sat Nov 12 14:00:00 2024
 student@linux-ess:~$ echo 'echo "hello world" > /tmp/hello.txt' | at now + 1 minutes
 warning: commands will be executed using /bin/sh
-job 2 at Mon Nov 14 10:36:00 2022
+job 2 at Mon Nov 14 10:36:00 2024
 student@linux-ess:~$ at -l
-2       Mon Nov 14 10:36:00 2022 a student
-1       Sat Nov 12 14:00:00 2022 a student
+2       Mon Nov 14 10:36:00 2024 a student
+1       Sat Nov 12 14:00:00 2024 a student
 ```
 
 you can check what is scheduled with the `atq` or `at -l` commands and remove when necesarry with the `atrm`, `at -d` or `at -r` commands:  
 
 ```bash
 student@linux-ess:~$ at -l
-2       Mon Nov 14 10:36:00 2022 a student
-1       Sat Nov 12 14:00:00 2022 a student
+2       Mon Nov 14 10:36:00 2024 a student
+1       Sat Nov 12 14:00:00 2024 a student
 student@linux-ess:~$ at -d 2
 student@linux-ess:~$ at -l
-1       Sat Nov 12 14:00:00 2022 a student
+1       Sat Nov 12 14:00:00 2024 a student
 ```
 
 For more info check the manpage of `at`.
@@ -334,9 +334,9 @@ crontab: installing new crontab
 * * * * * echo Command run at $(date) >> /tmp/crontest
 
 student@linux-ess:~$ cat /tmp/crontest
-Command run at Sat Nov 12 11:02:01 AM UTC 2022
-Command run at Sat Nov 12 11:03:01 AM UTC 2022
-Command run at Sat Nov 12 11:04:01 AM UTC 2022
+Command run at Sat Nov 12 11:02:01 AM UTC 2024
+Command run at Sat Nov 12 11:03:01 AM UTC 2024
+Command run at Sat Nov 12 11:04:01 AM UTC 2024
 ```
 
 
