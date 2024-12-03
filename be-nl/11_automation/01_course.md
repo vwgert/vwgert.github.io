@@ -313,8 +313,28 @@ student@linux-ess:~$ at -l
 1       Sat Nov 12 14:00:00 2024 a student
 ```
 
+Je kan controleren welk commando je meegegeven hebt met `at -c`: 
+
+```bash
+student@linux-ess:~$ at -l
+1       Sat Nov 12 14:00:00 2024 a student
+student@linux-ess:~$ at -c 1
+
+#!/bin/sh
+# atrun uid=1000 gid=1000
+...
+cd /home/student || {
+         echo 'Execution directory inaccessible' >&2
+         exit 1
+}
+/home/student/bin/datefile.sh
+```
+
+
+
 Kijk voor meer info in de manpage van 'at'.   
     
+
 ## Crontab
 Met het cron commando is het mogelijk om je scripts/commando's te plannen om op regelmatige basis te draaien. Cron werkt anders, het maakt gebruik van een bestand waarin we de commando's/scripts plaatsen die we willen uitvoeren en specificeren wanneer de runs moeten gebeuren. Om je crontab-bestand te openen geef je het commando `crontab -e`.  
 

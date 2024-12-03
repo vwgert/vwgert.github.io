@@ -325,6 +325,23 @@ student@linux-ess:~$ at -l
 1       Sat Nov 12 14:00:00 2024 a student
 ```
 
+You can also check the given command of a scheduled task `at -c`: 
+
+```bash
+student@linux-ess:~$ at -l
+1       Sat Nov 12 14:00:00 2024 a student
+student@linux-ess:~$ at -c 1
+
+#!/bin/sh
+# atrun uid=1000 gid=1000
+...
+cd /home/student || {
+         echo 'Execution directory inaccessible' >&2
+         exit 1
+}
+/home/student/bin/datefile.sh
+```
+
 For more info check the manpage of `at`.
 
 
