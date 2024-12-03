@@ -246,7 +246,7 @@ Soms kan het nuttig zijn om gebruikersinput te vragen. We plaatsen het antwoord 
 _nano list5.sh_
 ```bash
 #!/bin/bash
-echo "Geef het absolute pad van de map die je wil controleren:"
+echo "Geef het absolute pad van de map die je wilt controleren:"
 read folder
 echo "De geselecteerde map is $folder." 
 ```
