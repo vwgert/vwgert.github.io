@@ -167,6 +167,15 @@ di 03 dec 2024 08:36:18 UTC
 
 
 
+If you want to keep the new locale in the future, you can do the following:
+
+```
+student@linux-ess:~$ sudo sed -i 's/en_US/nl_BE/' /etc/locale.conf
+student@linux-ess:~$ sudo reboot
+```
+
+
+
 
 ### Variables
 We can also make use of variables to reuse data:  

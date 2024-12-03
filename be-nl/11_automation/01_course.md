@@ -140,7 +140,7 @@ Het concept dat we hier hebben gebruikt, heet _shell embedding_. De `$(...)` syn
 
 
 
-Als je de datum liever in de Belgische notatie  hebt kan je onderstaande doen:
+Als je de datum liever in de Belgische notatie hebt, kan je onderstaande doen:
 
 ```
 student@linux-ess:~$ locale -a
@@ -162,6 +162,13 @@ student@linux-ess:~$ date
 Tue Dec  3 08:35:51 AM UTC 2024
 student@linux-ess:~$ LC_TIME=nl_BE.utf8 date
 di 03 dec 2024 08:36:18 UTC
+```
+
+Indien je deze locale in de toekomst wilt behouden, kan je het onderstaande doen:
+
+```
+student@linux-ess:~$ sudo sed -i 's/en_US/nl_BE/' /etc/locale.conf
+student@linux-ess:~$ sudo reboot
 ```
 
 
