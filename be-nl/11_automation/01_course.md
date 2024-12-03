@@ -138,6 +138,34 @@ the date of today is Tue Jun 28 22:04:09 CEST 2024
 ```
 Het concept dat we hier hebben gebruikt, heet _shell embedding_. De `$(...)` syntaxis opent een nieuwe (sub)shell en voert een commando uit. De uitvoer van het `date`-commando wordt dan direct gebruikt in het echo commando. 
 
+
+
+Als je de datum liever in de Belgische notatie  hebt kan je onderstaande doen:
+
+```
+student@linux-ess:~$ locale -a
+C
+C.utf8
+en_US.utf8
+POSIX
+student@linux-ess:~$ sudo locale-gen nl_BE.UTF-8
+Generating locales (this might take a while)...
+  nl_BE.UTF-8... done
+Generation complete.
+student@linux-ess:~$ locale -a
+C
+C.utf8
+en_US.utf8
+nl_BE.utf8
+POSIX
+student@linux-ess:~$ date
+Tue Dec  3 08:35:51 AM UTC 2024
+student@linux-ess:~$ LC_TIME=nl_BE.utf8 date
+di 03 dec 2024 08:36:18 UTC
+```
+
+
+
 ### Variabelen 
 We kunnen ook gebruik maken van variabelen om data te hergebruiken:  
 _nano vars.sh_ 

@@ -141,6 +141,32 @@ the date of today is Tue Jun 28 22:04:09 CEST 2024
 ```
 The concept we've used here is called _shell embedding_. The `$(...)` syntax opens up a new (sub)shell and runs a command. The output of the `date` command is then directly used in the echo command.
 
+If you want the date printed in Belgian notation, you can do the following:
+
+```
+student@linux-ess:~$ locale -a
+C
+C.utf8
+en_US.utf8
+POSIX
+student@linux-ess:~$ sudo locale-gen nl_BE.UTF-8
+Generating locales (this might take a while)...
+  nl_BE.UTF-8... done
+Generation complete.
+student@linux-ess:~$ locale -a
+C
+C.utf8
+en_US.utf8
+nl_BE.utf8
+POSIX
+student@linux-ess:~$ date
+Tue Dec  3 08:35:51 AM UTC 2024
+student@linux-ess:~$ LC_TIME=nl_BE.utf8 date
+di 03 dec 2024 08:36:18 UTC
+```
+
+
+
 
 ### Variables
 We can also make use of variables to reuse data:  
