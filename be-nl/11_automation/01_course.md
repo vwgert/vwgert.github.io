@@ -289,8 +289,37 @@ Param two was: 2nd
 ```
 
 ## At 
+?> Indien de tijd een uur voorloopt betekent dit dat jouw tijdzone foutief is. Je kan dit oplossen met timedatectl:
+
+```
+student@linux-ess:~$ date
+Tue 03 dec 2024 16:27:38 CET
+student@linux-ess:~$ timedatectl
+               Local time: Tue 2024-12-03 16:28:06 UTC
+           Universal time: Tue 2024-12-03 16:28:06 UTC
+                 RTC time: Tue 2024-12-03 16:28:05
+                Time zone: Etc/UTC (UTC, +0000)
+System clock synchronized: no
+              NTP service: active
+          RTC in local TZ: no
+student@linux-ess:~$ sudo timedatectl set-timezone Europe/Brussels
+student@linux-ess:~$ student@linux-ess:~$ date
+Tue 03 dec 2024 17:28:58 CET
+student@linux-ess:~$ timedatectl
+               Local time: Tue 2024-12-03 17:29:14 CET
+           Universal time: Tue 2024-12-03 16:29:14 UTC
+                 RTC time: Tue 2024-12-03 16:29:14
+                Time zone: Europe/Brussels (CET, +0100)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+```
+
+ 
+
 Je kan het commando at gebruiken om een script/commando op een bepaald tijdstip uit te voeren.  
 Voor het at-commando echoën we een uitvoer in het at-commando zoals getoond in onderstaand voorbeeld:
+
 ```bash
 student@linux-ess:~$ echo ./datefile.sh | at 14:00
 warning: commands will be executed using /bin/sh
