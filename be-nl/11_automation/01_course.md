@@ -346,7 +346,7 @@ In het onderstaande voorbeeld gaan we elke minuut wat tekst naar een bestand ech
 |  |  |  .------- month (1 - 12) OF jan,feb,mar,apr ...  
 |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OF sun,mon,tue,wed,thu,fri,sat  
 |  |  |  |  |  
-*  *  *  *  *   echo Command run at $(date) >> /tmp/crontest  
+*  *  *  *  *   echo Command ran on $(date) >> /tmp/crontest  
 ```
 
 Verwijder gewoon de lijn van de crontab-file om dit te stoppen. Kijk voor meer info in de manpage van `cron`.  
@@ -366,17 +366,17 @@ Choose 1-3 [1]: 1
 crontab: installing new crontab
 ...
 # m h  dom mon dow   command
-* * * * * echo Command run at $(date) >> /tmp/crontest
+* * * * * echo Command ran on $(date) >> /tmp/crontest
 
 @linux-ess:~$ crontab -l
 ...
 # m h  dom mon dow   command
-* * * * * echo Command run at $(date) >> /tmp/crontest
+* * * * * echo Command ran on $(date) >> /tmp/crontest
 
 student@linux-ess:~$ cat /tmp/crontest
-Command run at Sat Nov 12 11:02:01 AM UTC 2024
-Command run at Sat Nov 12 11:03:01 AM UTC 2024
-Command run at Sat Nov 12 11:04:01 AM UTC 2024
+Command ran on Sat Nov 12 11:02:01 AM UTC 2024
+Command ran on Sat Nov 12 11:03:01 AM UTC 2024
+Command ran on Sat Nov 12 11:04:01 AM UTC 2024
 ```
 
 Als we een script moeten uitvoeren als een andere gebruiker of met verhoogde rechten (als root), kunnen we gebruik maken van het algemene _crontab_ bestand in _/etc_. In dit bestand is er een extra kolom om de gebruiker aan te geven waaronder het script moet worden uitgevoerd.  
