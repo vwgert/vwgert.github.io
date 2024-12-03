@@ -38,6 +38,7 @@ Gebruik reguliere expressies om de regels te filteren die:
       apple
       banana
       apricot
+      pear
       peach
       strawberry
       mango
@@ -58,6 +59,7 @@ Gebruik reguliere expressies om de regels te filteren die:
       apple
       banana
       apricot
+      pear
       peach
       strawberry
       mango
@@ -90,7 +92,7 @@ Gebruik reguliere expressies om de regels te filteren die:
 
 ```
    Output:
-      peer
+      pear
       peach
 ```
 6. Eindigen met de letter t  
@@ -138,7 +140,7 @@ Gebruik reguliere expressies om de regels te filteren die:
       apple
       banana
       apricot
-      peer
+      pear
       peach
       strawberry
       mango

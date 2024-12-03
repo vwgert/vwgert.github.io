@@ -38,6 +38,7 @@ Use regular expressions to filter the lines that:
       apple
       banana
       apricot
+      pear
       peach
       strawberry
       mango
@@ -55,6 +56,7 @@ Use regular expressions to filter the lines that:
       apple
       banana
       apricot
+      pear
       peach
       strawberry
       mango
@@ -84,7 +86,7 @@ Use regular expressions to filter the lines that:
 5.	Start with the letter p
 ```
    Output:
-      peer
+      pear
       peach
 ```
 6.	End with the letter t 
@@ -126,7 +128,7 @@ Use regular expressions to filter the lines that:
       apple
       banana
       apricot
-      peer
+      pear
       peach
       strawberry
       mango
