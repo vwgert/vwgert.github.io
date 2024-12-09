@@ -670,7 +670,7 @@ With the last command we search for lines with `test` as a single word
 
 #### sed and Extended Regular Expressions
 
-Offcourse we can use our knowledge of regular expressions with sed, but if you want to use extended regular expressions you need to specify the option `-r`:
+Offcourse we can use our knowledge of regular expressions with sed, but if you want to use extended regular expressions you need to specify the option `-E`:
 
 ```bash
 student@ubuntu-server:~$ grep -C2 www regexlist.txt
@@ -681,7 +681,7 @@ http://www.pxl.be
 https://www.pxl.be
 192.168.1.19
 192.168.5.117
-student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed -r 's_https?://.*_url masked_'
+student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed -E 's_https?://.*_url masked_'
 32
 64
 htp://www.pxl.be

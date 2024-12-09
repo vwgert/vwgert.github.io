@@ -772,7 +772,7 @@ In het laatste commando zoeken we naar regels met `test` als één woord
 
 #### sed en Extended Regular Expressions
 
-Natuurlijk kunnen we onze kennis van regular expressions gebruiken met sed, maar als je uitgebreide regular expressions wilt gebruiken, moet je de optie `-r` opgeven: 
+Natuurlijk kunnen we onze kennis van regular expressions gebruiken met sed, maar als je uitgebreide regular expressions wilt gebruiken, moet je de optie `-E` opgeven: 
 
 ```bash
 student@ubuntu-server:~$ grep -C2 www regexlist.txt
@@ -783,7 +783,7 @@ http://www.pxl.be
 https://www.pxl.be
 192.168.1.19
 192.168.5.117
-student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed -r 's_https?://.*_url masked_'
+student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed -E 's_https?://.*_url masked_'
 32
 64
 htp://www.pxl.be
