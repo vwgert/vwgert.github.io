@@ -694,7 +694,7 @@ url masked
 ?> Because we use slashes (`/`) in our regex we can opt to use underscores (`_`) as seperator
 
 
-?> Without the '-r'-option we'd have to escape the '?'-character
+?> Without the '-E'-option we'd have to escape the '?'-character
 
 ```bash
 student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed 's_https\?://.*_url masked_'

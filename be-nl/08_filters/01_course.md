@@ -795,7 +795,7 @@ url masked
 
 ?> Omdat we slashes (`/`) gebruiken in onze regex zelf, moeten we een ander teken kiezen als seperator, zoals hier de underscores (`_`) 
 
-?> zonder de '-r'-optie zouden we het '?'-teken moeten escapen
+?> zonder de '-E'-optie zouden we het '?'-teken moeten escapen
 
 ```bash
 student@ubuntu-server:~$ grep -C2 www regexlist.txt | sed 's_https\?://.*_url masked_'
