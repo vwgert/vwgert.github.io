@@ -64,7 +64,7 @@ uid=1001(teacher) gid=1001(teacher) groups=1001(teacher)
 #### Standaardwaarden 
 Het commando `useradd` gebruikt nogal wat standaardwaarden. We kunnen deze standaardwaarden controleren door het volgende commando uit te voeren: 
 ```bash
-student@linux-ess:~$ sudo useradd -D
+student@linux-ess:~$ useradd -D
 GROUP=100
 HOME=/home
 INACTIVE=-1
@@ -117,7 +117,7 @@ teacher:x:1001:1001:Teacher Account:/home/teacher:/bin/bash
 ```
 
 ?> Bekijk de manpage van `usermod` voor alle mogelijke opties. 
-  
+
 ?> Als we een gebruiker willen maken waarop niet kan worden ingelogd, kunnen we zijn shell wijzigen naar `/bin/false` of `/sbin/nologin`. Het verschil tussen deze twee is dat `/sbin/nologin` een beleefd bericht geeft dat je niet kunt inloggen op dit account voordat het afsluit. De optie `/bin/false` sluit direct af zonder iets te zeggen. 
 
 #### Gebruikerswachtwoorden instellen 

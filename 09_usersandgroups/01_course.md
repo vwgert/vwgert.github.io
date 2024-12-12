@@ -64,7 +64,7 @@ uid=1001(teacher) gid=1001(teacher) groups=1001(teacher)
 #### Default values
 The `useradd` command uses quite some default values. We can check these default values by running the following command:
 ```bash
-student@linux-ess:~$ sudo useradd -D
+student@linux-ess:~$ useradd -D
 GROUP=100
 HOME=/home
 INACTIVE=-1
@@ -118,8 +118,8 @@ teacher:x:1001:1001:Teacher Account:/home/teacher:/bin/bash
 ```
 
 ?> View the manpage of `usermod` for all possible options. 
-  
-  
+
+
 ?> If we want to create a user that cannot be logged into, we can change his shell to `/bin/false` or `/sbin/nologin`. The difference between these two is that `/sbin/nologin` gives a polite message that you cannot log in to this account before exiting. The option `/bin/false` directly exits without prompting anything. 
 
 #### Setting user passwords
@@ -132,14 +132,14 @@ New password:
 Retype new password:
 passwd: password updated successfully
 ```
-  
+
 ?> <i class="fa-solid fa-circle-info"></i> Note that your password has to be long and difficult enough, otherwise the new password will not be accepted.
-  
-  
+
+
 ?> <i class="fa-solid fa-circle-info"></i> Note that if we use `sudo passwd` that we are changing the password of the user root and not our own password!
 
-    
-  
+​    
+
 As seen in the previous commands we created a new user with the username `teacher` but we never gave it a password. To do this we can run the `passwd` command with `sudo` rights and with a username as argument. This forces setting a new password for that specific user:
 ```bash
 student@linux-ess:~$ sudo passwd teacher
