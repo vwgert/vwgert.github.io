@@ -495,10 +495,10 @@ student@linux-ess:~$ stat -c '%a %n' /bin/passwd
 
 ## Special bits overview
 
-| Permission   | Effect on files                                                               | Effect on directories                                      | 
+| Permission   | Effect on files                                                               | Effect on directories                                      |
 | ------------ | ----------------------------------------------------------------------------- | ------------------ |
 | u+s (setuid)  | The file will execute as the owner of the file, not as the user who ran it    | No effect          |
-| g+s (setgid) | The file will execute as the group that owns the file                         | Files that are created in the directory will get the same groupowner as the directory |
+| g+s (setgid) | <span style="color:lightgray">The file will execute as the group that owns the file</span> | Files that are created in the directory will get the same groupowner as the directory |
 | o+t (sticky) | No effect                                                                     | Users with write access to the directory can only remove file they own, they cannot remove or force save someone elses files |
 
 ## Access control lists

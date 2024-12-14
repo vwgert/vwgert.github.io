@@ -493,7 +493,7 @@ student@linux-ess:~$ stat -c '%a %n' /bin/passwd
 | Toestemming | Effect op bestanden                                                            | Effect op directories                                      |
 | ------------ | ----------------------------------------------------------------------------- | ------------------ |
 | u+s (setuid) | Het bestand wordt uitgevoerd als de eigenaar van het bestand, niet als de gebruiker die het uitvoerde | Geen effect         |
-| g+s (setgid) | Het bestand wordt uitgevoerd als de groep die het bestand bezit                | Bestanden die in de directory worden aangemaakt, krijgen dezelfde groepseigenaar als de directory |
+| g+s (setgid) | <span style="color:lightgray">Het bestand wordt uitgevoerd als de groep die het bestand bezit</span> | Bestanden die in de directory worden aangemaakt, krijgen dezelfde groepseigenaar als de directory |
 | o+t (sticky) | Geen effect                                                                    | Gebruikers met schrijfrechten voor de directory kunnen alleen bestanden verwijderen die ze zelf bezitten; ze kunnen geen bestanden van anderen verwijderen of geforceerd opslaan |
 
 ## Access control lists
