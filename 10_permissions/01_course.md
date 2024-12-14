@@ -477,7 +477,7 @@ text from liam
 
 
 
-## Running a binary as the fileowner (setuid)
+## Running a binary (= executable) as the fileowner (setuid)
 
 
 As you may have noticed there is a third bit we haven't talked about. setuid, the leftmost bit in the field. This allows executable files to run with the permissions of the owner of the file, not the one executing it. This is used by the _passwd_ command to allow users to change their own password for example, as a normal user has no access to the /etc/shadow-file. Setting the setuid bit can have serious security risks, and is almost always a very bad idea.  

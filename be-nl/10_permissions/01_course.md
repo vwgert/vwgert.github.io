@@ -473,7 +473,7 @@ text from liam
 ?> Als we de kernelparameter in de toekomst willen behouden, moeten we deze parameter wijzigen in het bestand _/usr/lib/sysctl.d/99-protect-links.conf_ 
 
 
-## Een binair bestand uitvoeren als de userowner (setuid) 
+## Een binary (= uitvoerbaar bestand) uitvoeren als de userowner (setuid) 
 
 Zoals je misschien hebt gemerkt, is er een derde bit waar we het niet over hebben gehad. Setuid, de meest linkse bit in het veld. Hierdoor kunnen uitvoerbare bestanden worden uitgevoerd met de machtigingen van de eigenaar van het bestand, niet degene die het uitvoert. Dit wordt bijvoorbeeld gebruikt door het _passwd_ commando om gebruikers in staat te stellen hun eigen wachtwoord te wijzigen, omdat een normale gebruiker geen toegang heeft tot het /etc/shadow-bestand. Het instellen van de setuid bit kan ernstige beveiligingsrisico's met zich meebrengen en is bijna altijd een zeer slecht idee.  
 
