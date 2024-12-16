@@ -98,7 +98,7 @@ student  pts/0    192.168.75.1     15:04    7.00s  0.25s  0.02s w
 ## Task 9
 Create a personal cronjob which saves the text _Rebooted at_ and then the _date_ and _time_ to the file _~/rebootlog_.
 Search the manpage of the crontab file, more precisely the _File Format_ section. Search for the text _reboot_. 
-      
+> Hint: when trying to format your date command: the `%`-sign has a special meaning in crontab.
   
 ## Task 10 
 Create a Cronjob that makes a backup of all the homefolders (regular users and root) every sunday at 23:59 to the dir _/backups_. Put the backup in a tarball named homefolders.tar.gz.

@@ -97,7 +97,7 @@ student  pts/0    192.168.75.1     15:04    7.00s  0.25s  0.02s w
 ## Oefening 9
 Maak een persoonlijke cronjob die de tekst _Herstart om_ opslaat en vervolgens de _datum_ en _tijd_ in het bestand _~/rebootlog_. 
 Doorzoek de manpage van het crontab-bestand, meer bepaald de sectie _File Format_. Zoek naar de tekst _reboot_.  
-      
+> Hint: Als je je date commando formateert: het `%`-teken heeft een speciale betekenis in crontab.
   
 ## Oefening 10 
 Maak een Cronjob die elke zondag om 23:59 uur een back-up maakt van alle homefolders (reguliere gebruikers en root) naar de map _/backups_. Plaats de back-up in een tarball met de naam homefolders.tar.gz. 
