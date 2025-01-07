@@ -149,7 +149,7 @@ C
 C.utf8
 en_US.utf8
 POSIX
-student@linux-ess:~$ sudo locale-gen nl_BE.UTF-8
+student@linux-ess:~$ sudo locale-gen nl_BE.utf8
 Generating locales (this might take a while)...
   nl_BE.UTF-8... done
 Generation complete.
