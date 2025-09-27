@@ -13,7 +13,7 @@ In server / IOT / mobiele omgevingen vond er een zekere verschuiving in gebruikt
 Linux wordt gebruikt in smartphones, (web)servers, tablets, IoT-apparaten, slimme wasmachines, zelfrijdende auto's, modems, routers, PlayStations, ... Kortom: Linux wordt veel meer gebruikt dan je in eerste instantie zou denken. Linux heeft zelfs zijn eigen mascotte, de pinguïn genaamd Tux! 
 
 ### Unix
-Dennis Ritch en Ken Thompson creëerden het Unix-besturingssysteem in 1969. De broncode van dit besturingssysteem werd destijds gedeeld. Na een tijdje besloot het bedrijf AT&T Bell Labs dat ze Unix commercieel wilden verkopen. BSD ontwikkelde tegelijkertijd het besturingssysteem verder onafhankelijk van Unix. Dit leidde tot volgende versies:
+Dennis Ritchie en Ken Thompson creëerden het Unix-besturingssysteem in 1969. De broncode van dit besturingssysteem werd destijds gedeeld. Na een tijdje besloot het bedrijf AT&T Bell Labs dat ze Unix commercieel wilden verkopen. BSD ontwikkelde tegelijkertijd het besturingssysteem verder onafhankelijk van Unix. Dit leidde tot volgende versies:
 * Unix: De commerciële versie
 * BSD Unix: De open source versie
 
