@@ -424,7 +424,7 @@ student@ubuntu-server:~$ tree /tmp/Downloads/
 
 ```
 
-![tar](../images/05/tar.png)   
+![tar](../images/05/tar-joke.jpeg)   
 
 ### Pakketten installeren via een tarball 
 
